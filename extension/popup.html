@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeX</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 ResumeX</h1>
+            <p class="subtitle">AI-Powered Resume Tailoring</p>
+        </header>
+
+        <div class="form-section">
+            <div class="input-group">
+                <label for="jobTitle">Job Title</label>
+                <input type="text" id="jobTitle" placeholder="e.g., Senior Full-Stack Developer" autocomplete="off" />
+            </div>
+
+            <div class="input-group">
+                <label for="githubProfile">GitHub Profile Link</label>
+                <input type="text" id="githubProfile" placeholder="e.g., https://github.com/octocat"
+                    autocomplete="off" />
+            </div>
+
+            <div class="input-group">
+                <label for="linkedinProfile">LinkedIn Profile Link</label>
+                <input type="text" id="linkedinProfile" placeholder="e.g., https://linkedin.com/in/johndoe"
+                    autocomplete="off" />
+            </div>
+
+            <button id="generateBtn" class="btn-primary">
+                Generate Tailored Resume
+            </button>
+
+            <div id="actionButtons" class="action-buttons hidden">
+                <button id="saveBtn" class="btn-action btn-save">
+                    💾 Save to Vault
+                </button>
+                <button id="downloadPdfBtn" class="btn-action btn-download">
+                    📥 Download PDF
+                </button>
+            </div>
+
+            <div id="autoFillSection" class="auto-fill-section hidden">
+                <button id="autoFillBtn" class="btn-action btn-autofill">
+                    🤖 Auto-Fill Application
+                </button>
+                <div id="autoFillStatus" class="auto-fill-status hidden"></div>
+            </div>
+        </div>
+
+        <div id="status" class="status hidden"></div>
+
+        <div id="results" class="results hidden" <div class="section">
+            <h3>📝 Professional Summary</h3>
+            <p id="summary"></p>
+        </div>
+
+        <div class="section">
+            <h3>💡 Skills</h3>
+            <div id="skills"></div>
+        </div>
+
+        <div class="section">
+            <h3>🚀 Top Projects</h3>
+            <div id="projects"></div>
+        </div>
+
+        <div class="section">
+            <h3>📊 Tailoring Data</h3>
+            <div id="tailoringData"></div>
+        </div>
+
+        <details class="raw-json">
+            <summary>View Raw JSON</summary>
+            <pre id="rawJson"></pre>
+        </details>
+
+        <button id="copyBtn" class="btn-secondary">Copy Resume JSON</button>
+    </div>
+    </div>
+
+    <script src="popup.js"></script>
+    <script src="popup_handlers.js"></script>
+    <script src="popup_autofill.js"></script>
+</body>
+
+</html>
