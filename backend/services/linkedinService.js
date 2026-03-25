@@ -2,12 +2,12 @@
  * LinkedIn Profile Aggregation Service
  * 
  * Fetches public LinkedIn data and normalizes it into a structured profile
- * using the Proxycurl API (bypasses LinkedIn scraping blocks).
+ * using RapidAPI (e.g. Fresh Linkedin Profile Data) to bypass blocks.
  */
 
 // In-memory cache to avoid excessive API calls
 const cache = new Map();
-const CACHE_TTL = 60 * 60 * 1000; // 1 hour (Proxycurl calls cost money)
+const CACHE_TTL = 60 * 60 * 1000; // 1 hour
 
 /**
  * Main function to fetch and normalize LinkedIn profile
@@ -19,15 +19,13 @@ async function fetchLinkedInProfile(linkedinUrl) {
         throw new Error('LinkedIn URL is required');
     }
 
-    const apiKey = process.env.PROXYCURL_API_KEY;
+    const apiKey = process.env.RAPIDAPI_KEY;
     
-    // If no API key is set, we return null to trigger the fallback to mockData
     if (!apiKey) {
-        console.log('⚠️ PROXYCURL_API_KEY not found in .env. Skipping LinkedIn scrape.');
+        console.log('⚠️ RAPIDAPI_KEY not found in .env. Skipping LinkedIn scrape.');
         return null;
     }
 
-    // Check cache first
     const cached = getFromCache(linkedinUrl);
     if (cached) {
         console.log(`📦 Cache hit for LinkedIn: ${linkedinUrl}`);
@@ -35,76 +33,78 @@ async function fetchLinkedInProfile(linkedinUrl) {
     }
 
     try {
-        console.log(`🔍 Fetching LinkedIn profile via Proxycurl: ${linkedinUrl}`);
+        console.log(`🔍 Fetching LinkedIn profile via RapidAPI: ${linkedinUrl}`);
 
-        const response = await fetch(`https://nubela.co/proxycurl/api/v2/linkedin?url=${encodeURIComponent(linkedinUrl)}`, {
+        // Using a popular generic RapidAPI endpoint for LinkedIn profiles
+        const response = await fetch(`https://fresh-linkedin-profile-data.p.rapidapi.com/get-linkedin-profile?linkedin_url=${encodeURIComponent(linkedinUrl)}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${apiKey}`
+                'x-rapidapi-key': apiKey,
+                'x-rapidapi-host': 'fresh-linkedin-profile-data.p.rapidapi.com'
             }
         });
 
         if (!response.ok) {
             const errorText = await response.text();
-            throw new Error(`Proxycurl returned status ${response.status}: ${errorText}`);
+            throw new Error(`RapidAPI returned status ${response.status}: ${errorText}`);
         }
 
         const rawData = await response.json();
+        
+        // Sometimes RapidAPI wrappers put data inside a "data" object
+        const profileData = rawData.data || rawData;
 
         // Normalize the data matching the expected resume structure
-        const normalizedProfile = normalizeLinkedInData(rawData);
+        const normalizedProfile = normalizeLinkedInData(profileData, linkedinUrl);
 
-        // Cache the result
         setCache(linkedinUrl, normalizedProfile);
 
         return normalizedProfile;
 
     } catch (error) {
         console.warn(`⚠️ Failed to fetch LinkedIn profile: ${error.message}`);
-        // Return null so the pipeline falls back gracefully
         return null; 
     }
 }
 
 /**
- * Normalize Proxycurl data into the profile schema
+ * Normalize API data into the profile schema robustly
  */
-function normalizeLinkedInData(data) {
-    // Map experiences
-    const experience = (data.experiences || []).map(exp => ({
-        company: exp.company || 'Unknown Company',
-        position: exp.title || 'Unknown Position',
-        duration: formatDuration(exp.starts_at, exp.ends_at),
+function normalizeLinkedInData(data, url) {
+    const rawExperiences = data.experiences || data.experience || [];
+    const experience = rawExperiences.map(exp => ({
+        company: exp.company || exp.company_name || 'Unknown Company',
+        position: exp.title || exp.position || 'Unknown Position',
+        duration: formatDuration(exp.starts_at || exp.start_date, exp.ends_at || exp.end_date),
         location: exp.location || 'Remote',
         achievements: exp.description 
             ? exp.description.split('\n').map(item => item.trim()).filter(Boolean)
             : []
     }));
 
-    // Map education
-    const education = (data.education || []).map(edu => ({
-        degree: edu.degree_name ? `${edu.degree_name} in ${edu.field_of_study || 'N/A'}` : 'N/A',
-        institution: edu.school || 'Unknown Institution',
-        graduation: (edu.ends_at && edu.ends_at.year) ? edu.ends_at.year.toString() : 'Present',
-        gpa: null // Proxycurl rarely returns GPA perfectly
+    const rawEducation = data.education || data.educations || [];
+    const education = rawEducation.map(edu => ({
+        degree: edu.degree_name || edu.degree ? `${edu.degree_name || edu.degree} ${edu.field_of_study ? 'in ' + edu.field_of_study : ''}` : 'N/A',
+        institution: edu.school || edu.school_name || 'Unknown Institution',
+        graduation: (edu.ends_at && edu.ends_at.year) ? edu.ends_at.year.toString() : (edu.end_date || 'Present'),
+        gpa: null
     }));
 
-    const certifications = (data.certifications || []).map(cert => cert.name);
+    const certifications = (data.certifications || []).map(cert => cert.name || cert.title);
 
     return {
         personalInfo: {
-            name: data.full_name || '',
-            email: '', // Usually not exposed publicly
+            name: data.full_name || data.name || '',
+            email: '', 
             phone: '', 
-            location: `${data.city || ''}, ${data.state || ''}, ${data.country_full_name || ''}`.replace(/^, | ,$|(, )+/g, ', ').trim(),
-            linkedin: data.public_identifier ? `linkedin.com/in/${data.public_identifier}` : '',
-            github: '' // Keep empty to merge with githubService later
+            location: `${data.city || ''}, ${data.state || ''}, ${data.country_full_name || data.country || ''}`.replace(/^, | ,$|(, )+/g, ', ').trim(),
+            linkedin: url,
+            github: '' 
         },
-        summary: data.summary || data.headline || '',
+        summary: data.summary || data.about || data.headline || '',
         experience,
         education,
         certifications,
-        // Optional raw proxycurl skills if available
         rawSkills: data.skills || []
     };
 }
