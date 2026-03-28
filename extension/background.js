@@ -11,7 +11,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 
         // Set default values
         chrome.storage.local.set({
-            apiUrl: 'http://localhost:3001'
+            apiUrl: 'https://resumex-d1go.onrender.com'
         });
     } else if (details.reason === 'update') {
         console.log('ResumeX extension updated');

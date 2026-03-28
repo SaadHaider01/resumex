@@ -19,7 +19,7 @@ const autoFillBtn = document.getElementById('autoFillBtn');
 const autoFillStatus = document.getElementById('autoFillStatus');
 
 // Default API URL (no user input needed)
-const DEFAULT_API_URL = 'http://localhost:3001';
+const DEFAULT_API_URL = 'https://resumex-5ij7.onrender.com';
 
 // Storage keys
 const STORAGE_KEYS = {
