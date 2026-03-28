@@ -18,8 +18,18 @@ const PORT = process.env.PORT || 4000;
 let llmProvider;
 try {
     const provider = process.env.LLM_PROVIDER || 'openai';
-    const apiKey = provider === 'gemini' ? process.env.GEMINI_API_KEY : process.env.OPENAI_API_KEY;
-    const model = provider === 'gemini' ? (process.env.GEMINI_MODEL || 'gemini-2.0-flash') : (process.env.OPENAI_MODEL || 'gpt-4o-mini');
+    
+    let apiKey, model;
+    if (provider === 'gemini') {
+        apiKey = process.env.GEMINI_API_KEY;
+        model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+    } else if (provider === 'openrouter') {
+        apiKey = process.env.OPENROUTER_API_KEY;
+        model = process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free';
+    } else {
+        apiKey = process.env.OPENAI_API_KEY;
+        model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+    }
 
     llmProvider = initializeProvider({ provider, apiKey, model });
     console.log(`✅ LLM Provider initialized: ${llmProvider.name} (Model: ${model})`);
