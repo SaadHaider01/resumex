@@ -42,25 +42,22 @@ test('Test 1: Fetch valid GitHub user profile', async () => {
     console.log(JSON.stringify(profile, null, 2));
 
     // Validations
-    if (!profile.github) {
-        throw new Error('Missing "github" field in response');
+    if (profile.username !== username) {
+        throw new Error(`Expected username to be "${username}" but got "${profile.username}"`);
     }
-    if (profile.github.username !== username) {
-        throw new Error(`Expected username to be "${username}" but got "${profile.github.username}"`);
-    }
-    if (!Array.isArray(profile.github.topLanguages)) {
+    if (!Array.isArray(profile.topLanguages)) {
         throw new Error('topLanguages should be an array');
     }
-    if (!Array.isArray(profile.github.projects)) {
+    if (!Array.isArray(profile.projects)) {
         throw new Error('projects should be an array');
     }
-    if (typeof profile.github.totalRepos !== 'number') {
+    if (typeof profile.totalRepos !== 'number') {
         throw new Error('totalRepos should be a number');
     }
 
-    console.log(`\n✓ Found ${profile.github.totalRepos} total repositories`);
-    console.log(`✓ Extracted ${profile.github.topLanguages.length} top languages:`, profile.github.topLanguages);
-    console.log(`✓ Normalized ${profile.github.projects.length} projects`);
+    console.log(`\n✓ Found ${profile.totalRepos} total repositories`);
+    console.log(`✓ Extracted ${profile.topLanguages.length} top languages:`, profile.topLanguages);
+    console.log(`✓ Normalized ${profile.projects.length} projects`);
 });
 
 // Test Case 2: Invalid GitHub username (should fail gracefully)
@@ -125,17 +122,14 @@ test('Test 4: Handle user with no public repositories', async () => {
     const profile = await fetchGitHubProfile(username);
 
     // Validate structure even if repos exist
-    if (!profile.github) {
-        throw new Error('Missing "github" field');
-    }
-    if (!Array.isArray(profile.github.projects)) {
+    if (!Array.isArray(profile.projects)) {
         throw new Error('projects should always be an array (even if empty)');
     }
-    if (!Array.isArray(profile.github.topLanguages)) {
+    if (!Array.isArray(profile.topLanguages)) {
         throw new Error('topLanguages should always be an array (even if empty)');
     }
 
-    console.log(`✓ Returned valid structure with ${profile.github.projects.length} projects`);
+    console.log(`✓ Returned valid structure with ${profile.projects.length} projects`);
 });
 
 // Test Case 5: Validate project structure
@@ -146,8 +140,8 @@ test('Test 5: Validate project data structure', async () => {
 
     const profile = await fetchGitHubProfile(username);
 
-    if (profile.github.projects.length > 0) {
-        const firstProject = profile.github.projects[0];
+    if (profile.projects.length > 0) {
+        const firstProject = profile.projects[0];
 
         console.log('Sample project:');
         console.log(JSON.stringify(firstProject, null, 2));

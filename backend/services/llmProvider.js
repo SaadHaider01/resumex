@@ -146,7 +146,7 @@ class OpenRouterProvider {
         });
         this.name = 'openrouter';
         // By default we use Gemini 2.0 Flash Lite via OpenRouter as our free model fallback
-        this.defaultModel = model || process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free';
+        this.defaultModel = model || process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite:free';
     }
 
     async generateText(prompt, options = {}) {
@@ -217,7 +217,7 @@ function getAvailableProviders() {
         {
             id: 'openrouter',
             name: 'OpenRouter',
-            models: ['google/gemini-2.0-flash-lite-preview-02-05:free', 'meta-llama/llama-3.3-70b-instruct:free'],
+            models: ['google/gemini-2.0-flash-lite:free', 'meta-llama/llama-3.3-70b-instruct:free'],
             requiresApiKey: true,
             free: true,
             notes: 'Free routing to Gemini and Llama with no IP limits'

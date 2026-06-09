@@ -232,7 +232,10 @@ function getToneGuidance(experienceMatchLevel) {
   }
 }
 
+const { createCoverLetterPrompt } = require('./promptTemplate_coverLetter');
+
 module.exports = {
-  createResumePrompt
+  createResumePrompt,
+  createCoverLetterPrompt
 };
 

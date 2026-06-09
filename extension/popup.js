@@ -18,6 +18,12 @@ const autoFillSection = document.getElementById('autoFillSection');
 const autoFillBtn = document.getElementById('autoFillBtn');
 const autoFillStatus = document.getElementById('autoFillStatus');
 
+// Settings Elements
+const settingsBtn = document.getElementById('settingsBtn');
+const settingsPanel = document.getElementById('settingsPanel');
+const apiUrlInput = document.getElementById('apiUrlInput');
+const saveSettingsBtn = document.getElementById('saveSettingsBtn');
+
 // Default API URL (no user input needed)
 const DEFAULT_API_URL = 'https://resumex-5ij7.onrender.com';
 
@@ -61,12 +67,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const saved = await chrome.storage.local.get([
         STORAGE_KEYS.JOB_TITLE,
         STORAGE_KEYS.GITHUB_PROFILE,
-        STORAGE_KEYS.LINKEDIN_PROFILE
+        STORAGE_KEYS.LINKEDIN_PROFILE,
+        STORAGE_KEYS.API_URL
     ]);
 
     if (saved.jobTitle) jobTitleInput.value = saved.jobTitle;
     if (saved.githubProfile) githubProfileInput.value = saved.githubProfile;
     if (saved.linkedinProfile) linkedinProfileInput.value = saved.linkedinProfile;
+    apiUrlInput.value = saved.apiUrl || DEFAULT_API_URL;
 
     // Event listeners
     generateBtn.addEventListener('click', handleGenerateResume);
@@ -74,6 +82,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     downloadPdfBtn.addEventListener('click', handleDownloadPDF);
     copyBtn.addEventListener('click', handleCopyJson);
     autoFillBtn.addEventListener('click', handleAutoFill);
+
+    // Toggle settings panel
+    settingsBtn.addEventListener('click', () => {
+        const isHidden = settingsPanel.style.display === 'none';
+        settingsPanel.style.display = isHidden ? 'block' : 'none';
+    });
+
+    // Save API URL
+    saveSettingsBtn.addEventListener('click', async () => {
+        const url = apiUrlInput.value.trim();
+        await chrome.storage.local.set({ [STORAGE_KEYS.API_URL]: url });
+        
+        saveSettingsBtn.textContent = '✓ Saved!';
+        saveSettingsBtn.style.background = '#218838';
+        
+        setTimeout(() => {
+            saveSettingsBtn.textContent = 'Save';
+            saveSettingsBtn.style.background = '#28a745';
+            settingsPanel.style.display = 'none';
+        }, 1500);
+    });
 
     // Save settings on change
     jobTitleInput.addEventListener('change', () => {

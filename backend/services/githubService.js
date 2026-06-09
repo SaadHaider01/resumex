@@ -38,17 +38,15 @@ async function fetchGitHubProfile(username) {
 
         if (!repos || repos.length === 0) {
             return {
-                github: {
-                    username,
-                    topLanguages: [],
-                    projects: [],
-                    totalRepos: 0
-                }
+                username,
+                topLanguages: [],
+                projects: [],
+                totalRepos: 0
             };
         }
 
         // Normalize the data
-        const normalizedProfile = normalizeGitHubData(username, repos);
+        const normalizedProfile = await normalizeGitHubData(username, repos);
 
         // Cache the result
         setCache(username, normalizedProfile);
@@ -84,6 +82,9 @@ async function fetchUserRepos(username) {
         
         return await response.json();
     } catch (error) {
+        if (error.statusCode) {
+            throw error;
+        }
         throw new Error(`Network error: ${error.message}`);
     }
 }
@@ -150,12 +151,10 @@ async function normalizeGitHubData(username, repos) {
         .map(([lang]) => lang);
 
     return {
-        github: {
-            username,
-            topLanguages,
-            projects: projects.sort((a, b) => b.stars - a.stars), // Sort by stars
-            totalRepos: repos.length
-        }
+        username,
+        topLanguages,
+        projects: projects.sort((a, b) => b.stars - a.stars), // Sort by stars
+        totalRepos: repos.length
     };
 }
 

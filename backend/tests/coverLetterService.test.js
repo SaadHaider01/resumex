@@ -60,7 +60,7 @@ const mockResumeJSON = {
  */
 async function testStrongMatchScenario() {
     console.log('\n📝 TEST 1: Strong Match Scenario');
-    console.log('='.)repeat(60));
+    console.log('='.repeat(60));
 
     const params = {
         jobDescription: `We are seeking a Senior Full-Stack Developer with expertise in React and Node.js to build scalable microservices.
@@ -89,7 +89,7 @@ Requirements:
 
         // Validate content
         const content = result.coverLetter.toLowerCase();
-        const hascompany = content.includes('techcorp');
+        const hasCompany = content.includes('techcorp');
         const hasJobTitle = content.includes('senior full-stack developer');
         const hasSkills = content.includes('react') || content.includes('node.js');
 

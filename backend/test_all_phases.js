@@ -9,6 +9,8 @@ const { createResumePrompt } = require('./promptTemplate');
 const { initializeProvider } = require('./services/llmProvider');
 const mockUserProfile = require('./mockData');
 const { generateResumePDF } = require('./services/pdfExportService');
+const { connectDB } = require('./config/database');
+const { saveResume } = require('./services/resumeVaultService');
 const jobDescription = `
 Senior Full-Stack Developer
 We are looking for an experienced Full-Stack Developer with 5+ years of experience.
@@ -67,13 +69,21 @@ async function testAllPhases() {
         console.log();
 
         // --- Phase 1: LLM Generation ---
-        console.log("--- Testing Phase 1: LLM Prompt Generation ---");
         console.log("✅ LLM Provider configured as:", process.env.LLM_PROVIDER);
         let llmProvider;
         try {
             const provider = process.env.LLM_PROVIDER || 'openai';
-            const apiKey = provider === 'gemini' ? process.env.GEMINI_API_KEY : process.env.OPENAI_API_KEY;
-            const model = provider === 'gemini' ? (process.env.GEMINI_MODEL || 'gemini-1.5-flash') : (process.env.OPENAI_MODEL || 'gpt-4o-mini');
+            let apiKey, model;
+            if (provider === 'gemini') {
+                apiKey = process.env.GEMINI_API_KEY;
+                model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+            } else if (provider === 'openrouter') {
+                apiKey = process.env.OPENROUTER_API_KEY;
+                model = process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free';
+            } else {
+                apiKey = process.env.OPENAI_API_KEY;
+                model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+            }
             llmProvider = initializeProvider({ provider, apiKey, model });
             console.log(`✅ LLM initialized successfully with model: ${model}`);
 
@@ -109,14 +119,14 @@ async function testAllPhases() {
             await connectDB();
 
             const dbData = {
-                title: 'Test Resume ' + Date.now(),
-                content: fakeResumeData,
-                metadata: {
-                    jobDescription: "test jd",
-                    companyUrl: "test url"
-                }
+                jobTitle: 'Senior Full-Stack Developer',
+                company: 'TechCorp',
+                githubUsername: 'test-user-123',
+                resumeJSON: fakeResumeData,
+                tailoringBlueprint: blueprint,
+                jobDescription: 'test jd'
             };
-            const savedItem = await saveResume('test-user-123', dbData);
+            const savedItem = await saveResume(dbData);
             console.log(`✅ Saved to DB Successfully! ID: ${savedItem._id}`);
 
             // Cleanup
