@@ -17,6 +17,8 @@ const copyBtn = document.getElementById('copyBtn');
 const autoFillSection = document.getElementById('autoFillSection');
 const autoFillBtn = document.getElementById('autoFillBtn');
 const autoFillStatus = document.getElementById('autoFillStatus');
+const syncBtn = document.getElementById('syncBtn');
+const syncStatus = document.getElementById('syncStatus');
 
 // Settings Elements
 const settingsBtn = document.getElementById('settingsBtn');
@@ -61,6 +63,90 @@ function extractGithubUsername(input) {
     return trimmed;
 }
 
+function updateSyncStatus(profile) {
+    if (profile && profile.syncedAt) {
+        const timeStr = new Date(profile.syncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const dateStr = new Date(profile.syncedAt).toLocaleDateString();
+        syncStatus.textContent = `${dateStr} ${timeStr}`;
+        syncStatus.style.color = '#28a745';
+        syncStatus.style.fontWeight = 'bold';
+    } else {
+        syncStatus.textContent = 'Not Synced';
+        syncStatus.style.color = '#dc3545';
+        syncStatus.style.fontWeight = 'bold';
+    }
+}
+
+function ensureAbsoluteUrl(url) {
+    if (!url) return '';
+    if (!/^https?:\/\//i.test(url)) {
+        return 'https://' + url;
+    }
+    return url;
+}
+
+function ensureGithubUrl(input) {
+    let url = input.trim();
+    if (!url) return '';
+    if (!url.includes('github.com')) {
+        url = `github.com/${url}`;
+    }
+    return ensureAbsoluteUrl(url);
+}
+
+function ensureLinkedinUrl(input) {
+    let url = input.trim();
+    if (!url) return '';
+    if (!url.includes('linkedin.com')) {
+        url = `linkedin.com/in/${url}`;
+    }
+    return ensureAbsoluteUrl(url);
+}
+
+async function handleSyncProfile() {
+    let githubProfile = githubProfileInput.value.trim();
+    let linkedinProfile = linkedinProfileInput.value.trim();
+    
+    if (!githubProfile) {
+        showStatus('Please enter your GitHub profile URL first.', 'error');
+        return;
+    }
+    if (!linkedinProfile) {
+        showStatus('Please enter your LinkedIn profile URL first.', 'error');
+        return;
+    }
+
+    githubProfile = ensureGithubUrl(githubProfile);
+    linkedinProfile = ensureLinkedinUrl(linkedinProfile);
+
+    try {
+        syncBtn.disabled = true;
+        syncBtn.textContent = '🔄 Syncing...';
+        showStatus('Syncing LinkedIn & GitHub profiles in background... Make sure you are logged into LinkedIn.', 'loading');
+        
+        chrome.runtime.sendMessage({
+            action: 'sync_profile',
+            linkedinUrl: linkedinProfile,
+            githubUrl: githubProfile
+        }, (response) => {
+            syncBtn.disabled = false;
+            syncBtn.textContent = '🔄 Sync';
+            
+            if (response && response.success) {
+                updateSyncStatus(response.profile);
+                showStatus('Profiles synced successfully! 🎉', 'success');
+            } else {
+                showStatus(response?.error || 'Sync failed. Please check your credentials/connection.', 'error');
+            }
+        });
+    } catch (error) {
+        console.error(error);
+        syncBtn.disabled = false;
+        syncBtn.textContent = '🔄 Sync';
+        showStatus(`Error: ${error.message}`, 'error');
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
     // Load saved settings
@@ -68,13 +154,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         STORAGE_KEYS.JOB_TITLE,
         STORAGE_KEYS.GITHUB_PROFILE,
         STORAGE_KEYS.LINKEDIN_PROFILE,
-        STORAGE_KEYS.API_URL
+        STORAGE_KEYS.API_URL,
+        'userProfile'
     ]);
 
     if (saved.jobTitle) jobTitleInput.value = saved.jobTitle;
     if (saved.githubProfile) githubProfileInput.value = saved.githubProfile;
     if (saved.linkedinProfile) linkedinProfileInput.value = saved.linkedinProfile;
     apiUrlInput.value = saved.apiUrl || DEFAULT_API_URL;
+    
+    updateSyncStatus(saved.userProfile);
 
     // Event listeners
     generateBtn.addEventListener('click', handleGenerateResume);
@@ -82,6 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     downloadPdfBtn.addEventListener('click', handleDownloadPDF);
     copyBtn.addEventListener('click', handleCopyJson);
     autoFillBtn.addEventListener('click', handleAutoFill);
+    syncBtn.addEventListener('click', handleSyncProfile);
 
     // Toggle settings panel
     settingsBtn.addEventListener('click', () => {
@@ -130,6 +220,15 @@ async function handleGenerateResume() {
         return;
     }
 
+    // Load user profile cache
+    const stored = await chrome.storage.local.get('userProfile');
+    const userProfile = stored.userProfile;
+
+    if (!userProfile) {
+        showStatus('No profile synced. Please click "🔄 Sync" first to load your credentials!', 'error');
+        return;
+    }
+
     // Disable button
     generateBtn.disabled = true;
     showStatus('Extracting job description from page...', 'loading');
@@ -155,6 +254,7 @@ async function handleGenerateResume() {
             },
             body: JSON.stringify({
                 jobDescription,
+                userProfile,
                 githubUsername,
                 linkedinProfile: linkedinProfileInput.value.trim()
             })

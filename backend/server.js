@@ -11,6 +11,39 @@ const { generateTailoringBlueprint } = require('./services/tailoringService');
 const { connectDB } = require('./config/database');
 const resumeVaultRoutes = require('./routes/resumeVaultRoutes');
 
+function parseJsonFromText(text) {
+    if (!text || typeof text !== 'string') {
+        throw new Error('Input must be a non-empty string');
+    }
+
+    let cleanText = text.trim();
+
+    // Strip out markdown code blocks if present (```json or ```)
+    const markdownRegex = /^```(?:json)?\s*([\s\S]*?)\s*```$/i;
+    const match = cleanText.match(markdownRegex);
+    if (match) {
+        cleanText = match[1].trim();
+    }
+
+    try {
+        return JSON.parse(cleanText);
+    } catch (firstError) {
+        // Fallback: search for first '{' and last '}' to extract JSON substring
+        const start = cleanText.indexOf('{');
+        const end = cleanText.lastIndexOf('}');
+        
+        if (start !== -1 && end !== -1 && end > start) {
+            const extracted = cleanText.substring(start, end + 1);
+            try {
+                return JSON.parse(extracted);
+            } catch (secondError) {
+                throw new Error(`Failed to parse extracted JSON: ${secondError.message}. Content was: ${extracted}`);
+            }
+        }
+        throw firstError;
+    }
+}
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -105,7 +138,7 @@ app.post('/api/generate-resume', async (req, res) => {
         let tailoredResume;
 
         try {
-            tailoredResume = JSON.parse(resumeText);
+            tailoredResume = parseJsonFromText(resumeText);
         } catch (parseError) {
             console.error('Failed to parse AI response as JSON:', resumeText);
             return res.status(500).json({
@@ -185,14 +218,22 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
         console.log('  1️⃣ Parsing job description...');
         const parsedJD = parseJobDescription(jobDescription);
 
-        // Step 2: Fetch GitHub profile (if provided)
+        // Step 2: Fetch GitHub profile (if provided and not already cached in userProfile)
         let githubProfile = {
             topLanguages: [],
             projects: [],
             stats: { totalRepos: 0, totalStars: 0, totalCommits: 0 }
         };
 
-        if (githubUsername) {
+        const hasCachedGithub = userProfile && userProfile.projects && userProfile.projects.length > 0;
+        if (hasCachedGithub) {
+            console.log('  2️⃣ Using client-side scraped GitHub repositories...');
+            githubProfile = {
+                topLanguages: userProfile.skills?.languages || [],
+                projects: userProfile.projects,
+                stats: { totalRepos: userProfile.projects.length, totalStars: 0, totalCommits: 0 }
+            };
+        } else if (githubUsername) {
             try {
                 console.log(`  2️⃣ Fetching GitHub profile for: ${githubUsername}`);
                 githubProfile = await fetchGitHubProfile(githubUsername);
@@ -203,15 +244,18 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             console.log('  2️⃣ No GitHub username provided, skipping...');
         }
 
-        // Fetch LinkedIn profile (if provided)
+        // Fetch LinkedIn profile (if provided and not already cached in userProfile)
         let linkedinData = null;
-        if (linkedinProfile) {
+        const hasCachedLinkedIn = userProfile && userProfile.experience && userProfile.experience.length > 0;
+        if (linkedinProfile && !hasCachedLinkedIn) {
             try {
                 console.log(`  2.5️⃣ Fetching LinkedIn profile for: ${linkedinProfile}`);
                 linkedinData = await fetchLinkedInProfile(linkedinProfile);
             } catch (error) {
                 console.warn(`  ⚠️ LinkedIn fetch failed: ${error.message}`);
             }
+        } else if (hasCachedLinkedIn) {
+            console.log('  2.5️⃣ Using client-side scraped LinkedIn profile...');
         } else {
             console.log('  2.5️⃣ No LinkedIn profile provided, skipping...');
         }
@@ -266,7 +310,7 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
         let tailoredResume;
 
         try {
-            tailoredResume = JSON.parse(resumeText);
+            tailoredResume = parseJsonFromText(resumeText);
         } catch (parseError) {
             console.error('Failed to parse AI response as JSON:', resumeText);
             return res.status(500).json({
