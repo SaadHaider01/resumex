@@ -76,12 +76,10 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-/*
 connectDB().catch(err => {
     console.error('Failed to connect to MongoDB:', err);
     console.log('⚠️  Server will run without database features');
 });
-*/
 
 // Mount resume vault routes
 app.use('/api', resumeVaultRoutes);

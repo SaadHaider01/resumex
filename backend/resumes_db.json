@@ -1,0 +1,22 @@
+[
+  {
+    "_id": "local_1781193608237_5wi37pir4",
+    "jobTitle": "Software Engineer (Fallback Test)",
+    "company": "Test Fallback Corp",
+    "githubUsername": "test-user",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Fallback User"
+      }
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "Node.js",
+        "React"
+      ]
+    },
+    "jobDescription": "We need a Software Engineer skilled in Node.js and React.",
+    "createdAt": "2026-06-11T16:00:08.237Z",
+    "updatedAt": "2026-06-11T16:00:08.237Z"
+  }
+]

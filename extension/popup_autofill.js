@@ -57,18 +57,63 @@ async function handleAutoFill() {
             }
         }
 
+        // Get tailored resume PDF
+        let pdfBytes = null;
+        let resumeFilename = null;
+        if (currentResumeData) {
+            try {
+                showAutoFillStatus('Generating and fetching tailored PDF...', 'loading');
+                
+                // Save resume silently first to get an ID
+                const saveResponse = await fetch(`${apiUrl}/api/save-resume`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        jobTitle: jobTitle || 'Tailored Resume',
+                        company: '',
+                        githubUsername: extractGithubUsername(githubProfileInput.value),
+                        resumeJSON: currentResumeData.resume,
+                        tailoringBlueprint: currentResumeData.tailoringBlueprint,
+                        jobDescription: currentJobDescription
+                    })
+                });
+
+                if (saveResponse.ok) {
+                    const saveData = await saveResponse.json();
+                    const resumeId = saveData.resume._id;
+                    
+                    // Fetch PDF bytes
+                    const pdfResponse = await fetch(`${apiUrl}/api/resume/${resumeId}/pdf`);
+                    if (pdfResponse.ok) {
+                        const pdfArrayBuffer = await pdfResponse.arrayBuffer();
+                        pdfBytes = Array.from(new Uint8Array(pdfArrayBuffer));
+                        resumeFilename = `${(jobTitle || 'Tailored').replace(/\s+/g, '_')}_resume.pdf`;
+                        console.log('✅ PDF fetched successfully for auto-fill');
+                    }
+                }
+            } catch (error) {
+                console.warn('⚠️ PDF fetching for auto-fill failed:', error.message);
+            }
+        }
+
         // Execute auto-fill in page
         const result = await chrome.scripting.executeScript({
             target: { tabId: tab.id },
-            func: (userInfo, coverLetter) => {
+            func: (userInfo, coverLetter, pdfBytes, resumeFilename) => {
+                let resumeBlob = null;
+                if (pdfBytes && pdfBytes.length > 0) {
+                    const uint8Array = new Uint8Array(pdfBytes);
+                    resumeBlob = new Blob([uint8Array], { type: 'application/pdf' });
+                }
+
                 return executeAutoFill({
                     userInfo,
                     coverLetter,
-                    resumeBlob: null, // PDF upload handled separately
-                    resumeFilename: null
+                    resumeBlob,
+                    resumeFilename
                 });
             },
-            args: [userInfo, coverLetter]
+            args: [userInfo, coverLetter, pdfBytes, resumeFilename]
         });
 
         const autoFillResult = result[0].result;
