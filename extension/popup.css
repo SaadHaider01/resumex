@@ -323,3 +323,7 @@ header h1 {
 ::-webkit-scrollbar-thumb:hover {
     background: #764ba2;
 }
+
+.hidden {
+    display: none !important;
+}

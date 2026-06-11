@@ -33,12 +33,19 @@ async function fetchGitHubProfile(username) {
     try {
         console.log(`🔍 Fetching GitHub profile for: ${username}`);
 
-        // Fetch user's public repositories
-        const repos = await fetchUserRepos(username);
+        // Fetch user details and public repositories in parallel
+        const [userData, repos] = await Promise.all([
+            fetchGitHubUserData(username),
+            fetchUserRepos(username)
+        ]);
 
         if (!repos || repos.length === 0) {
             return {
                 username,
+                name: userData?.name || '',
+                email: userData?.email || '',
+                location: userData?.location || '',
+                bio: userData?.bio || '',
                 topLanguages: [],
                 projects: [],
                 totalRepos: 0
@@ -46,7 +53,7 @@ async function fetchGitHubProfile(username) {
         }
 
         // Normalize the data
-        const normalizedProfile = await normalizeGitHubData(username, repos);
+        const normalizedProfile = await normalizeGitHubData(username, repos, userData);
 
         // Cache the result
         setCache(username, normalizedProfile);
@@ -61,6 +68,26 @@ async function fetchGitHubProfile(username) {
             throw new Error('GitHub API rate limit exceeded. Please try again later.');
         }
         throw new Error(`Failed to fetch GitHub profile: ${error.message}`);
+    }
+}
+
+async function fetchGitHubUserData(username) {
+    try {
+        const response = await fetch(`https://api.github.com/users/${username}`, {
+            method: 'GET',
+            headers: {
+                'User-Agent': 'ResumeX-Profile-Aggregator',
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        
+        if (!response.ok) {
+            return null;
+        }
+        
+        return await response.json();
+    } catch (error) {
+        return null;
     }
 }
 
@@ -115,7 +142,7 @@ async function fetchRepoLanguages(owner, repoName) {
 /**
  * Normalize GitHub data into our profile schema
  */
-async function normalizeGitHubData(username, repos) {
+async function normalizeGitHubData(username, repos, userData) {
     // Filter out forks (optional - focuses on original work)
     const ownRepos = repos.filter(repo => !repo.fork);
 
@@ -152,6 +179,10 @@ async function normalizeGitHubData(username, repos) {
 
     return {
         username,
+        name: userData?.name || '',
+        email: userData?.email || '',
+        location: userData?.location || '',
+        bio: userData?.bio || '',
         topLanguages,
         projects: projects.sort((a, b) => b.stars - a.stars), // Sort by stars
         totalRepos: repos.length

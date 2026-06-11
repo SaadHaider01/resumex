@@ -216,15 +216,31 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             console.log('  2.5️⃣ No LinkedIn profile provided, skipping...');
         }
 
-        // Merge LinkedIn data into profileToUse if available
+        // Merge LinkedIn and GitHub data into profileToUse if available
         let finalProfileToUse = JSON.parse(JSON.stringify(profileToUse)); // Deep copy to avoid mutating mockData
+        
+        // Merge GitHub profile info first
+        if (githubProfile && githubProfile.name) {
+            console.log('  🤝 Merging GitHub user info into profile...');
+            finalProfileToUse.personalInfo.name = githubProfile.name;
+            if (githubProfile.email) finalProfileToUse.personalInfo.email = githubProfile.email;
+            if (githubProfile.location) finalProfileToUse.personalInfo.location = githubProfile.location;
+            if (githubProfile.bio) finalProfileToUse.summary = githubProfile.bio;
+        }
+
+        // Merge LinkedIn data (which takes precedence over GitHub info for job details)
         if (linkedinData) {
             console.log('  🤝 Merging LinkedIn data into user profile...');
-            finalProfileToUse.personalInfo = { ...finalProfileToUse.personalInfo, ...linkedinData.personalInfo };
+            // Merge only non-empty personalInfo fields to avoid overwriting valid data with empty strings
+            for (const key in linkedinData.personalInfo) {
+                if (linkedinData.personalInfo[key]) {
+                    finalProfileToUse.personalInfo[key] = linkedinData.personalInfo[key];
+                }
+            }
             finalProfileToUse.summary = linkedinData.summary || finalProfileToUse.summary;
-            if (linkedinData.experience.length) finalProfileToUse.experience = linkedinData.experience;
-            if (linkedinData.education.length) finalProfileToUse.education = linkedinData.education;
-            if (linkedinData.certifications.length) finalProfileToUse.certifications = linkedinData.certifications;
+            if (linkedinData.experience && linkedinData.experience.length) finalProfileToUse.experience = linkedinData.experience;
+            if (linkedinData.education && linkedinData.education.length) finalProfileToUse.education = linkedinData.education;
+            if (linkedinData.certifications && linkedinData.certifications.length) finalProfileToUse.certifications = linkedinData.certifications;
             if (linkedinData.rawSkills && linkedinData.rawSkills.length) {
                 finalProfileToUse.skills.linkedinSkills = linkedinData.rawSkills;
             }
