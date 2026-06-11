@@ -333,8 +333,8 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             },
             tailoringData: {
                 parsedJD: {
-                    skillsFound: parsedJD.skills.length,
-                    requirementsFound: parsedJD.requirements.length
+                    skillsFound: parsedJD.skills ? parsedJD.skills.length : 0,
+                    requirementsFound: parsedJD.keywords ? parsedJD.keywords.length : 0
                 },
                 blueprint: {
                     matchedSkills: tailoringBlueprint.matchedSkills,
