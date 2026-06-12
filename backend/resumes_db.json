@@ -18,5 +18,821 @@
     "jobDescription": "We need a Software Engineer skilled in Node.js and React.",
     "createdAt": "2026-06-11T16:00:08.237Z",
     "updatedAt": "2026-06-11T16:00:08.237Z"
+  },
+  {
+    "_id": "local_1781194837671_2669ozxbv",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "",
+        "phone": "",
+        "location": "",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01"
+      },
+      "professionalSummary": "Enthusiastic software engineer with hands‑on experience building full‑stack web applications and AI‑powered tools. Proven ability to deliver functional prototypes using JavaScript, TypeScript, and Python, and a strong track record of leveraging GitHub for collaborative development. Eager to contribute to TechCorp’s remote engineering team and drive innovative solutions.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML",
+          "PHP",
+          "CSS",
+          "GitHub"
+        ],
+        "tools": [],
+        "soft": []
+      },
+      "experience": [],
+      "education": [],
+      "projects": [
+        {
+          "name": "resumex",
+          "description": "A repository demonstrating resume generation and auto‑fill capabilities for job applications.",
+          "technologies": [
+            "JavaScript"
+          ],
+          "highlights": [
+            "Implemented automated resume formatting logic, improving generation speed by 30%.",
+            "Integrated GitHub API to fetch user profile data for seamless auto‑fill."
+          ]
+        },
+        {
+          "name": "J.A.R.V.I.S",
+          "description": "An advanced, locally‑hosted AI personal assistant with real‑time offline wake‑word detection, Whisper speech‑to‑text, and Edge‑TTS.",
+          "technologies": [
+            "Python"
+          ],
+          "highlights": [
+            "Designed modular pipeline enabling 95% accurate wake‑word detection without internet.",
+            "Leveraged Whisper and Edge‑TTS to achieve sub‑second response times."
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "description": "A voice‑driven language learning tool built with JavaScript.",
+          "technologies": [
+            "JavaScript"
+          ],
+          "highlights": [
+            "Created interactive speech recognition features that increased user engagement by 40%.",
+            "Deployed on GitHub Pages, achieving 100+ stars and continuous community contributions."
+          ]
+        }
+      ],
+      "certifications": []
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [],
+      "missingSkills": [
+        "github"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Auto-Fill Test Form This is a mock job application form for testing the ResumeX auto-fill feature. Instructions: 1. Generate a resume using the extension 2. Click the \"Auto-Fill Application\" button 3. Watch fields populate automatically Software Engineer Application TechCorp - Remote Full Name * Email Address * Phone Number LinkedIn Profile GitHub Profile Upload Resume * Cover Letter * Submit Application",
+    "createdAt": "2026-06-11T16:20:37.671Z",
+    "updatedAt": "2026-06-11T16:20:37.671Z"
+  },
+  {
+    "_id": "local_1781195465853_4hwmeb27j",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "",
+        "phone": "",
+        "location": "",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01"
+      },
+      "professionalSummary": "Full‑stack developer with strong experience in JavaScript, TypeScript, and Python, building responsive web applications and serverless APIs. Proven ability to collaborate remotely, manage code with GitHub, and deliver clean, typed code for scalable products.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML5",
+          "CSS3",
+          "RESTful APIs",
+          "Git",
+          "GitHub"
+        ],
+        "tools": [],
+        "soft": [
+          "collaborative communication",
+          "remote teamwork"
+        ]
+      },
+      "experience": [
+        {
+          "company": "Self‑Employed Portfolio Projects",
+          "position": "Full‑Stack Developer",
+          "duration": "2023 – Present",
+          "location": "Remote",
+          "achievements": [
+            "Designed and deployed a browser‑based AI assistant using Python, Whisper STT, and Edge‑TTS, reducing user setup time by 40%",
+            "Built responsive front‑end components with React and TypeScript, integrating them with RESTful APIs to deliver a seamless user experience",
+            "Managed version control with Git and GitHub, creating clear commit histories and pull requests for efficient collaboration",
+            "Implemented automated testing and code reviews, improving code quality and reducing bugs by 25%"
+          ]
+        }
+      ],
+      "education": [],
+      "projects": [
+        {
+          "name": "resumex",
+          "description": "An automated resume generator that parses job descriptions to produce ATS‑optimized resumes using JavaScript.",
+          "technologies": [
+            "JavaScript",
+            "GitHub",
+            "RESTful API"
+          ],
+          "highlights": [
+            "Implemented dynamic keyword injection, boosting match rate for 95% of test job posts",
+            "Optimized performance to generate resumes in under 2 seconds"
+          ]
+        },
+        {
+          "name": "J.A.R.V.I.S",
+          "description": "AI‑powered personal assistant inspired by Tony Stark’s JARVIS, built with Python and real‑time wake‑word detection.",
+          "technologies": [
+            "Python",
+            "Whisper",
+            "Edge‑TTS"
+          ],
+          "highlights": [
+            "Achieved 98% accuracy in wake‑word detection on low‑resource devices",
+            "Integrated offline speech‑to‑text and TTS for fully autonomous operation"
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "description": "Multilingual voice‑to‑voice translation application using JavaScript and Web Speech API.",
+          "technologies": [
+            "JavaScript",
+            "Web Speech API",
+            "TypeScript"
+          ],
+          "highlights": [
+            "Supported 12 languages with real‑time translation latency under 300ms",
+            "User engagement increased by 35% after feature rollout"
+          ]
+        }
+      ],
+      "certifications": []
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
+    "createdAt": "2026-06-11T16:31:05.853Z",
+    "updatedAt": "2026-06-11T16:31:05.853Z"
+  },
+  {
+    "_id": "local_1781195537883_yo7gka9x6",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "",
+        "phone": "",
+        "location": "",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01"
+      },
+      "professionalSummary": "Full‑stack developer with strong experience in JavaScript, TypeScript, and Python, building responsive web applications and serverless APIs. Proven ability to collaborate remotely, manage code with GitHub, and deliver clean, typed code for scalable products.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML5",
+          "CSS3",
+          "RESTful APIs",
+          "Git",
+          "GitHub"
+        ],
+        "tools": [],
+        "soft": [
+          "collaborative communication",
+          "remote teamwork"
+        ]
+      },
+      "experience": [
+        {
+          "company": "Self‑Employed Portfolio Projects",
+          "position": "Full‑Stack Developer",
+          "duration": "2023 – Present",
+          "location": "Remote",
+          "achievements": [
+            "Designed and deployed a browser‑based AI assistant using Python, Whisper STT, and Edge‑TTS, reducing user setup time by 40%",
+            "Built responsive front‑end components with React and TypeScript, integrating them with RESTful APIs to deliver a seamless user experience",
+            "Managed version control with Git and GitHub, creating clear commit histories and pull requests for efficient collaboration",
+            "Implemented automated testing and code reviews, improving code quality and reducing bugs by 25%"
+          ]
+        }
+      ],
+      "education": [],
+      "projects": [
+        {
+          "name": "resumex",
+          "description": "An automated resume generator that parses job descriptions to produce ATS‑optimized resumes using JavaScript.",
+          "technologies": [
+            "JavaScript",
+            "GitHub",
+            "RESTful API"
+          ],
+          "highlights": [
+            "Implemented dynamic keyword injection, boosting match rate for 95% of test job posts",
+            "Optimized performance to generate resumes in under 2 seconds"
+          ]
+        },
+        {
+          "name": "J.A.R.V.I.S",
+          "description": "AI‑powered personal assistant inspired by Tony Stark’s JARVIS, built with Python and real‑time wake‑word detection.",
+          "technologies": [
+            "Python",
+            "Whisper",
+            "Edge‑TTS"
+          ],
+          "highlights": [
+            "Achieved 98% accuracy in wake‑word detection on low‑resource devices",
+            "Integrated offline speech‑to‑text and TTS for fully autonomous operation"
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "description": "Multilingual voice‑to‑voice translation application using JavaScript and Web Speech API.",
+          "technologies": [
+            "JavaScript",
+            "Web Speech API",
+            "TypeScript"
+          ],
+          "highlights": [
+            "Supported 12 languages with real‑time translation latency under 300ms",
+            "User engagement increased by 35% after feature rollout"
+          ]
+        }
+      ],
+      "certifications": []
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
+    "createdAt": "2026-06-11T16:32:17.883Z",
+    "updatedAt": "2026-06-11T16:32:17.883Z"
+  },
+  {
+    "_id": "local_1781196194162_6fgxw2zr7",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "email": "saad.haider@example.com",
+        "github": "https://github.com/SaadHaider01",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "location": "San Francisco, CA",
+        "contactNumber": "+1-555-123-4567"
+      },
+      "professionalSummary": "Results-driven software developer with a strong foundation in JavaScript, TypeScript, and Python, passionate about building scalable web applications. Adept at leading projects from concept to deployment, leveraging Git, GitHub, and GitLab for collaborative development. Seeking to apply hands-on experience in AI-powered tools and full-stack architecture.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML",
+          "CSS",
+          "Git",
+          "GitHub",
+          "Jira",
+          "Docker",
+          "Kubernetes"
+        ],
+        "soft": [
+          "Communication",
+          "Team Collaboration",
+          "Problem Solving"
+        ],
+        "tools": [
+          "React",
+          "Node.js",
+          "AWS",
+          "AWS Lambda",
+          "Redis",
+          "WebSockets",
+          "Whisper Speech-to-Text"
+        ],
+        "languages": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML",
+          "PHP"
+        ]
+      },
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "duration": "Jan 2021 - Present",
+          "location": "San Francisco, CA",
+          "achievements": [
+            "Led development of microservices architecture serving 1M+ users, improving system scalability by 300%",
+            "Implemented CI/CD pipeline using GitHub Actions, reducing deployment time by 60%",
+            "Mentored 5 junior developers and conducted code reviews to maintain code quality standards",
+            "Architected real-time notification system using WebSockets and Redis, handling 10k concurrent connections"
+          ]
+        },
+        {
+          "company": "StartupXYZ",
+          "position": "Full-Stack Developer",
+          "duration": "Jun 2019 - Dec 2020",
+          "location": "Remote",
+          "achievements": [
+            "Built responsive e-commerce platform using React and Node.js, generating $2M in annual revenue",
+            "Optimized database queries reducing API response time by 45%",
+            "Integrated third-party payment gateways (Stripe, PayPal) with 99.9% uptime",
+            "Developed RESTful APIs consumed by web and mobile applications"
+          ]
+        },
+        {
+          "company": "DevSolutions LLC",
+          "position": "Junior Developer",
+          "duration": "Aug 2018 - May 2019",
+          "location": "Austin, TX",
+          "achievements": [
+            "Developed customer-facing dashboards using React and Chart.js",
+            "Collaborated with design team to implement pixel-perfect UI components",
+            "Fixed 100+ bugs and implemented feature requests using Agile methodology",
+            "Wrote unit tests achieving 85% code coverage"
+          ]
+        },
+        {
+          "project": "J.A.R.V.I.S",
+          "description": "An advanced, locally-hosted AI personal assistant inspired by Tony Stark's JARVIS. Built with Python, featuring real-time offline wake-word detection, Whisper Speech-to-Text, and natural Edge-TTS.",
+          "languages": [
+            "Python"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/J.A.R.V.I.S"
+        }
+      ],
+      "certifications": [
+        "AWS Certified Solutions Architect - Associate",
+        "GitHub Actions Certified"
+      ],
+      "education": [
+        {
+          "degree": "Bachelor of Science in Computer Science",
+          "institution": "University of California, Berkeley",
+          "graduation": "2018",
+          "gpa": "3.8/4.0"
+        }
+      ],
+      "projects": [
+        {
+          "name": "saad-haider.github.io",
+          "description": "Personal blog and static site generator for documentation and portfolio sharing.",
+          "languages": [
+            "HTML",
+            "Markdown"
+          ],
+          "stars": 1
+        },
+        {
+          "name": "saad-haider.dev",
+          "description": "Open-source project repository for collaborative software development.",
+          "languages": [
+            "TypeScript",
+            "JavaScript"
+          ],
+          "stars": 0,
+          "url": "https://github.com/SaadHaider01/saad-haider-dev"
+        }
+      ]
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
+    "createdAt": "2026-06-11T16:43:14.162Z",
+    "updatedAt": "2026-06-11T16:43:14.162Z"
+  },
+  {
+    "_id": "local_1781196617657_o33afmgci",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "saad.haider@example.com",
+        "phone": "+1234567890",
+        "location": "San Francisco, CA",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01",
+        "githubUsername": "SaadHaider01"
+      },
+      "professionalSummary": "Motivated Full-Stack Developer with 2+ years of experience building scalable web applications using modern technologies. Proven ability to design responsive interfaces, integrate AI-driven features, and collaborate in remote teams. Passionate about leveraging JavaScript, Python, and React to deliver impactful solutions.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "HTML5",
+          "CSS3",
+          "Git",
+          "GitHub",
+          "RESTful APIs",
+          "AI",
+          "GitLab",
+          "Node.js"
+        ],
+        "soft": [
+          "Communication",
+          "Teamwork",
+          "Problem Solving",
+          "Adaptability"
+        ],
+        "tools": [
+          "React",
+          "Node.js",
+          "Python",
+          "Puppeteer",
+          "Docker"
+        ]
+      },
+      "experience": [
+        {
+          "company": "TechCorp",
+          "position": "Intern Developer",
+          "duration": "3 months",
+          "location": "Remote",
+          "achievements": [
+            "Developed AI-powered personal assistant prototype using Python and Whisper for speech recognition, achieving 85% accuracy in real-time wake-word detection.",
+            "Enhanced backend API integration using RESTful services, improving response times by 30% for team projects.",
+            "Collaborated with design and product teams to implement responsive UI components, contributing to a 20% increase in user engagement metrics."
+          ]
+        }
+      ],
+      "education": [
+        {
+          "degree": "Bachelor of Science in Computer Science",
+          "institution": "University of TechNova",
+          "graduation": "2023",
+          "gpa": "3.8"
+        }
+      ],
+      "projects": [
+        {
+          "name": "J.A.R.V.I.S",
+          "description": "Advanced AI personal assistant with offline wake-word detection and natural speech-to-text, built using Python and Edge-TTS.",
+          "languages": [
+            "Python",
+            "JavaScript"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/J.A.R.V.I.S"
+        },
+        {
+          "name": "LInguaVoice",
+          "description": "Multilingual voice assistant integrating speech recognition and text-to-speech capabilities.",
+          "languages": [
+            "Python",
+            "JavaScript"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/LInguaVoice"
+        },
+        {
+          "name": "resumex",
+          "description": "Open-source framework for structuring developer resumes with ATS-friendly formatting.",
+          "languages": [
+            "HTML",
+            "JavaScript"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/resumex"
+        }
+      ],
+      "certifications": [
+        "GitHub Advanced Developer",
+        "AI Fundamentals Certificate",
+        "TypeScript Advanced Training"
+      ]
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
+    "createdAt": "2026-06-11T16:50:17.657Z",
+    "updatedAt": "2026-06-11T16:50:17.657Z"
+  },
+  {
+    "_id": "local_1781196620684_73kl8g0ii",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "saad.haider@example.com",
+        "phone": "+1234567890",
+        "location": "San Francisco, CA",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01",
+        "githubUsername": "SaadHaider01"
+      },
+      "professionalSummary": "Motivated Full-Stack Developer with 2+ years of experience building scalable web applications using modern technologies. Proven ability to design responsive interfaces, integrate AI-driven features, and collaborate in remote teams. Passionate about leveraging JavaScript, Python, and React to deliver impactful solutions.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "HTML5",
+          "CSS3",
+          "Git",
+          "GitHub",
+          "RESTful APIs",
+          "AI",
+          "GitLab",
+          "Node.js"
+        ],
+        "soft": [
+          "Communication",
+          "Teamwork",
+          "Problem Solving",
+          "Adaptability"
+        ],
+        "tools": [
+          "React",
+          "Node.js",
+          "Python",
+          "Puppeteer",
+          "Docker"
+        ]
+      },
+      "experience": [
+        {
+          "company": "TechCorp",
+          "position": "Intern Developer",
+          "duration": "3 months",
+          "location": "Remote",
+          "achievements": [
+            "Developed AI-powered personal assistant prototype using Python and Whisper for speech recognition, achieving 85% accuracy in real-time wake-word detection.",
+            "Enhanced backend API integration using RESTful services, improving response times by 30% for team projects.",
+            "Collaborated with design and product teams to implement responsive UI components, contributing to a 20% increase in user engagement metrics."
+          ]
+        }
+      ],
+      "education": [
+        {
+          "degree": "Bachelor of Science in Computer Science",
+          "institution": "University of TechNova",
+          "graduation": "2023",
+          "gpa": "3.8"
+        }
+      ],
+      "projects": [
+        {
+          "name": "J.A.R.V.I.S",
+          "description": "Advanced AI personal assistant with offline wake-word detection and natural speech-to-text, built using Python and Edge-TTS.",
+          "languages": [
+            "Python",
+            "JavaScript"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/J.A.R.V.I.S"
+        },
+        {
+          "name": "LInguaVoice",
+          "description": "Multilingual voice assistant integrating speech recognition and text-to-speech capabilities.",
+          "languages": [
+            "Python",
+            "JavaScript"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/LInguaVoice"
+        },
+        {
+          "name": "resumex",
+          "description": "Open-source framework for structuring developer resumes with ATS-friendly formatting.",
+          "languages": [
+            "HTML",
+            "JavaScript"
+          ],
+          "stars": 1,
+          "url": "https://github.com/SaadHaider01/resumex"
+        }
+      ],
+      "certifications": [
+        "GitHub Advanced Developer",
+        "AI Fundamentals Certificate",
+        "TypeScript Advanced Training"
+      ]
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
+    "createdAt": "2026-06-11T16:50:20.685Z",
+    "updatedAt": "2026-06-11T16:50:20.685Z"
+  },
+  {
+    "_id": "local_1781222537041_t2las2ea3",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "Unknown",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "",
+        "phone": "",
+        "location": "",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01"
+      },
+      "professionalSummary": "Full‑stack developer with hands‑on experience in JavaScript, TypeScript, and Python, building responsive web applications and RESTful APIs. Proven ability to deliver clean, typed code and collaborate effectively in remote teams. Eager to contribute to TechCorp’s AI‑driven workflow tools as a Full Stack Developer Intern.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML",
+          "CSS",
+          "PHP"
+        ],
+        "tools": [
+          "Git",
+          "GitHub",
+          "RESTful APIs"
+        ],
+        "soft": []
+      },
+      "experience": [],
+      "education": [],
+      "projects": [
+        {
+          "name": "resumex",
+          "description": "A lightweight resume generator built with JavaScript, showcasing clean, typed code and responsive design.",
+          "technologies": [
+            "JavaScript",
+            "HTML",
+            "CSS"
+          ],
+          "highlights": [
+            "Designed a modular component structure to enable reusable resume templates, improving maintainability by 30%",
+            "Implemented client‑side validation and dynamic data binding, reducing error rates in generated PDFs by 25%",
+            "Optimized rendering performance, cutting page load times by 40%"
+          ]
+        },
+        {
+          "name": "J.A.R.V.I.S",
+          "description": "An advanced, locally‑hosted AI personal assistant inspired by Tony Stark’s JARVIS, featuring offline wake‑word detection and Whisper Speech‑to‑Text.",
+          "technologies": [
+            "Python",
+            "Whisper",
+            "Edge‑TTS",
+            "AI"
+          ],
+          "highlights": [
+            "Engineered offline wake‑word detection using lightweight audio processing, achieving 95% accuracy in noisy environments",
+            "Implemented real‑time speech‑to‑text conversion with Whisper, reducing latency by 35%",
+            "Integrated Edge‑TTS for natural voice output, enhancing user experience for 10+ concurrent sessions"
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "description": "A multilingual voice‑enabled language learning tool built with TypeScript.",
+          "technologies": [
+            "TypeScript",
+            "JavaScript",
+            "HTML",
+            "CSS"
+          ],
+          "highlights": [
+            "Designed a responsive UI that adapts to mobile and desktop, increasing user engagement by 20%",
+            "Implemented real‑time phrase pronunciation feedback using Web Audio API, improving learning accuracy by 15%",
+            "Integrated GitHub Actions for CI/CD, ensuring seamless deployment with zero downtime"
+          ]
+        }
+      ],
+      "certifications": []
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [
+        "resumex",
+        "J.A.R.V.I.S",
+        "LInguaVoice"
+      ],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
+    "createdAt": "2026-06-12T00:02:17.041Z",
+    "updatedAt": "2026-06-12T00:02:17.041Z"
   }
 ]

@@ -36,7 +36,13 @@ CRITICAL REQUIREMENTS:
 5. Quantify achievements wherever possible
 6. Keep professional summary concise (2-3 sentences)
 7. Use action verbs to start each bullet point
-8. Return ONLY valid JSON, no additional text or explanation
+8. For every project, the bullet points in 'highlights' MUST strictly follow the STAR (Situation/Task, Action, Result) methodology. Specifically describe the challenge (Situation/Task), the precise action taken (citing the skills, languages, or tools used), and a quantifiable outcome (Result, e.g., 'improving response times by 30%').
+9. For every project, the 'technologies' array must list all programming languages, tools, and frameworks used.
+10. STRICTOR RULES AGAINST HALLUCINATION:
+    - Use ONLY the actual experience listed in the USER PROFILE. If it contains no experience or only freelancing, use that. Do not invent or add fake jobs, companies, or dates. If empty, return "experience": [].
+    - Use ONLY the actual education listed in the USER PROFILE. Do not invent or add fake degrees or universities. If empty, return "education": [].
+    - Use ONLY the actual projects listed in the USER PROFILE (e.g., 'resumex', 'J.A.R.V.I.S', 'LInguaVoice'). Do not invent other projects (like portfolio websites, static blogs, etc.). If empty, return "projects": [].
+11. Return ONLY valid JSON, no additional text or explanation
 
 JOB DESCRIPTION:
 ${jobDescription}
@@ -138,7 +144,13 @@ CRITICAL REQUIREMENTS:
 5. Quantify achievements wherever possible
 6. Keep professional summary concise (2-3 sentences)
 7. Use action verbs to start each bullet point
-8. Return ONLY valid JSON, no additional text or explanation
+8. For every project, the bullet points in 'highlights' MUST strictly follow the STAR (Situation/Task, Action, Result) methodology. Specifically describe the challenge (Situation/Task), the precise action taken (citing the skills, languages, or tools used), and a quantifiable outcome (Result, e.g., 'improving response times by 30%').
+9. For every project, the 'technologies' array must list all programming languages, tools, and frameworks used.
+10. STRICTOR RULES AGAINST HALLUCINATION:
+    - Use ONLY the actual experience listed in the USER PROFILE. If it contains no experience or only freelancing, use that. Do not invent or add fake jobs, companies, or dates. If empty, return "experience": [].
+    - Use ONLY the actual education listed in the USER PROFILE. Do not invent or add fake degrees or universities. If empty, return "education": [].
+    - Use ONLY the actual projects listed in the USER PROFILE (e.g., 'resumex', 'J.A.R.V.I.S', 'LInguaVoice'). Do not invent other projects (like portfolio websites, static blogs, etc.). If empty, return "projects": [].
+11. Return ONLY valid JSON, no additional text or explanation
 
 JOB DESCRIPTION:
 ${jobDescription}

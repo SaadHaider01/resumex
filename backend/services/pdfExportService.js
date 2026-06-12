@@ -18,7 +18,7 @@ async function generateResumePDF(resume) {
         try {
             const doc = new PDFDocument({
                 size: 'LETTER',
-                margins: { top: 50, bottom: 50, left: 50, right: 50 }
+                margins: { top: 54, bottom: 54, left: 54, right: 54 }
             });
 
             const buffers = [];
@@ -45,64 +45,73 @@ async function generateResumePDF(resume) {
  */
 function buildPDFContent(doc, resume) {
     const { personalInfo, professionalSummary, skills, experience, education, projects, certifications } = resume;
+    const margin = 54;
+    const contentWidth = doc.page.width - (margin * 2);
 
     // HEADER - Personal Info
     if (personalInfo) {
-        doc.fontSize(24)
+        doc.fontSize(20)
             .font('Helvetica-Bold')
             .text(personalInfo.name || 'Resume', { align: 'center' });
 
-        doc.moveDown(0.3);
+        doc.moveDown(0.25);
 
         const contactInfo = [];
         if (personalInfo.email) contactInfo.push(personalInfo.email);
         if (personalInfo.phone) contactInfo.push(personalInfo.phone);
         if (personalInfo.location) contactInfo.push(personalInfo.location);
 
-        doc.fontSize(10)
+        doc.fontSize(9.5)
             .font('Helvetica')
-            .text(contactInfo.join(' • '), { align: 'center' });
+            .text(contactInfo.join('  |  '), { align: 'center' });
 
         if (personalInfo.linkedin || personalInfo.github) {
             const links = [];
             if (personalInfo.linkedin) links.push(personalInfo.linkedin);
             if (personalInfo.github) links.push(personalInfo.github);
-            doc.text(links.join(' • '), { align: 'center' });
+            doc.fontSize(9.5)
+                .font('Helvetica')
+                .text(links.join('  |  '), { align: 'center' });
         }
 
-        doc.moveDown(1);
+        doc.moveDown(0.8);
     }
 
     // PROFESSIONAL SUMMARY
     if (professionalSummary) {
         addSection(doc, 'Professional Summary');
-        doc.fontSize(10)
+        doc.fontSize(9.5)
             .font('Helvetica')
-            .text(professionalSummary, { align: 'justify' });
-        doc.moveDown(1);
+            .text(professionalSummary, { align: 'justify', lineGap: 2 });
+        doc.moveDown(0.8);
     }
 
     // SKILLS
     if (skills) {
         addSection(doc, 'Skills');
 
-        const skillsList = [];
-        if (skills.technical && skills.technical.length > 0) {
-            skillsList.push(`Technical: ${skills.technical.join(', ')}`);
-        }
-        if (skills.tools && skills.tools.length > 0) {
-            skillsList.push(`Tools: ${skills.tools.join(', ')}`);
-        }
-        if (skills.soft && skills.soft.length > 0) {
-            skillsList.push(`Soft Skills: ${skills.soft.join(', ')}`);
-        }
+        let skillsRendered = false;
+        
+        const renderSkillCategory = (title, list) => {
+            if (list && list.length > 0) {
+                const startY = doc.y;
+                doc.fontSize(9.5).font('Helvetica-Bold').text(title, margin, startY, { width: 130 });
+                doc.font('Helvetica').text(list.join(', '), margin + 135, startY, { width: contentWidth - 135, lineGap: 1.5 });
+                doc.y = Math.max(doc.y, startY + 12);
+                doc.x = margin;
+                doc.moveDown(0.35);
+                skillsRendered = true;
+            }
+        };
 
-        doc.fontSize(10).font('Helvetica');
-        skillsList.forEach(skillLine => {
-            doc.text(skillLine);
-            doc.moveDown(0.3);
-        });
-        doc.moveDown(0.7);
+        renderSkillCategory('Technical Skills', skills.technical);
+        renderSkillCategory('Tools & Technologies', skills.tools);
+        renderSkillCategory('Soft Skills', skills.soft);
+
+        doc.x = margin;
+        if (skillsRendered) {
+            doc.moveDown(0.4);
+        }
     }
 
     // EXPERIENCE
@@ -110,41 +119,50 @@ function buildPDFContent(doc, resume) {
         addSection(doc, 'Experience');
 
         experience.forEach((job, index) => {
+            const startY = doc.y;
+            
             // Company and position
-            doc.fontSize(11)
+            doc.fontSize(10.5)
                 .font('Helvetica-Bold')
-                .text(job.position || 'Position', { continued: true })
-                .fontSize(10)
-                .font('Helvetica')
-                .text(` - ${job.company || 'Company'}`);
+                .text(`${job.position || 'Position'}`, margin, startY, { width: 320 });
 
-            // Duration and location
-            doc.fontSize(9)
+            // Duration and location (Right-aligned)
+            const durationText = `${job.duration || ''}${job.location ? '  •  ' + job.location : ''}`;
+            doc.fontSize(9.5)
                 .font('Helvetica-Oblique')
-                .text(`${job.duration || ''} ${job.location ? '• ' + job.location : ''}`, { indent: 0 });
+                .text(durationText, margin + 320, startY, { width: contentWidth - 320, align: 'right' });
 
-            doc.moveDown(0.3);
+            // Reset cursor X and Y to below the header row
+            doc.y = Math.max(doc.y, startY + 12);
+            doc.x = margin;
+            doc.moveDown(0.2);
 
-            // Achievements
+            // Print Company Name
+            if (job.company) {
+                doc.fontSize(9.5).font('Helvetica-Bold').text(job.company);
+                doc.moveDown(0.25);
+            }
+
+            // Achievements (clean bullet points)
             if (job.achievements && job.achievements.length > 0) {
-                doc.fontSize(10).font('Helvetica');
-
-                job.achievements.forEach(achievement => {
-                    const bulletX = doc.x;
-                    const bulletY = doc.y;
-
-                    doc.text('•', bulletX, bulletY, { continued: true, width: 15 });
-                    doc.text(achievement, bulletX + 15, bulletY, { width: doc.page.width - 100 - 15 });
-                    doc.moveDown(0.2);
+                doc.font('Helvetica').fontSize(9.5);
+                doc.list(job.achievements, {
+                    bulletRadius: 1.5,
+                    textIndent: 12,
+                    bulletGap: 5,
+                    paragraphGap: 2
                 });
             }
 
+            // Reset X coordinate again to prevent side-effect in next iterations
+            doc.x = margin;
+
             if (index < experience.length - 1) {
-                doc.moveDown(0.5);
+                doc.moveDown(0.7);
             }
         });
 
-        doc.moveDown(1);
+        doc.moveDown(0.8);
     }
 
     // PROJECTS
@@ -152,44 +170,52 @@ function buildPDFContent(doc, resume) {
         addSection(doc, 'Projects');
 
         projects.forEach((project, index) => {
-            doc.fontSize(11)
+            const startY = doc.y;
+
+            // Project Name
+            doc.fontSize(10.5)
                 .font('Helvetica-Bold')
-                .text(project.name || 'Project');
+                .text(project.name || 'Project', margin, startY, { width: 320 });
 
+            // Technologies used (Right-aligned)
             if (project.technologies && project.technologies.length > 0) {
-                doc.fontSize(9)
+                const techText = project.technologies.join(', ');
+                doc.fontSize(9.5)
                     .font('Helvetica-Oblique')
-                    .text(`Technologies: ${project.technologies.join(', ')}`);
+                    .text(techText, margin + 320, startY, { width: contentWidth - 320, align: 'right' });
             }
 
-            doc.moveDown(0.3);
+            // Reset cursor X and Y
+            doc.y = Math.max(doc.y, startY + 12);
+            doc.x = margin;
+            doc.moveDown(0.25);
 
+            // Description
             if (project.description) {
-                doc.fontSize(10)
-                    .font('Helvetica')
-                    .text(project.description);
-                doc.moveDown(0.2);
+                doc.fontSize(9.5).font('Helvetica').text(project.description, { lineGap: 1.5 });
+                doc.moveDown(0.25);
             }
 
+            // Project Highlights
             if (project.highlights && project.highlights.length > 0) {
-                doc.fontSize(10).font('Helvetica');
-
-                project.highlights.forEach(highlight => {
-                    const bulletX = doc.x;
-                    const bulletY = doc.y;
-
-                    doc.text('•', bulletX, bulletY, { continued: true, width: 15 });
-                    doc.text(highlight, bulletX + 15, bulletY, { width: doc.page.width - 100 - 15 });
-                    doc.moveDown(0.2);
+                doc.fontSize(9.5).font('Helvetica');
+                doc.list(project.highlights, {
+                    bulletRadius: 1.5,
+                    textIndent: 12,
+                    bulletGap: 5,
+                    paragraphGap: 2
                 });
             }
 
+            // Reset X coordinate again
+            doc.x = margin;
+
             if (index < projects.length - 1) {
-                doc.moveDown(0.5);
+                doc.moveDown(0.7);
             }
         });
 
-        doc.moveDown(1);
+        doc.moveDown(0.8);
     }
 
     // EDUCATION
@@ -197,40 +223,58 @@ function buildPDFContent(doc, resume) {
         addSection(doc, 'Education');
 
         education.forEach((edu, index) => {
-            doc.fontSize(11)
+            const startY = doc.y;
+            
+            // Degree
+            doc.fontSize(10.5)
                 .font('Helvetica-Bold')
-                .text(edu.degree || 'Degree', { continued: true })
-                .fontSize(10)
-                .font('Helvetica')
-                .text(` - ${edu.institution || 'Institution'}`);
+                .text(edu.degree || 'Degree', margin, startY, { width: 320 });
 
+            // Graduation date and GPA (Right-aligned)
             const eduDetails = [];
             if (edu.graduation) eduDetails.push(edu.graduation);
             if (edu.gpa) eduDetails.push(`GPA: ${edu.gpa}`);
 
             if (eduDetails.length > 0) {
-                doc.fontSize(9)
+                doc.fontSize(9.5)
                     .font('Helvetica-Oblique')
-                    .text(eduDetails.join(' • '));
+                    .text(eduDetails.join('  •  '), margin + 320, startY, { width: contentWidth - 320, align: 'right' });
             }
+
+            // Reset cursor X and Y
+            doc.y = Math.max(doc.y, startY + 12);
+            doc.x = margin;
+            doc.moveDown(0.2);
+
+            // Institution name
+            if (edu.institution) {
+                doc.fontSize(9.5).font('Helvetica').text(edu.institution);
+            }
+
+            // Reset X coordinate again
+            doc.x = margin;
 
             if (index < education.length - 1) {
                 doc.moveDown(0.5);
             }
         });
 
-        doc.moveDown(1);
+        doc.moveDown(0.8);
     }
 
     // CERTIFICATIONS
     if (certifications && certifications.length > 0) {
         addSection(doc, 'Certifications');
 
-        doc.fontSize(10).font('Helvetica');
-        certifications.forEach(cert => {
-            doc.text(`• ${cert}`);
-            doc.moveDown(0.2);
+        doc.fontSize(9.5).font('Helvetica');
+        doc.list(certifications, {
+            bulletRadius: 1.5,
+            textIndent: 12,
+            bulletGap: 5,
+            paragraphGap: 2
         });
+        
+        doc.x = margin;
     }
 }
 
@@ -238,17 +282,24 @@ function buildPDFContent(doc, resume) {
  * Adds a section header
  */
 function addSection(doc, title) {
-    doc.fontSize(14)
+    // Reset X coordinate to ensure section header aligns to left margin
+    doc.x = 54;
+
+    doc.fontSize(12)
         .font('Helvetica-Bold')
+        .fillColor('#2d3748')
         .text(title.toUpperCase());
 
-    // Underline
+    // Underline divider line
     const lineY = doc.y + 2;
-    doc.moveTo(50, lineY)
-        .lineTo(doc.page.width - 50, lineY)
+    doc.moveTo(54, lineY)
+        .lineTo(doc.page.width - 54, lineY)
+        .strokeColor('#cbd5e0')
+        .lineWidth(0.8)
         .stroke();
 
-    doc.moveDown(0.5);
+    doc.fillColor('#000000'); // Reset text color
+    doc.moveDown(0.45);
 }
 
 module.exports = { generateResumePDF };

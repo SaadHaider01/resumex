@@ -177,10 +177,10 @@ class OpenRouterProvider {
         };
 
         const completion = await this.client.chat.completions.create(params);
-        let text = completion.choices[0].message.content;
+        let text = completion.choices[0]?.message?.content || '';
 
         // Cleanup markdown if the model hallucinates it despite instructions
-        if (text.startsWith('```json')) {
+        if (text && typeof text === 'string' && text.startsWith('```json')) {
             text = text.replace(/^```json\n/, '').replace(/\n```$/, '');
         }
 

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Engineer - TechCorp Careers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-primary: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.3);
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3),
+                        0 0 80px rgba(99, 102, 241, 0.1);
+            position: relative;
+        }
+
+        /* Ambient Glow Highlights */
+        .glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -50px;
+            right: -50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .test-banner {
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px dashed var(--accent-primary);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 40px;
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .test-banner h3 {
+            color: #818cf8;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-section {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 36px;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 12px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+
+        .badge.featured {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--accent-primary);
+            color: #a5b4fc;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #ffffff, #c7d2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .company-meta {
+            display: flex;
+            gap: 16px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            align-items: center;
+        }
+
+        .company-name {
+            color: #a5b4fc;
+            font-weight: 600;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.01));
+            margin: 32px 0;
+        }
+
+        .content-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+
+        p.description-text {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 28px;
+            font-size: 15px;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .skill-tag {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #cbd5e1;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.15);
+            transform: translateY(-1px);
+        }
+
+        ul.job-bullets {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        ul.job-bullets li {
+            position: relative;
+            padding-left: 24px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        ul.job-bullets li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 12px;
+        }
+
+        .apply-card {
+            background: linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .apply-text h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #f1f5f9;
+        }
+
+        .apply-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .btn-apply {
+            background: var(--accent-primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+            transition: all 0.2s;
+        }
+
+        .btn-apply:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(99, 102, 241, 0.45),
+                        0 0 20px rgba(99, 102, 241, 0.2);
+            background: #4f46e5;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+            .apply-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glow"></div>
+
+        <div class="test-banner">
+            <h3>🧪 Mock Job Description Page</h3>
+            <p>
+                Use this page to test the tailoring pipeline:
+                <br>1. Open the **ResumeX** extension popup.
+                <br>2. Hit **Generate Tailored Resume** to let the extension scrape this job description.
+                <br>3. Once generated, click the **Apply Now** button below to open the application form.
+            </p>
+        </div>
+
+        <div class="header-section">
+            <div class="badge-row">
+                <span class="badge featured">Full-Time</span>
+                <span class="badge">Remote</span>
+                <span class="badge">$80,000 - $110,000 / year</span>
+            </div>
+            <h1>Full Stack Developer Intern</h1>
+            <div class="company-meta">
+                <span class="company-name">TechCorp</span>
+                <span>•</span>
+                <span>San Francisco, CA (Remote Friendly)</span>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="content-section">
+            <h2>About TechCorp</h2>
+            <p class="description-text">
+                At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features.
+            </p>
+
+            <h2>Responsibilities</h2>
+            <ul class="job-bullets">
+                <li>Collaborate with product and design teams to build scalable, full-stack web applications.</li>
+                <li>Design responsive frontend components and integrate them with robust, serverless backend APIs.</li>
+                <li>Leverage version control systems like Git and GitHub to manage repository structures and pull requests.</li>
+                <li>Participate in peer code reviews and contribute to developer onboarding documentation.</li>
+            </ul>
+
+            <h2>Required Tech Stack & Skills</h2>
+            <p class="description-text">
+                We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with:
+            </p>
+            <div class="skills-list">
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">HTML5 & CSS3</span>
+                <span class="skill-tag">Git & GitHub</span>
+                <span class="skill-tag">RESTful APIs</span>
+            </div>
+
+            <h2>Minimum Qualifications</h2>
+            <ul class="job-bullets">
+                <li>Strong knowledge of web technologies and relational/non-relational database services.</li>
+                <li>Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python.</li>
+                <li>Strong collaborative communication skills and enthusiasm for working in remote environments.</li>
+            </ul>
+        </div>
+
+        <div class="apply-card">
+            <div class="apply-text">
+                <h4>Ready to build the future?</h4>
+                <p>Fill out our quick, automated test application form.</p>
+            </div>
+            <a href="./test-form.html" class="btn-apply">Apply Now</a>
+        </div>
+    </div>
+</body>
+</html>

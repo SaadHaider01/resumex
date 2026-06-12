@@ -1,6 +1,31 @@
-(function() {
+(async function() {
     console.log("🚀 LinkedIn Scraper injected and running...");
+    
+    // Auto-scroll function to load lazy elements (Experience, Education, Skills, etc.)
+    const autoScroll = async () => {
+        await new Promise((resolve) => {
+            let totalHeight = 0;
+            const distance = 400;
+            const timer = setInterval(() => {
+                const scrollHeight = document.body.scrollHeight;
+                window.scrollBy(0, distance);
+                totalHeight += distance;
+
+                if (totalHeight >= scrollHeight || totalHeight > 6000) {
+                    clearInterval(timer);
+                    window.scrollTo(0, 0);
+                    resolve();
+                }
+            }, 80);
+        });
+    };
+
     try {
+        console.log("Scrolling page to load lazy sections...");
+        await autoScroll();
+        // Wait another 500ms for rendering to settle
+        await new Promise(r => setTimeout(r, 500));
+
         // Helper to find a section by header text
         const findSectionByTitle = (titlePattern) => {
             const sections = document.querySelectorAll('section');

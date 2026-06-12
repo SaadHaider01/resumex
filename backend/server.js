@@ -44,6 +44,62 @@ function parseJsonFromText(text) {
     }
 }
 
+function cleanTailoredResume(tailoredResume, originalProfile) {
+    if (!tailoredResume || !originalProfile) return tailoredResume;
+
+    const matchesAny = (value, list) => {
+        if (!value || !list || list.length === 0) return false;
+        const val = value.toLowerCase().trim();
+        return list.some(item => {
+            if (!item) return false;
+            const cleanItem = item.toLowerCase().trim();
+            return val.includes(cleanItem) || cleanItem.includes(val);
+        });
+    };
+
+    // 1. Clean Experience
+    if (!originalProfile.experience || originalProfile.experience.length === 0) {
+        tailoredResume.experience = [];
+    } else {
+        const originalCompanies = originalProfile.experience.map(exp => exp.company).filter(Boolean);
+        tailoredResume.experience = (tailoredResume.experience || []).filter(exp => 
+            matchesAny(exp.company, originalCompanies)
+        );
+    }
+
+    // 2. Clean Education
+    if (!originalProfile.education || originalProfile.education.length === 0) {
+        tailoredResume.education = [];
+    } else {
+        const originalInstitutions = originalProfile.education.map(edu => edu.institution).filter(Boolean);
+        tailoredResume.education = (tailoredResume.education || []).filter(edu => 
+            matchesAny(edu.institution, originalInstitutions)
+        );
+    }
+
+    // 3. Clean Projects
+    if (!originalProfile.projects || originalProfile.projects.length === 0) {
+        tailoredResume.projects = [];
+    } else {
+        const originalProjects = originalProfile.projects.map(proj => proj.name).filter(Boolean);
+        tailoredResume.projects = (tailoredResume.projects || []).filter(proj => 
+            matchesAny(proj.name, originalProjects)
+        );
+    }
+
+    // 4. Clean Certifications
+    if (!originalProfile.certifications || originalProfile.certifications.length === 0) {
+        tailoredResume.certifications = [];
+    } else {
+        const originalCerts = originalProfile.certifications.filter(Boolean);
+        tailoredResume.certifications = (tailoredResume.certifications || []).filter(cert => 
+            matchesAny(cert, originalCerts)
+        );
+    }
+
+    return tailoredResume;
+}
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
@@ -124,26 +180,41 @@ app.post('/api/generate-resume', async (req, res) => {
         // Create the prompt
         const prompt = createResumePrompt(jobDescription, profileToUse);
 
-        // Call LLM Provider
-        const result = await llmProvider.generateText(prompt, {
-            temperature: 0.7,
-            responseFormat: 'json',
-            systemPrompt: 'You are an expert resume writer specializing in ATS optimization. Always return valid JSON only, with no additional text or markdown formatting.'
-        });
-
-        // Parse the response
-        const resumeText = result.text;
+        // Call LLM Provider with retry mechanism
+        let result;
         let tailoredResume;
+        const attempts = 3;
+        
+        for (let attempt = 1; attempt <= attempts; attempt++) {
+            try {
+                result = await llmProvider.generateText(prompt, {
+                    temperature: 0.7 + (attempt - 1) * 0.1,
+                    maxTokens: 6000,
+                    responseFormat: 'json',
+                    systemPrompt: 'You are an expert resume writer specializing in ATS optimization. Always return valid JSON only, with no additional text or markdown formatting.'
+                });
 
-        try {
-            tailoredResume = parseJsonFromText(resumeText);
-        } catch (parseError) {
-            console.error('Failed to parse AI response as JSON:', resumeText);
-            return res.status(500).json({
-                success: false,
-                error: 'Failed to parse AI response',
-                details: parseError.message
-            });
+                const resumeText = result.text;
+                if (!resumeText || resumeText.trim().length === 0) {
+                    throw new Error('Empty response from AI provider');
+                }
+
+                tailoredResume = parseJsonFromText(resumeText);
+                tailoredResume = cleanTailoredResume(tailoredResume, profileToUse);
+                break; // Success!
+            } catch (parseError) {
+                console.warn(`  ⚠️ Generate resume attempt ${attempt} failed: ${parseError.message}`);
+                if (attempt === attempts) {
+                    console.error('Failed to parse AI response as JSON after maximum retries:', result ? result.text : 'No result');
+                    return res.status(500).json({
+                        success: false,
+                        error: 'Failed to parse AI response after maximum retries',
+                        details: parseError.message
+                    });
+                }
+                // Wait 1 second before retrying
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
         }
 
         // Return the tailored resume
@@ -296,26 +367,42 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
         console.log('  4️⃣ Creating blueprint-enhanced prompt...');
         const prompt = createResumePrompt(jobDescription, finalProfileToUse, tailoringBlueprint);
 
-        // Call LLM Provider
-        console.log('  5️⃣ Calling AI to generate tailored resume...');
-        const result = await llmProvider.generateText(prompt, {
-            temperature: 0.7,
-            responseFormat: 'json',
-            systemPrompt: 'You are an expert resume writer specializing in ATS optimization. Always return valid JSON only, with no additional text or markdown formatting.'
-        });
-
-        const resumeText = result.text;
+        // Call LLM Provider with retry mechanism
+        let result;
         let tailoredResume;
+        const attempts = 3;
+        
+        for (let attempt = 1; attempt <= attempts; attempt++) {
+            try {
+                console.log(`  5️⃣ Calling AI to generate tailored resume (Attempt ${attempt}/${attempts})...`);
+                result = await llmProvider.generateText(prompt, {
+                    temperature: 0.7 + (attempt - 1) * 0.1,
+                    maxTokens: 6000,
+                    responseFormat: 'json',
+                    systemPrompt: 'You are an expert resume writer specializing in ATS optimization. Always return valid JSON only, with no additional text or markdown formatting.'
+                });
 
-        try {
-            tailoredResume = parseJsonFromText(resumeText);
-        } catch (parseError) {
-            console.error('Failed to parse AI response as JSON:', resumeText);
-            return res.status(500).json({
-                success: false,
-                error: 'Failed to parse AI response',
-                details: parseError.message
-            });
+                const resumeText = result.text;
+                if (!resumeText || resumeText.trim().length === 0) {
+                    throw new Error('Empty response from AI provider');
+                }
+
+                tailoredResume = parseJsonFromText(resumeText);
+                tailoredResume = cleanTailoredResume(tailoredResume, finalProfileToUse);
+                break; // Success!
+            } catch (parseError) {
+                console.warn(`  ⚠️ Tailored resume attempt ${attempt} failed: ${parseError.message}`);
+                if (attempt === attempts) {
+                    console.error('Failed to parse AI response as JSON after maximum retries:', result ? result.text : 'No result');
+                    return res.status(500).json({
+                        success: false,
+                        error: 'Failed to parse AI response after maximum retries',
+                        details: parseError.message
+                    });
+                }
+                // Wait 1 second before retrying
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
         }
 
         console.log('✅ Resume generation complete!');
