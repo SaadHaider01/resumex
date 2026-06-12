@@ -22,7 +22,7 @@ const { generateResumePDF } = require('../services/pdfExportService');
  */
 router.post('/save-resume', async (req, res) => {
     try {
-        const { jobTitle, company, githubUsername, resumeJSON, tailoringBlueprint, jobDescription } = req.body;
+        const { jobTitle, company, githubUsername, resumeJSON, tailoringBlueprint, jobDescription, justificationReport } = req.body;
 
         const savedResume = await saveResume({
             jobTitle,
@@ -30,7 +30,8 @@ router.post('/save-resume', async (req, res) => {
             githubUsername,
             resumeJSON,
             tailoringBlueprint,
-            jobDescription
+            jobDescription,
+            justificationReport
         });
 
         res.json({

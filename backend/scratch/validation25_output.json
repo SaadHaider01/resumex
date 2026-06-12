@@ -1,0 +1,1181 @@
+[
+  {
+    "id": 1,
+    "category": "Frontend",
+    "role": "React Frontend Engineer",
+    "jd": "Build clean React interfaces. Must know React, JavaScript, CSS, HTML5, UI responsive styling.",
+    "archetype": "frontend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: LInguaVoice (Score: 40%)",
+        "project: Static-Portfolio (Score: 39%)",
+        "experience: Senior Software Engineer (Score: 63%)",
+        "experience: Software Developer Intern (Score: 30%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: JARVIS (Score: 33%)",
+        "project: Simple-Script (Score: 25%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"frontend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 2,
+    "category": "Frontend",
+    "role": "Senior UI Developer",
+    "jd": "Lead frontend architecture. Required: React, Tailwind CSS, TypeScript, and state management.",
+    "archetype": "frontend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 40%)",
+        "project: LInguaVoice (Score: 43%)",
+        "project: Static-Portfolio (Score: 39%)",
+        "experience: Senior Software Engineer (Score: 67%)",
+        "certification: AWS Certified Solutions Architect (Score: 75%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: JARVIS (Score: 33%)",
+        "project: Simple-Script (Score: 25%)",
+        "experience: Software Developer Intern (Score: 23%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"frontend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 3,
+    "category": "Backend",
+    "role": "REST API Node.js Engineer",
+    "jd": "Design scalable backends. Experience with Express, Node.js, routing, and REST endpoints.",
+    "archetype": "backend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 58%)",
+        "experience: Software Developer Intern (Score: 42%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"backend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 4,
+    "category": "Backend",
+    "role": "Database API Engineer",
+    "jd": "Scalable backend engineer focusing on MongoDB, PostgreSQL schema design, Express, and performance.",
+    "archetype": "backend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 51%)",
+        "experience: Software Developer Intern (Score: 41%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 70%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"backend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 5,
+    "category": "Backend",
+    "role": "Backend Software Architect",
+    "jd": "Architecture of API microservices using Node.js, Redis, and distributed message queues.",
+    "archetype": "backend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 54%)",
+        "experience: Software Developer Intern (Score: 40%)",
+        "certification: AWS Certified Solutions Architect (Score: 75%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"backend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 6,
+    "category": "Full Stack",
+    "role": "Full Stack Engineer",
+    "jd": "Develop full stack apps using React (frontend) and Node.js/Express (backend).",
+    "archetype": "fullstack",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 69%)",
+        "experience: Software Developer Intern (Score: 51%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"fullstack\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 7,
+    "category": "Full Stack",
+    "role": "Full Stack Tech Lead",
+    "jd": "Lead full stack engineering team. Modern JS/TS frameworks, React, Express, database design, and cloud deployments.",
+    "archetype": "cloud",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 73%)",
+        "certification: AWS Certified Solutions Architect (Score: 75%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 24%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"cloud\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 8,
+    "category": "Full Stack",
+    "role": "Product Software Developer",
+    "jd": "General full-stack developer experienced in web applications, user interfaces, APIs, and agile practices.",
+    "archetype": "fullstack",
+    "rrs": {
+      "total": 90,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 10,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 62%)",
+        "experience: Software Developer Intern (Score: 43%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"fullstack\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 9,
+    "category": "AI",
+    "role": "Generative AI Developer",
+    "jd": "Build AI applications with LLMs. Experience with OpenAI API, Prompt engineering, and Python.",
+    "archetype": "ai",
+    "rrs": {
+      "total": 95,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 15
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: JARVIS (Score: 39%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 60%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 32%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 23%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"ai\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 10,
+    "category": "AI",
+    "role": "Speech AI Integration Specialist",
+    "jd": "Looking for a Python developer experienced with Whisper Speech-to-Text and TTS conversions.",
+    "archetype": "fullstack",
+    "rrs": {
+      "total": 95,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 15
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 63%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 61%)",
+        "experience: Software Developer Intern (Score: 43%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 32%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"fullstack\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 11,
+    "category": "AI",
+    "role": "AI Conversational Agent Developer",
+    "jd": "Develop AI assistants using speech recognition, text-to-speech, and OpenAI conversational frameworks.",
+    "archetype": "ai",
+    "rrs": {
+      "total": 95,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 15
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 49%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 48%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"ai\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 12,
+    "category": "ML",
+    "role": "Machine Learning Engineer",
+    "jd": "Implement machine learning models. Required: Python, deep learning frameworks, and data preprocessing.",
+    "archetype": "ml",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 13%)",
+        "project: JARVIS (Score: 23%)",
+        "project: Simple-Script (Score: 15%)",
+        "experience: Senior Software Engineer (Score: 21%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: LInguaVoice (Score: 33%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [
+        "WordPress / Extension-heavy profile applying for ML role"
+      ],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"ml\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 13,
+    "category": "ML",
+    "role": "Speech Recognition ML Engineer",
+    "jd": "Develop custom STT and speech models using Whisper, Python, and speech signals processing.",
+    "archetype": "fullstack",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: JARVIS (Score: 67%)",
+        "project: LInguaVoice (Score: 43%)",
+        "project: Simple-Script (Score: 35%)",
+        "experience: Senior Software Engineer (Score: 61%)",
+        "experience: Software Developer Intern (Score: 43%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: ResumeX (Score: 33%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"fullstack\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 14,
+    "category": "ML",
+    "role": "Audio DSP / ML Specialist",
+    "jd": "Apply ML to audio signals and speech synthesis. Python, text-to-speech, and signal parsing.",
+    "archetype": "ml",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 23%)",
+        "project: JARVIS (Score: 39%)",
+        "project: LInguaVoice (Score: 23%)",
+        "experience: Senior Software Engineer (Score: 21%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 35%)",
+        "project: Static-Portfolio (Score: 43%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [
+        "WordPress / Extension-heavy profile applying for ML role"
+      ],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"ml\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 15,
+    "category": "DevOps",
+    "role": "DevOps & CI/CD Engineer",
+    "jd": "Manage CI/CD pipeline automation, script workflows, Docker, Kubernetes, and GitLab.",
+    "archetype": "devops",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 73%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"devops\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 16,
+    "category": "DevOps",
+    "role": "Site Reliability Engineer",
+    "jd": "Ensure system uptime. Automation scripting, Kubernetes, Docker, container monitoring, and cloud configuration.",
+    "archetype": "devops",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 64%)",
+        "certification: AWS Certified Solutions Architect (Score: 75%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"devops\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 17,
+    "category": "DevOps",
+    "role": "Automation Specialist",
+    "jd": "Seeker of automation scripting. Python scripting, cron workflows, task automation, and docker deploy scripts.",
+    "archetype": "fullstack",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 43%)",
+        "project: Simple-Script (Score: 35%)",
+        "experience: Senior Software Engineer (Score: 61%)",
+        "experience: Software Developer Intern (Score: 43%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: LInguaVoice (Score: 33%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"fullstack\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 18,
+    "category": "Cloud",
+    "role": "Cloud Solutions Architect",
+    "jd": "Design scalable cloud architecture on AWS. Experience with AWS EC2, S3, IAM, and Solutions Architect certifications.",
+    "archetype": "cloud",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 83%)",
+        "certification: AWS Certified Solutions Architect (Score: 95%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"cloud\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 19,
+    "category": "Cloud",
+    "role": "Cloud Infrastructure Developer",
+    "jd": "Deploy applications on AWS. Knowledge of Docker, Kubernetes, Terraform, and cloud-native architecture.",
+    "archetype": "devops",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 70%)",
+        "certification: AWS Certified Solutions Architect (Score: 95%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"devops\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 20,
+    "category": "Cloud",
+    "role": "AWS Serverless Specialist",
+    "jd": "AWS lambda functions, serverless REST APIs, and AWS cloud databases.",
+    "archetype": "cloud",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 94%)",
+        "experience: Software Developer Intern (Score: 34%)",
+        "certification: AWS Certified Solutions Architect (Score: 95%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"cloud\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 21,
+    "category": "Browser Extensions",
+    "role": "Chrome Extension Developer",
+    "jd": "Develop Chrome browser extensions. Knowledge of manifest.json, background scripts, content scripts, and DOM scraping.",
+    "archetype": "chrome_extension",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 43%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 63%)",
+        "experience: Software Developer Intern (Score: 90%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"chrome_extension\". Selection budget applied: 2 exp / 4 projects."
+    }
+  },
+  {
+    "id": 22,
+    "category": "Browser Extensions",
+    "role": "Browser Automation Engineer",
+    "jd": "Create browser extensions automating form autofill mechanics, LinkedIn scraping, and DOM inputs.",
+    "archetype": "backend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 53%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 43%)",
+        "experience: Senior Software Engineer (Score: 53%)",
+        "experience: Software Developer Intern (Score: 86%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"backend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 23,
+    "category": "Research Platforms",
+    "role": "Interactive Language Lab Developer",
+    "jd": "Interactive learning platforms. Web speech APIs, audio lesson players, and frontend language modules.",
+    "archetype": "frontend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 46%)",
+        "project: JARVIS (Score: 49%)",
+        "project: LInguaVoice (Score: 53%)",
+        "experience: Senior Software Engineer (Score: 64%)",
+        "experience: Software Developer Intern (Score: 78%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 50%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"frontend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 24,
+    "category": "Data Engineering",
+    "role": "Data Pipeline Engineer",
+    "jd": "Build data pipelines. Experience with SQL, Google Data Analytics, reporting dashboards, and ETL pipelines.",
+    "archetype": "devops",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 61%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 70%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)",
+        "experience: Software Developer Intern (Score: 13%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"devops\". Selection budget applied: 3 exp / 3 projects."
+    }
+  },
+  {
+    "id": 25,
+    "category": "Data Engineering",
+    "role": "Analytics Developer",
+    "jd": "Develop reporting metrics. SQL, database schema design, and data analytics certificates.",
+    "archetype": "backend",
+    "rrs": {
+      "total": 100,
+      "project": 20,
+      "experience": 20,
+      "certification": 20,
+      "skill": 20,
+      "alignment": 20
+    },
+    "justification": {
+      "included": [
+        "project: ResumeX (Score: 33%)",
+        "project: JARVIS (Score: 33%)",
+        "project: LInguaVoice (Score: 33%)",
+        "experience: Senior Software Engineer (Score: 51%)",
+        "experience: Software Developer Intern (Score: 38%)",
+        "certification: AWS Certified Solutions Architect (Score: 51%)",
+        "certification: Google Data Analytics Certificate (Score: 70%)"
+      ],
+      "excluded": [
+        "project: Simple-Script (Score: 25%)",
+        "project: Static-Portfolio (Score: 33%)"
+      ],
+      "contradictions": [],
+      "careerDNA": [
+        "Full Stack Development",
+        "Browser Automation",
+        "Cloud Infrastructure"
+      ],
+      "crossEvidenceBoosts": {
+        "react": false,
+        "aws": false,
+        "overallBoostApplied": true
+      }
+    },
+    "recruiterAuditing": {
+      "falsePositives": [],
+      "falseNegatives": [],
+      "rankingMistakes": [],
+      "explanation": "Candidate mapped as \"Full Stack Development, Browser Automation, Cloud Infrastructure\" DNA matching target archetype \"backend\". Selection budget applied: 3 exp / 3 projects."
+    }
+  }
+]

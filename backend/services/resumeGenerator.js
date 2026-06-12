@@ -13,6 +13,8 @@ const { parseJobDescription } = require('./jdParser');
 const { fetchGitHubProfile } = require('./githubService');
 const { generateTailoringBlueprint } = require('./tailoringService');
 const { analyzeRepositories } = require('./repositoryIntelligenceService');
+const { analyzeProfessionalProfile } = require('./professionalIntelligenceService');
+
 
 /**
  * Generates a tailored resume using the full pipeline
@@ -73,8 +75,24 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
         enrichedProfile.projects = repoIntelligence.analyzedRepositories;
     }
 
-    // Step 3: Generate tailoring blueprint using RIE profiles
-    const tailoringBlueprint = generateTailoringBlueprint(parsedJD, enrichedProfile, repoIntelligence);
+    // Step 2.7: Profile professional experience using PIE
+    let pieProfile = null;
+    try {
+        pieProfile = analyzeProfessionalProfile({
+            linkedinProfile: {
+                experience: enrichedProfile.experience || [],
+                education: enrichedProfile.education || [],
+                certifications: enrichedProfile.certifications || [],
+                rawSkills: enrichedProfile.skills?.linkedinSkills || enrichedProfile.skills?.technical || enrichedProfile.skills || []
+            }
+        });
+        enrichedProfile.pieResult = pieProfile;
+    } catch (err) {
+        console.warn('Professional intelligence analysis failed:', err.message);
+    }
+
+    // Step 3: Generate tailoring blueprint using RIE and PIE profiles
+    const tailoringBlueprint = generateTailoringBlueprint(parsedJD, enrichedProfile, repoIntelligence, pieProfile);
 
     // Step 4: Create enhanced prompt with blueprint
     const enhancedPrompt = createBlueprintEnhancedPrompt({
@@ -82,6 +100,7 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
         parsedJD,
         userProfile: enrichedProfile,
         githubProfile: repoIntelligence,
+        pieProfile,
         tailoringBlueprint
     });
 
@@ -93,6 +112,7 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
         metadata: {
             parsedJD,
             githubProfile: repoIntelligence,
+            pieProfile,
             tailoringBlueprint
         }
     };
@@ -105,11 +125,38 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
  * @returns {string} Enhanced prompt
  */
 function createBlueprintEnhancedPrompt(data) {
-    const { jobDescription, parsedJD, userProfile, githubProfile, tailoringBlueprint } = data;
-    const { matchedSkills, missingSkills, recommendedProjects, experienceMatchLevel, keywordInjectionList } = tailoringBlueprint;
+    const { jobDescription, parsedJD, userProfile, githubProfile, pieProfile, tailoringBlueprint } = data;
+    const { 
+        matchedSkills, 
+        missingSkills, 
+        recommendedProjects, 
+        experienceMatchLevel, 
+        keywordInjectionList,
+        careerDNA,
+        justificationReport
+    } = tailoringBlueprint;
 
     // Determine tone based on experience match
     const toneGuidance = getToneGuidance(experienceMatchLevel);
+
+    let dnaSection = '';
+    if (careerDNA && careerDNA.dominantDomains) {
+        dnaSection = `
+🧬 CAREER DNA:
+Dominant Domains: ${careerDNA.dominantDomains.join(', ') || 'None identified'}
+Secondary Domains: ${careerDNA.secondaryDomains.join(', ') || 'None identified'}
+DNA Confidence: ${careerDNA.confidence}
+`;
+    }
+
+    let justificationSection = '';
+    if (justificationReport) {
+        justificationSection = `
+⚖️ RESUME JUSTIFICATION:
+- Included: ${justificationReport.included.map(i => `${i.type}: ${i.name} (Score: ${i.relevanceScore})`).join(', ') || 'None'}
+- Excluded: ${justificationReport.excluded.map(e => `${e.type}: ${e.name} (Score: ${e.relevanceScore})`).join(', ') || 'None'}
+`;
+    }
 
     return `You are an expert resume writer and ATS (Applicant Tracking System) optimization specialist.
 
@@ -137,7 +184,7 @@ ${JSON.stringify(githubProfile, null, 2)}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🎯 TAILORING INTELLIGENCE (Use This to Guide Resume Generation)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+${dnaSection}${justificationSection}
 ✅ MATCHED SKILLS (Highlight These Prominently):
 ${matchedSkills.length > 0 ? matchedSkills.join(', ') : 'None identified'}
 

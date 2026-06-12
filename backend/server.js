@@ -379,9 +379,27 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             }
         }
 
+        // Step 2.7: Profile LinkedIn experience using PIE (Professional Intelligence Engine)
+        let pieProfile = null;
+        try {
+            console.log('  2.7️⃣ PIE: Profiling LinkedIn profile...');
+            const { analyzeProfessionalProfile } = require('./services/professionalIntelligenceService');
+            pieProfile = analyzeProfessionalProfile({
+                linkedinProfile: {
+                    experience: finalProfileToUse.experience || [],
+                    education: finalProfileToUse.education || [],
+                    certifications: finalProfileToUse.certifications || [],
+                    rawSkills: finalProfileToUse.skills?.linkedinSkills || finalProfileToUse.skills?.technical || finalProfileToUse.skills || []
+                }
+            });
+            finalProfileToUse.pieResult = pieProfile;
+        } catch (err) {
+            console.warn('  ⚠️ PIE profiling failed:', err.message);
+        }
+
         // Step 3: Generate tailoring blueprint
         console.log('  3️⃣ Generating tailoring blueprint...');
-        const tailoringBlueprint = generateTailoringBlueprint(parsedJD, finalProfileToUse, repoIntelligence);
+        const tailoringBlueprint = generateTailoringBlueprint(parsedJD, finalProfileToUse, repoIntelligence, pieProfile);
 
         // Step 4: Create enhanced prompt with blueprint
         console.log('  4️⃣ Creating blueprint-enhanced prompt...');
@@ -445,7 +463,8 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
                     matchedSkills: tailoringBlueprint.matchedSkills,
                     missingSkills: tailoringBlueprint.missingSkills,
                     recommendedProjects: tailoringBlueprint.recommendedProjects.map(p => p.name),
-                    experienceMatchLevel: tailoringBlueprint.experienceMatchLevel
+                    experienceMatchLevel: tailoringBlueprint.experienceMatchLevel,
+                    justificationReport: tailoringBlueprint.justificationReport
                 }
             }
         });

@@ -19,10 +19,37 @@ function createResumePrompt(jobDescription, userProfile, tailoringBlueprint = nu
     return createBasicPrompt(jobDescription, userProfile);
   }
 
-  const { matchedSkills, missingSkills, recommendedProjects, experienceMatchLevel, keywordInjectionList } = tailoringBlueprint;
+  const { 
+    matchedSkills, 
+    missingSkills, 
+    recommendedProjects, 
+    experienceMatchLevel, 
+    keywordInjectionList,
+    careerDNA,
+    justificationReport
+  } = tailoringBlueprint;
 
   // Determine tone based on experience match
   const toneGuidance = getToneGuidance(experienceMatchLevel);
+
+  let dnaSection = '';
+  if (careerDNA && careerDNA.dominantDomains) {
+    dnaSection = `
+🧬 CAREER DNA:
+Dominant Domains: ${careerDNA.dominantDomains.join(', ') || 'None identified'}
+Secondary Domains: ${careerDNA.secondaryDomains.join(', ') || 'None identified'}
+DNA Confidence: ${careerDNA.confidence}
+`;
+  }
+
+  let justificationSection = '';
+  if (justificationReport) {
+    justificationSection = `
+⚖️ RESUME JUSTIFICATION:
+- Included: ${justificationReport.included.map(i => `${i.type}: ${i.name} (Score: ${i.relevanceScore})`).join(', ') || 'None'}
+- Excluded: ${justificationReport.excluded.map(e => `${e.type}: ${e.name} (Score: ${e.relevanceScore})`).join(', ') || 'None'}
+`;
+  }
 
   return `You are an expert resume writer and ATS (Applicant Tracking System) optimization specialist.
 
@@ -53,7 +80,7 @@ ${JSON.stringify(userProfile, null, 2)}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🎯 TAILORING INTELLIGENCE (Use This to Guide Resume Generation)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+${dnaSection}${justificationSection}
 ✅ MATCHED SKILLS (Highlight These Prominently):
 ${matchedSkills.length > 0 ? matchedSkills.join(', ') : 'None identified'}
 

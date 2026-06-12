@@ -40,7 +40,7 @@ function writeLocalDB(data) {
  * @returns {Promise<Object>} Saved resume document
  */
 async function saveResume(data) {
-    const { jobTitle, company, githubUsername, resumeJSON, tailoringBlueprint, jobDescription } = data;
+    const { jobTitle, company, githubUsername, resumeJSON, tailoringBlueprint, jobDescription, justificationReport } = data;
 
     // Validation
     if (!jobTitle || !resumeJSON || !tailoringBlueprint) {
@@ -56,7 +56,8 @@ async function saveResume(data) {
             githubUsername,
             resumeJSON,
             tailoringBlueprint,
-            jobDescription
+            jobDescription,
+            justificationReport
         });
         return await resume.save();
     } else {
@@ -70,6 +71,7 @@ async function saveResume(data) {
             resumeJSON,
             tailoringBlueprint,
             jobDescription,
+            justificationReport,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString()
         };

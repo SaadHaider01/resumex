@@ -30,6 +30,9 @@ const resumeSchema = new mongoose.Schema({
     jobDescription: {
         type: String
     },
+    justificationReport: {
+        type: Object
+    },
     createdAt: {
         type: Date,
         default: Date.now
