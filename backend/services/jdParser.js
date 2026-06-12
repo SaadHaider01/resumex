@@ -34,7 +34,10 @@ const COMMON_SKILLS = [
 
     // Other
     'Microservices', 'Agile', 'Scrum', 'TDD', 'Machine Learning', 'ML', 'AI', 'Data Science',
-    'Linux', 'Unix', 'Nginx', 'Apache', 'RabbitMQ', 'Kafka'
+    'Linux', 'Unix', 'Nginx', 'Apache', 'RabbitMQ', 'Kafka',
+    'Chrome Extension', 'PDF Generation', 'pdfkit', 'Form Autofill', 'Autofill', 'LinkedIn Scraping',
+    'Scraping', 'Whisper', 'Speech Recognition', 'Text To Speech', 'TTS', 'Speech APIs',
+    'Web Speech API', 'SpeechSynthesis', 'Language Learning', 'Generative AI', 'LLM', 'OpenAI', 'Gemini'
 ];
 
 // Common job role keywords
@@ -182,7 +185,9 @@ function extractKeywords(normalizedText) {
         'security', 'authentication', 'authorization', 'performance',
         'optimization', 'deployment', 'monitoring', 'architecture',
         'leadership', 'mentorship', 'team', 'collaboration', 'remote',
-        'startup', 'enterprise', 'saas', 'b2b', 'b2c'
+        'startup', 'enterprise', 'saas', 'b2b', 'b2c',
+        'chrome extension', 'manifest.json', 'autofill', 'scraping', 'whisper',
+        'speech', 'voice', 'text to speech', 'pdf', 'pdfkit', 'generative ai', 'llm'
     ];
 
     const lowerText = normalizedText.toLowerCase();

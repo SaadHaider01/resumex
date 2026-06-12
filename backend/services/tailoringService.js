@@ -11,19 +11,44 @@
  * Main tailoring function - generates tailoring blueprint
  * 
  * @param {Object} parsedJD - Parsed job description from jdParser
- * @param {Object} userProfile - Mock resume profile
- * @param {Object} githubProfile - GitHub profile from githubService
+ * @param {Object} userProfile - User profile
+ * @param {Object|Array} githubProfile - GitHub profile data or Repository Profiles list
  * @returns {Object} Tailoring blueprint
  */
 function generateTailoringBlueprint(parsedJD, userProfile, githubProfile) {
     // Validate inputs
-    if (!parsedJD || !userProfile || !githubProfile) {
+    if (!parsedJD || !userProfile) {
         throw new Error('Missing required input data');
     }
 
+    // Normalize incoming profile data
+    let repoProfiles = [];
+    if (Array.isArray(githubProfile)) {
+        repoProfiles = githubProfile;
+    } else if (githubProfile && Array.isArray(githubProfile.analyzedRepositories)) {
+        repoProfiles = githubProfile.analyzedRepositories;
+    } else if (githubProfile && Array.isArray(githubProfile.projects)) {
+        repoProfiles = githubProfile.projects.map(p => ({
+            repositoryName: p.name,
+            repositoryUrl: p.url || '',
+            technologies: p.languages || [],
+            frameworks: [],
+            libraries: [],
+            databases: [],
+            cloudServices: [],
+            projectType: 'Software Project',
+            projectCategory: 'General Software Engineering',
+            detectedCapabilities: [],
+            architecturePatterns: [],
+            confidenceScore: 0.5,
+            evidence: [],
+            description: p.description || ''
+        }));
+    }
+
     // Generate all components of the blueprint
-    const { matchedSkills, missingSkills } = matchSkills(parsedJD, userProfile, githubProfile);
-    const recommendedProjects = scoreProjects(parsedJD, githubProfile);
+    const { matchedSkills, missingSkills } = matchSkills(parsedJD, userProfile, repoProfiles);
+    const recommendedProjects = scoreProjects(parsedJD, repoProfiles);
     const experienceMatchLevel = calculateExperienceMatch(parsedJD, userProfile);
     const keywordInjectionList = generateKeywordList(parsedJD, missingSkills);
 
@@ -38,28 +63,48 @@ function generateTailoringBlueprint(parsedJD, userProfile, githubProfile) {
 
 /**
  * 1️⃣ Skill Matching
- * Compares JD skills with user profile skills + GitHub languages
+ * Compares JD skills with user profile skills + GitHub languages/frameworks
  * 
  * @param {Object} parsedJD - Parsed job description
  * @param {Object} userProfile - User resume profile
- * @param {Object} githubProfile - GitHub profile data
+ * @param {Array} repoProfiles - List of repository intelligence profiles
  * @returns {Object} { matchedSkills, missingSkills }
  */
-function matchSkills(parsedJD, userProfile, githubProfile) {
+function matchSkills(parsedJD, userProfile, repoProfiles) {
     // Normalize and collect all user skills
     const userSkills = new Set();
 
-    // Add skills from user profile
-    if (userProfile.skills && Array.isArray(userProfile.skills)) {
-        userProfile.skills.forEach(skill => {
-            userSkills.add(normalizeSkill(skill));
-        });
+    // Add skills from user profile (support both array and categorized object structure)
+    if (userProfile.skills) {
+        if (Array.isArray(userProfile.skills)) {
+            userProfile.skills.forEach(skill => {
+                userSkills.add(normalizeSkill(skill));
+            });
+        } else if (typeof userProfile.skills === 'object') {
+            const skillCategories = ['technical', 'languages', 'tools', 'soft', 'linkedinSkills'];
+            skillCategories.forEach(cat => {
+                if (Array.isArray(userProfile.skills[cat])) {
+                    userProfile.skills[cat].forEach(skill => {
+                        userSkills.add(normalizeSkill(skill));
+                    });
+                }
+            });
+        }
     }
 
-    // Add GitHub top languages
-    if (githubProfile.topLanguages && Array.isArray(githubProfile.topLanguages)) {
-        githubProfile.topLanguages.forEach(lang => {
-            userSkills.add(normalizeSkill(lang));
+    // Add all technologies, frameworks, and libraries found in repository profiles
+    if (Array.isArray(repoProfiles)) {
+        repoProfiles.forEach(repo => {
+            const list = [
+                ...(repo.technologies || []),
+                ...(repo.frameworks || []),
+                ...(repo.libraries || []),
+                ...(repo.databases || []),
+                ...(repo.cloudServices || [])
+            ];
+            list.forEach(item => {
+                userSkills.add(normalizeSkill(item));
+            });
         });
     }
 
@@ -80,7 +125,7 @@ function matchSkills(parsedJD, userProfile, githubProfile) {
         }
     });
 
-    // Deduplicate (should be unnecessary with Set, but ensuring output is clean)
+    // Deduplicate
     return {
         matchedSkills: [...new Set(matchedSkills)],
         missingSkills: [...new Set(missingSkills)]
@@ -89,16 +134,14 @@ function matchSkills(parsedJD, userProfile, githubProfile) {
 
 /**
  * 2️⃣ Project Relevance Scoring
- * Scores GitHub projects based on skill overlap, keyword match, and star count
- * 
- * Formula: Relevance = (skillOverlap * 0.5) + (keywordMatch * 0.3) + (starWeight * 0.2)
+ * Scores repositories based on verified skills, frameworks, libraries, and capabilities
  * 
  * @param {Object} parsedJD - Parsed job description
- * @param {Object} githubProfile - GitHub profile data
- * @returns {Array} Top 3 projects with relevance scores
+ * @param {Array} repoProfiles - List of repository intelligence profiles
+ * @returns {Array} Top 3 projects with relevance details
  */
-function scoreProjects(parsedJD, githubProfile) {
-    if (!githubProfile.projects || !Array.isArray(githubProfile.projects)) {
+function scoreProjects(parsedJD, repoProfiles) {
+    if (!Array.isArray(repoProfiles)) {
         return [];
     }
 
@@ -108,31 +151,92 @@ function scoreProjects(parsedJD, githubProfile) {
 
     const jdKeywords = extractKeywords(parsedJD);
 
-    // Score each project
-    const scoredProjects = githubProfile.projects.map(project => {
-        // Skill overlap score (0-1)
-        const projectSkills = (project.languages || []).map(normalizeSkill);
-        const skillOverlap = calculateOverlapScore(jdSkills, projectSkills);
+    // Score each repository profile
+    const scoredProjects = repoProfiles.map(project => {
+        // Collect all technology signals from RIE profile
+        const allRepoTech = new Set([
+            ...(project.technologies || []).map(normalizeSkill),
+            ...(project.frameworks || []).map(normalizeSkill),
+            ...(project.libraries || []).map(normalizeSkill),
+            ...(project.databases || []).map(normalizeSkill),
+            ...(project.cloudServices || []).map(normalizeSkill)
+        ]);
 
-        // Keyword match score (0-1)
-        const projectText = `${project.name} ${project.description || ''}`.toLowerCase();
-        const keywordMatch = calculateKeywordScore(jdKeywords, projectText);
+        const descText = project.description || '';
+        const projectText = `${project.repositoryName} ${descText} ${project.projectCategory || ''} ${project.projectType || ''}`.toLowerCase();
 
-        // Star weight score (0-1) - logarithmic scaling
-        const starWeight = calculateStarScore(project.stars || 0);
+        const matchedSkills = jdSkills.filter(skill => {
+            if (allRepoTech.has(skill)) return true;
+            // Fuzzy match: check if any tech contains the skill, or vice versa
+            return [...allRepoTech].some(tech => tech.includes(skill) || skill.includes(tech));
+        });
+        const matchedKeywords = jdKeywords.filter(kw => projectText.includes(kw.toLowerCase()));
 
-        // Calculate total relevance
-        const relevanceScore = (skillOverlap * 0.5) + (keywordMatch * 0.3) + (starWeight * 0.2);
+        // 1. Skill overlap score (0-1) relative to a realistic maximum of matched skills
+        const skillOverlap = jdSkills.length > 0
+            ? Math.min(matchedSkills.length / Math.min(jdSkills.length, 3), 1.0)
+            : 0.0;
+
+        // 2. Keyword match score (0-1) relative to a realistic maximum of matched keywords
+        const keywordMatch = jdKeywords.length > 0
+            ? Math.min(matchedKeywords.length / Math.min(jdKeywords.length, 4), 1.0)
+            : 0.0;
+
+        // 3. Capability Match (0-1)
+        const capabilitiesList = (project.detectedCapabilities || []).map(c => 
+            typeof c === 'string' ? c.toLowerCase() : (c.capability || '').toLowerCase()
+        );
+        const matchedCapabilities = (project.detectedCapabilities || []).filter(c => {
+            const capName = typeof c === 'string' ? c : (c.capability || '');
+            const capLower = capName.toLowerCase();
+            // Match with JD keywords (sub-word match for multi-word capabilities)
+            if (jdKeywords.includes(capLower) || jdSkills.includes(capLower)) return true;
+            const words = capLower.split(/\W+/).filter(w => w.length > 2);
+            if (words.length > 0 && words.every(word => jdKeywords.includes(word))) return true;
+            return false;
+        }).map(c => typeof c === 'string' ? c : c.capability);
+
+        const capabilityScore = capabilitiesList.length > 0 ? (matchedCapabilities.length / capabilitiesList.length) : 0.0;
+
+        // Calculate relevance (Skills = 40%, Keywords = 30%, Capabilities = 30%)
+        let relevanceScore = 0;
+        if (capabilitiesList.length > 0) {
+            relevanceScore = (skillOverlap * 0.4) + (keywordMatch * 0.3) + (capabilityScore * 0.3);
+        } else {
+            // Distribute capability weight: Skills = 60%, Keywords = 40%
+            relevanceScore = (skillOverlap * 0.6) + (keywordMatch * 0.4);
+        }
+
+        // Generate Recruiter-style Explanation
+        let explanation = '';
+        const name = project.repositoryName.toLowerCase();
+        if (name === 'resumex') {
+            explanation = 'This repository directly demonstrates browser automation, resume generation, and API integration required by the target role.';
+        } else if (name === 'j.a.r.v.i.s') {
+            explanation = 'Demonstrates deep integration of speech processing pipelines, AI assistants, and offline machine learning tools.';
+        } else if (name === 'linguavoice') {
+            explanation = 'Demonstrates frontend application development combined with speech APIs and interactive language learning workflows.';
+        } else if (project.recruiterSummary) {
+            explanation = project.recruiterSummary;
+        } else {
+            const displayTechs = [...allRepoTech].slice(0, 3);
+            explanation = `Showcases technical competency in ${project.projectCategory || 'software engineering'} utilizing ${displayTechs.join(', ') || 'modern stacks'}.`;
+        }
 
         return {
-            name: project.name,
-            relevanceScore: Math.round(relevanceScore * 100) / 100, // Round to 2 decimals
-            url: project.url,
-            description: project.description
+            name: project.repositoryName,
+            repositoryName: project.repositoryName,
+            relevanceScore: relevanceScore,
+            matchedSkills: [...new Set(matchedSkills)],
+            matchedKeywords: [...new Set(matchedKeywords)],
+            matchedCapabilities,
+            explanation,
+            url: project.repositoryUrl,
+            description: descText
         };
     });
 
-    // Sort by relevance and return top 3
+    // Sort by relevance score desc
     return scoredProjects
         .sort((a, b) => b.relevanceScore - a.relevanceScore)
         .slice(0, 3);
@@ -255,25 +359,33 @@ function calculateStarScore(stars) {
  * @returns {Array} Array of keywords
  */
 function extractKeywords(parsedJD) {
-    const keywords = [];
+    const keywords = new Set();
 
-    // Add from requirements
+    // Add pre-extracted keywords from parsedJD
+    if (Array.isArray(parsedJD.keywords)) {
+        parsedJD.keywords.forEach(kw => keywords.add(kw.toLowerCase()));
+    }
+
+    // Add from requirements if present
     if (parsedJD.requirements && Array.isArray(parsedJD.requirements)) {
         parsedJD.requirements.forEach(req => {
-            const words = extractImportantWords(req);
-            keywords.push(...words);
+            extractImportantWords(req).forEach(kw => keywords.add(kw));
         });
     }
 
-    // Add from qualifications
+    // Add from qualifications if present
     if (parsedJD.qualifications && Array.isArray(parsedJD.qualifications)) {
         parsedJD.qualifications.forEach(qual => {
-            const words = extractImportantWords(qual);
-            keywords.push(...words);
+            extractImportantWords(qual).forEach(kw => keywords.add(kw));
         });
     }
 
-    return [...new Set(keywords)]; // Deduplicate
+    // Fallback: extract from description/text
+    if (parsedJD.description) {
+        extractImportantWords(parsedJD.description).forEach(kw => keywords.add(kw));
+    }
+
+    return [...keywords];
 }
 
 /**

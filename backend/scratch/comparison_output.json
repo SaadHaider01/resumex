@@ -1,0 +1,605 @@
+[
+  {
+    "role": "JD 1: Chrome Extension / Browser Automation Engineer",
+    "jdText": "Seeking a developer to build Chrome Extensions. Must have experience with manifest.json, background service workers, content script DOM manipulation, form autofill mechanics, and scraping.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 10,
+          "matchedSkills": [],
+          "matchedCapabilities": [
+            "Chrome Extension",
+            "Form Autofill"
+          ],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 2: AI Speech & Voice Assistant Engineer",
+    "jdText": "Looking for a Python Developer experienced with OpenAI API, Whisper Speech Recognition, Text To Speech (TTS), and building AI conversational assistants.",
+    "old": {
+      "projects": [
+        {
+          "name": "JARVIS",
+          "relevance": 20,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "Simple-Script",
+          "relevance": 20,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "JARVIS",
+          "relevance": 72,
+          "matchedSkills": [
+            "ai",
+            "openai",
+            "python",
+            "tts",
+            "whisper"
+          ],
+          "matchedCapabilities": [
+            "Python",
+            "Whisper",
+            "Speech Recognition",
+            "Text To Speech"
+          ],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "Simple-Script",
+          "relevance": 43,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [
+            "Python"
+          ],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 3: Frontend Web Developer",
+    "jdText": "Required: React, HTML5, CSS3, JavaScript/TypeScript. Build responsive, user-friendly interactive frontend applications.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 20,
+          "matchedSkills": [
+            "javascript"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 20,
+          "matchedSkills": [
+            "javascript"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "LInguaVoice",
+          "relevance": 34,
+          "matchedSkills": [
+            "javascript",
+            "react"
+          ],
+          "matchedCapabilities": [
+            "JavaScript"
+          ],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 18,
+          "matchedSkills": [
+            "javascript"
+          ],
+          "matchedCapabilities": [
+            "JavaScript"
+          ],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 4: Backend REST API Engineer",
+    "jdText": "Hiring a Backend Developer to build scalable REST APIs. Must have experience with Express, Node.js, and API routing.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 13,
+          "matchedSkills": [
+            "express"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 5: Full Stack Web Developer",
+    "jdText": "Full Stack Engineer with experience in React (frontend) and Node.js/Express (backend) to deploy and scale web applications.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 13,
+          "matchedSkills": [
+            "express"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 13,
+          "matchedSkills": [
+            "react"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 6: DevOps & Automation Engineer",
+    "jdText": "Seeking an automation specialist to script task workflows and manage deploy scripts. Python or shell scripting, Docker and pipeline automation is a plus.",
+    "old": {
+      "projects": [
+        {
+          "name": "JARVIS",
+          "relevance": 30,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "Simple-Script",
+          "relevance": 30,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "Simple-Script",
+          "relevance": 50,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [
+            "Python"
+          ],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 26,
+          "matchedSkills": [
+            "python"
+          ],
+          "matchedCapabilities": [
+            "Python"
+          ],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 7: Speech/Audio Processing Developer",
+    "jdText": "Required: Experience with browser-based Web Speech APIs, SpeechSynthesis, and audio signal parsing/language processing.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "JARVIS",
+          "relevance": 10,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 8,
+          "matchedSkills": [],
+          "matchedCapabilities": [
+            "Speech APIs"
+          ],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 8: Language Tech Product Developer",
+    "jdText": "Build interactive language learning portals. Experience with web speech APIs, language translations, and audio-based interactive lessons.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "LInguaVoice",
+          "relevance": 15,
+          "matchedSkills": [],
+          "matchedCapabilities": [
+            "Speech APIs",
+            "Language Learning"
+          ],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 10,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 9: PDF / Document Automation Developer",
+    "jdText": "Seeking a software engineer to build document generation systems. Must have hands-on experience generating PDF documents dynamically (e.g., pdfkit).",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 40,
+          "matchedSkills": [
+            "pdfkit"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    }
+  },
+  {
+    "role": "JD 10: Generative AI Integration Specialist",
+    "jdText": "Integrate LLMs (OpenAI, Gemini API, Claude) into production workflows. Experience with AI SDKs and prompt engineering.",
+    "old": {
+      "projects": [
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "JARVIS",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Showcases technical competency in General Software Engineering utilizing python."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    },
+    "new": {
+      "projects": [
+        {
+          "name": "JARVIS",
+          "relevance": 27,
+          "matchedSkills": [
+            "ai",
+            "openai"
+          ],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrated ability to design, build, and deploy: Python, Whisper, Speech Recognition, Text To Speech, AI Assistant."
+        },
+        {
+          "name": "ResumeX",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "This repository directly demonstrates browser automation, resume generation, and API integration required by the target role."
+        },
+        {
+          "name": "LInguaVoice",
+          "relevance": 0,
+          "matchedSkills": [],
+          "matchedCapabilities": [],
+          "explanation": "Demonstrates frontend application development combined with speech APIs and interactive language learning workflows."
+        }
+      ]
+    }
+  }
+]

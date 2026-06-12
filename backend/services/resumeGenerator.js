@@ -12,6 +12,7 @@
 const { parseJobDescription } = require('./jdParser');
 const { fetchGitHubProfile } = require('./githubService');
 const { generateTailoringBlueprint } = require('./tailoringService');
+const { analyzeRepositories } = require('./repositoryIntelligenceService');
 
 /**
  * Generates a tailored resume using the full pipeline
@@ -26,7 +27,7 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
     // Step 1: Parse job description
     const parsedJD = parseJobDescription(jobDescription);
 
-    // Step 2: Fetch GitHub profile (if username provided)
+    // Step 2: Fetch/resolve GitHub repositories
     let githubProfile = {
         topLanguages: [],
         projects: [],
@@ -37,24 +38,50 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
         }
     };
 
-    if (githubUsername) {
+    const hasCachedGithub = userProfile && userProfile.projects && userProfile.projects.length > 0;
+    if (hasCachedGithub) {
+        githubProfile = {
+            topLanguages: userProfile.skills?.languages || [],
+            projects: userProfile.projects,
+            stats: { totalRepos: userProfile.projects.length, totalStars: 0, totalCommits: 0 }
+        };
+    } else if (githubUsername) {
         try {
             githubProfile = await fetchGitHubProfile(githubUsername);
         } catch (error) {
             console.warn('GitHub profile fetch failed, continuing without GitHub data:', error.message);
-            // Continue with empty GitHub profile
         }
     }
 
-    // Step 3: Generate tailoring blueprint
-    const tailoringBlueprint = generateTailoringBlueprint(parsedJD, userProfile, githubProfile);
+    // Step 2.5: Analyze repositories using RIE (Repository Intelligence Engine)
+    let repoIntelligence = { analyzedRepositories: [] };
+    if (githubProfile && githubProfile.projects && githubProfile.projects.length > 0) {
+        try {
+            const usernameForRIE = githubUsername || userProfile?.personalInfo?.githubUsername || 'SaadHaider01';
+            repoIntelligence = await analyzeRepositories({
+                githubUsername: usernameForRIE,
+                repositories: githubProfile.projects
+            });
+        } catch (err) {
+            console.warn('Repository intelligence analysis failed:', err.message);
+        }
+    }
+
+    // Deep copy and enrich userProfile with RIE profiles
+    const enrichedProfile = JSON.parse(JSON.stringify(userProfile || {}));
+    if (repoIntelligence.analyzedRepositories.length > 0) {
+        enrichedProfile.projects = repoIntelligence.analyzedRepositories;
+    }
+
+    // Step 3: Generate tailoring blueprint using RIE profiles
+    const tailoringBlueprint = generateTailoringBlueprint(parsedJD, enrichedProfile, repoIntelligence);
 
     // Step 4: Create enhanced prompt with blueprint
     const enhancedPrompt = createBlueprintEnhancedPrompt({
         jobDescription,
         parsedJD,
-        userProfile,
-        githubProfile,
+        userProfile: enrichedProfile,
+        githubProfile: repoIntelligence,
         tailoringBlueprint
     });
 
@@ -65,7 +92,7 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
         resume,
         metadata: {
             parsedJD,
-            githubProfile,
+            githubProfile: repoIntelligence,
             tailoringBlueprint
         }
     };

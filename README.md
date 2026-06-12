@@ -1,182 +1,148 @@
-# Context-Aware AI Resume Tailoring Extension
+# ResumeX: AI-Powered Resume Tailoring Chrome Extension
 
-A production-ready Chrome extension that automatically generates ATS-optimized resumes tailored to specific job descriptions using AI.
-
----
-
-## 📋 Project Overview
-
-This browser extension reads job descriptions from the current page, sends them to a backend AI service along with the user's professional profile, and generates a job-specific ATS-optimized resume automatically.
+ResumeX is a production-ready, context-aware resume tailoring Chrome extension and API service. It automatically analyzes job descriptions from any job board, merges your real-time LinkedIn & GitHub profiles, and generates an ATS-optimized, tailored resume in both JSON and beautifully formatted PDF.
 
 ---
 
-## 📂 Current Project Structure
+## 🚀 Key Features
+
+*   **⚡ Chrome Extension UI**: Seamless Manifest V3 extension with one-click **Sync** and **Generate** controls.
+*   **🔄 Hybrid Profile Scraping**: Scrapes LinkedIn profiles (auto-scrolling to bypass lazy loading) and GitHub repositories client-side, merging them into a unified cache.
+*   **🤖 Multi-Provider LLM Core**: Supports OpenAI (`gpt-4o-mini`), Google Gemini (`gemini-2.0-flash`), and OpenRouter (`google/gemini-2.0-flash-lite:free` or auto-routing) with dynamic temperature scaling.
+*   **🛡️ Anti-Hallucination Guardrails**: Running programmatic cleanup logic (`cleanTailoredResume`) that cross-references LLM outputs against your real synced experience and education, discarding hallucinated entries.
+*   **💾 Resume Vault (Mongoose + JSON Fallback)**: Stores resume histories in MongoDB Atlas, with a seamless, fail-safe fallback to a local JSON database (`resumes_db.json`) if offline or unwhitelisted.
+*   **📥 Premium PDF Export**: Generates styled, ATS-compliant PDF resumes using `pdfkit` (bold section headers, right-aligned details, HSL-themed visual accents, and customized column-based skills layouts).
+*   **🤖 Auto-Fill Application Engine**: Automatically detects form fields, parses application pages, autofills details, and dynamically uploads the generated resume PDF into form file inputs.
+
+---
+
+## 📂 Project Structure
 
 ```
 resumex/
-├── extension/          # Chrome extension code (Phase 5)
-│   └── .gitkeep
-├── backend/            # Express.js API server
-│   ├── server.js       # Main Express server
-│   ├── promptTemplate.js   # LLM prompt for resume generation
-│   ├── mockData.js     # Mock user profile
-│   ├── package.json
-│   ├── .env.example    # Environment variables template
-│   └── TESTING.md      # Testing guide
-├── shared/             # Shared utilities (future phases)
-│   └── .gitkeep
-├── .gitignore
-└── README.md
+├── extension/                  # Chrome Extension Code
+│   ├── manifest.json           # Extension configuration
+│   ├── background.js           # Background service worker coordination
+│   ├── contentScript.js        # Content script injection
+│   ├── linkedinScraper.js      # Programmatic auto-scrolling LinkedIn scraper
+│   ├── githubScraper.js        # GitHub repositories scraper
+│   ├── formDetector.js         # Semantic form field detector
+│   ├── autoApply.js            # Auto-fill executor
+│   ├── applyController.js      # Form handler orchestration
+│   ├── popup.html              # Extension visual popup interface
+│   ├── popup.css               # Modern glassmorphism UI styles
+│   ├── popup.js                # Core popup interaction logic
+│   ├── popup_handlers.js       # Save & PDF download button handlers
+│   └── popup_autofill.js       # Auto-fill triggering logic
+├── backend/                    # Express.js API Server
+│   ├── config/
+│   │   └── database.js         # MongoDB connection config
+│   ├── models/
+│   │   └── Resume.js           # Mongoose Resume history schema
+│   ├── routes/
+│   │   └── resumeVaultRoutes.js# Save, search, stats & PDF endpoints
+│   ├── services/
+│   │   ├── githubService.js    # Server-side GitHub API parser
+│   │   ├── linkedinService.js  # Server-side LinkedIn RapidAPI aggregator
+│   │   ├── jdParser.js         # Job description keyword extractor
+│   │   ├── tailoringService.js # Deterministic matching & blueprint generator
+│   │   ├── llmProvider.js      # OpenAI / Gemini / OpenRouter wrappers
+│   │   ├── pdfExportService.js # Premium PDF compiler using PDFKit
+│   │   ├── resumeVaultService.js # Dual-mode persistence layer (Mongo/Local)
+│   │   └── resumeGenerator.js  # Full resume tailoring orchestrator
+│   ├── promptTemplate.js       # Blueprint prompt engineering and STAR instructions
+│   ├── mockData.js             # Mock profile data fallback
+│   ├── resumes_db.json         # Local fail-safe database storage
+│   ├── server.js               # Main Express.js server
+│   ├── package.json            # Node backend dependencies
+│   └── TESTING.md              # Detailed backend testing instructions
+├── shared/                     # Shared schema files
+├── resume.pdf                  # Sample compiled PDF
+└── README.md                   # Project documentation
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🛠️ Setup Instructions
 
-### Prerequisites
-- Node.js 18+
-- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
+### 1. Backend API Server Setup
 
-### Backend Setup
-```bash
-cd backend
-npm install
-
-# Configure environment
-cp .env.example .env
-# Edit .env and add your OPENAI_API_KEY
-
-# Start server
-npm start
-```
-
-Server runs on `http://localhost:3000`
-
-### Quick Test
-```bash
-# Health check
-curl http://localhost:3000/health
-
-# Generate resume
-curl -X POST http://localhost:3000/api/generate-resume \
-  -H "Content-Type: application/json" \
-  -d '{"jobDescription": "Senior Full-Stack Engineer with React, Node.js, AWS..."}'
-```
-
-See [`backend/TESTING.md`](backend/TESTING.md) for complete testing guide.
+1.  Navigate to the backend directory:
+    ```bash
+    cd backend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Configure your environment. Copy `.env.example` to `.env`:
+    ```bash
+    cp .env.example .env
+    ```
+4.  Configure the environment keys inside `.env`:
+    *   Set `LLM_PROVIDER` (e.g. `openrouter`, `openai`, or `gemini`).
+    *   Add your API keys (`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, or `GEMINI_API_KEY`).
+    *   Configure `PORT` (defaults to `3001` to prevent clashes).
+    *   Provide `MONGODB_URI` (ensure username and password specials are URL-encoded).
+5.  Start the server:
+    ```bash
+    npm start
+    ```
+    The server will run on `http://localhost:3001` (with dynamic database fallbacks enabled).
 
 ---
 
-## 🏗️ Tech Stack
+### 2. Chrome Extension Setup
 
-**Frontend (Extension):** Chrome Extension (Manifest v3), JavaScript, HTML, CSS  
-**Backend:** Node.js, Express.js, OpenAI API  
-**Database:** MongoDB (Phase 7)  
-**Output:** JSON (current), PDF/DOCX (Phase 6)
-
----
-
-## 🚦 Development Phases
-
-### ✅ Phase 0 — Project Skeleton & Standards
-**Status:** Complete  
-Set up folder structure and documentation.
+1.  Open Google Chrome and navigate to `chrome://extensions/`.
+2.  Enable **Developer mode** using the toggle switch in the top-right corner.
+3.  Click **Load unpacked** in the top-left corner.
+4.  Select the `extension` directory inside your local `resumex` repository.
+5.  The **ResumeX** extension is now installed and visible in your extension bar!
 
 ---
 
-### ✅ Phase 1 — Backend Resume Generator (CURRENT)
-**Status:** Complete  
-**Objective:** Build backend API that generates tailored resumes.
+## 🎯 How to Test
 
-**Endpoints:**
-- `GET /health` - Health check
-- `POST /api/generate-resume` - Generate tailored resume
-
-**What Was Built:**
-- Express server with OpenAI integration
-- LLM prompt template for ATS optimization
-- Mock user profile data
-- Error handling and validation
-- Complete testing documentation
-
-**Testing:** See [`backend/TESTING.md`](backend/TESTING.md)
-
----
-
-### 🔜 Phase 2 — Job Description Parser Module
-**Objective:** Convert raw job description text into structured data.
+1.  **Sync Profile**: 
+    Open the extension popup, enter your LinkedIn and GitHub URLs, and click **🔄 Sync**. The extension will open background tabs, scroll to lazy-load content, scrape your profiles, cache them in Chrome storage, and close the tabs.
+2.  **Generate Tailored Resume**:
+    Navigate to a job posting (e.g. using `extension/tests/test-job-listing.html`). Click the extension popup, enter a target job title, and click **Generate Tailored Resume**.
+3.  **Download PDF**:
+    Click **📥 Download PDF** in the popup to download the ATS-optimized resume styled with our custom layout.
+4.  **Auto-Fill Application**:
+    Click **🤖 Auto-Fill Application** inside the popup when on a job form (e.g. `extension/tests/test-form.html`). The extension will automatically populate the name, social links, and upload your generated PDF resume.
+5.  **View Vault Statistics**:
+    Resumes are saved locally in `backend/resumes_db.json`. Query the stats endpoint:
+    ```bash
+    curl http://localhost:3001/api/vault/stats
+    ```
 
 ---
 
-### 🔜 Phase 3 — User Profile Aggregation (GitHub)
-**Objective:** Fetch and normalize GitHub data.
+## 🚦 REST API Endpoints
+
+### `POST /api/generate-tailored-resume`
+Generates a tailored resume using job description and user profile payload.
+*   **Payload**:
+    ```json
+    {
+      "jobDescription": "Full Job Post Text...",
+      "userProfile": { ... },
+      "githubUsername": "SaadHaider01",
+      "linkedinProfile": "https://linkedin.com/..."
+    }
+    ```
+
+### `POST /api/save-resume`
+Saves a tailored resume to MongoDB (or fallback `resumes_db.json`).
+
+### `GET /api/resume/:id/pdf`
+Downloads the compiled premium PDF for a specific saved resume.
+
+### `GET /api/vault/stats`
+Fetches total resume counts, top companies applied to, and application history.
 
 ---
 
-### 🔜 Phase 4 — Resume Tailoring Logic
-**Objective:** Match job requirements with user profile.
-
----
-
-### 🔜 Phase 5 — Chrome Extension (MVP)
-**Objective:** Build minimal extension UI.
-
----
-
-### 🔜 Phase 6 — Resume Export (PDF/DOCX)
-**Objective:** Convert resume JSON into downloadable files.
-
----
-
-### 🔜 Phase 7 — Persistence & Resume Vault
-**Objective:** Store generated resumes with MongoDB.
-
----
-
-## 📝 API Documentation
-
-### POST /api/generate-resume
-
-**Request:**
-```json
-{
-  "jobDescription": "string (required)",
-  "userProfile": "object (optional, uses mock data if not provided)"
-}
-```
-
-**Response:**
-```json
-{
-  "success": true,
-  "resume": {
-    "personalInfo": {...},
-    "professionalSummary": "...",
-    "skills": {...},
-    "experience": [...],
-    "education": [...],
-    "projects": [...],
-    "certifications": [...]
-  },
-  "metadata": {
-    "model": "gpt-4o-mini",
-    "tokensUsed": 1523,
-    "generatedAt": "2026-02-05T15:53:21.123Z"
-  }
-}
-```
-
----
-
-## ⚠️ Common Issues
-
-**Server won't start:** Run `npm install` in `backend/`  
-**Auth error:** Check `.env` has valid `OPENAI_API_KEY`  
-**Port in use:** Change `PORT` in `.env`  
-
-See [`backend/TESTING.md`](backend/TESTING.md) for detailed troubleshooting.
-
----
-
-**Current Phase:** 1 (Backend Complete)  
-**Last Updated:** 2026-02-05
+**Last Updated:** June 2026

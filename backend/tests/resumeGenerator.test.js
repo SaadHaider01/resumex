@@ -301,8 +301,22 @@ function testLowMatchScenario() {
         totalExperience: '1 year'
     };
 
+    const lowGithubProfile = {
+        topLanguages: ['Python'],
+        projects: [
+            {
+                name: 'Blog API',
+                description: 'Django REST framework blog',
+                languages: ['Python', 'Django'],
+                stars: 0,
+                url: 'https://github.com/user/blog'
+            }
+        ],
+        stats: { totalRepos: 1, totalStars: 0, totalCommits: 5 }
+    };
+
     const parsedJD = parseJobDescription(mockJD);
-    const blueprint = generateTailoringBlueprint(parsedJD, lowMatchProfile, mockGithubProfile);
+    const blueprint = generateTailoringBlueprint(parsedJD, lowMatchProfile, lowGithubProfile);
     const prompt = createResumePrompt(mockJD, lowMatchProfile, blueprint);
 
     assertTrue(

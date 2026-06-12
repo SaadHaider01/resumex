@@ -8,6 +8,7 @@ const { parseJobDescription } = require('./services/jdParser');
 const { fetchGitHubProfile } = require('./services/githubService');
 const { fetchLinkedInProfile } = require('./services/linkedinService');
 const { generateTailoringBlueprint } = require('./services/tailoringService');
+const { analyzeRepositories } = require('./services/repositoryIntelligenceService');
 const { connectDB } = require('./config/database');
 const resumeVaultRoutes = require('./routes/resumeVaultRoutes');
 
@@ -359,9 +360,28 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             }
         }
 
+        // Step 2.6: Profile repositories using RIE (Repository Intelligence Engine)
+        let repoIntelligence = { analyzedRepositories: [] };
+        if (githubProfile && githubProfile.projects && githubProfile.projects.length > 0) {
+            try {
+                console.log(`  2.6️⃣ RIE: Profiling ${githubProfile.projects.length} repositories...`);
+                const usernameForRIE = githubUsername || userProfile?.personalInfo?.githubUsername || 'SaadHaider01';
+                repoIntelligence = await analyzeRepositories({
+                    githubUsername: usernameForRIE,
+                    repositories: githubProfile.projects
+                });
+                
+                if (repoIntelligence.analyzedRepositories.length > 0) {
+                    finalProfileToUse.projects = repoIntelligence.analyzedRepositories;
+                }
+            } catch (err) {
+                console.warn('  ⚠️ RIE profiling failed:', err.message);
+            }
+        }
+
         // Step 3: Generate tailoring blueprint
         console.log('  3️⃣ Generating tailoring blueprint...');
-        const tailoringBlueprint = generateTailoringBlueprint(parsedJD, finalProfileToUse, githubProfile);
+        const tailoringBlueprint = generateTailoringBlueprint(parsedJD, finalProfileToUse, repoIntelligence);
 
         // Step 4: Create enhanced prompt with blueprint
         console.log('  4️⃣ Creating blueprint-enhanced prompt...');
