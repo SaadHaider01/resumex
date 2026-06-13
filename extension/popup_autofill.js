@@ -33,8 +33,12 @@ async function handleAutoFill() {
             files: ['formDetector.js', 'autoApply.js', 'applyController.js']
         });
 
-        // Get cover letter (if available)
-        let coverLetter = null;
+        // Get cover letter (check local cache first)
+        const cachedAssets = await chrome.storage.local.get(['coverLetter', 'pdfBytes', 'resumeFilename']);
+        let coverLetter = cachedAssets.coverLetter || null;
+        let pdfBytes = cachedAssets.pdfBytes || null;
+        let resumeFilename = cachedAssets.resumeFilename || null;
+
         let jobTitle = jobTitleInput.value.trim();
         
         // Fallback hierarchy for job title to ensure cover letter is generated
@@ -54,8 +58,10 @@ async function handleAutoFill() {
 
         const apiUrl = await getApiUrl();
 
-        if (jobTitle && currentJobDescription && currentResumeData) {
+        // 1. Fetch cover letter if not cached
+        if (!coverLetter && jobTitle && currentJobDescription && currentResumeData) {
             try {
+                showAutoFillStatus('Generating cover letter...', 'loading');
                 const clResponse = await fetch(`${apiUrl}/api/generate-cover-letter`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -71,6 +77,8 @@ async function handleAutoFill() {
                 if (clResponse.ok) {
                     const clData = await clResponse.json();
                     coverLetter = clData.coverLetter;
+                    // Cache the generated cover letter
+                    await chrome.storage.local.set({ coverLetter });
                     console.log('✅ Cover letter generated for auto-fill');
                 } else {
                     const errorText = await clResponse.text();
@@ -81,10 +89,8 @@ async function handleAutoFill() {
             }
         }
 
-        // Get tailored resume PDF
-        let pdfBytes = null;
-        let resumeFilename = null;
-        if (currentResumeData) {
+        // 2. Fetch PDF if not cached
+        if (!pdfBytes && currentResumeData) {
             try {
                 showAutoFillStatus('Generating and fetching tailored PDF...', 'loading');
                 
@@ -112,6 +118,9 @@ async function handleAutoFill() {
                         const pdfArrayBuffer = await pdfResponse.arrayBuffer();
                         pdfBytes = Array.from(new Uint8Array(pdfArrayBuffer));
                         resumeFilename = `${(jobTitle || 'Tailored').replace(/\s+/g, '_')}_resume.pdf`;
+                        
+                        // Cache the PDF bytes and filename
+                        await chrome.storage.local.set({ pdfBytes, resumeFilename });
                         console.log('✅ PDF fetched successfully for auto-fill');
                     }
                 }

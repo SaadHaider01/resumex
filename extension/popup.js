@@ -238,6 +238,9 @@ document.addEventListener('DOMContentLoaded', async () => {
  * Main function to generate tailored resume
  */
 async function handleGenerateResume() {
+    // Clear any previously cached cover letter or PDF bytes first
+    await chrome.storage.local.remove(['coverLetter', 'pdfBytes', 'resumeFilename']);
+
     const githubProfile = githubProfileInput.value.trim();
     const githubUsername = extractGithubUsername(githubProfile);
     const apiUrl = await getApiUrl();
@@ -332,6 +335,9 @@ async function handleGenerateResume() {
         displayResume(data.resume, data.tailoringData);
         showActionButtons();
         showAutoFillSection();
+
+        // Kick off pre-generation of cover letter and PDF in background
+        preGenerateAssets(apiUrl);
 
     } catch (error) {
         console.error('Error:', error);
@@ -504,4 +510,73 @@ function showResults() {
  */
 function hideResults() {
     resultsDiv.classList.add('hidden');
+}
+
+/**
+ * Pre-generate and cache cover letter and PDF assets in the background to make auto-fill instant
+ */
+async function preGenerateAssets(apiUrl) {
+    if (!currentResumeData || !currentJobDescription) return;
+
+    let jobTitle = jobTitleInput.value.trim();
+    if (!jobTitle) {
+        if (currentResumeData.tailoringData?.parsedJD?.role) {
+            jobTitle = currentResumeData.tailoringData.parsedJD.role;
+        } else if (currentResumeData.resume?.experience?.[0]?.position) {
+            jobTitle = currentResumeData.resume.experience[0].position;
+        } else {
+            jobTitle = 'Software Engineer';
+        }
+    }
+
+    console.log('🚀 Pre-generating cover letter and PDF in background...');
+
+    // 1. Pre-generate Cover Letter
+    fetch(`${apiUrl}/api/generate-cover-letter`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            jobDescription: currentJobDescription,
+            tailoringBlueprint: currentResumeData.tailoringBlueprint,
+            resumeJSON: currentResumeData.resume,
+            company: '',
+            jobTitle
+        })
+    }).then(async (response) => {
+        if (response.ok) {
+            const clData = await response.json();
+            await chrome.storage.local.set({ coverLetter: clData.coverLetter });
+            console.log('✅ Pre-generated cover letter cached');
+        }
+    }).catch(err => console.warn('Pre-generating cover letter failed:', err));
+
+    // 2. Pre-generate and fetch PDF
+    const githubUsername = extractGithubUsername(githubProfileInput.value);
+    fetch(`${apiUrl}/api/save-resume`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            jobTitle: jobTitle || 'Tailored Resume',
+            company: '',
+            githubUsername,
+            resumeJSON: currentResumeData.resume,
+            tailoringBlueprint: currentResumeData.tailoringBlueprint,
+            jobDescription: currentJobDescription
+        })
+    }).then(async (response) => {
+        if (response.ok) {
+            const saveData = await response.json();
+            const resumeId = saveData.resume._id;
+            return fetch(`${apiUrl}/api/resume/${resumeId}/pdf`);
+        }
+        throw new Error('Save resume failed during pre-generation');
+    }).then(async (response) => {
+        if (response.ok) {
+            const pdfArrayBuffer = await response.arrayBuffer();
+            const pdfBytes = Array.from(new Uint8Array(pdfArrayBuffer));
+            const resumeFilename = `${(jobTitle || 'Tailored').replace(/\s+/g, '_')}_resume.pdf`;
+            await chrome.storage.local.set({ pdfBytes, resumeFilename });
+            console.log('✅ Pre-generated PDF bytes cached');
+        }
+    }).catch(err => console.warn('Pre-generating PDF failed:', err));
 }
