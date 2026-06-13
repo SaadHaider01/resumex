@@ -6,13 +6,15 @@ ResumeX is a production-ready, context-aware resume tailoring Chrome extension a
 
 ## 🚀 Key Features
 
-*   **⚡ Chrome Extension UI**: Seamless Manifest V3 extension with one-click **Sync** and **Generate** controls.
+*   **⚡ Chrome Extension UI**: Seamless Manifest V3 extension with one-click **Sync**, **Generate**, and **Auto-Fill** controls.
 *   **🔄 Hybrid Profile Scraping**: Scrapes LinkedIn profiles (auto-scrolling to bypass lazy loading) and GitHub repositories client-side, merging them into a unified cache.
+*   **⚙️ Settings Panel Credentials Cache**: Cache your personal email and phone number locally in the extension settings. Since LinkedIn's public main profile pages shield contact details for privacy, this cache serves as a reliable autofill fallback.
 *   **🤖 Multi-Provider LLM Core**: Supports OpenAI (`gpt-4o-mini`), Google Gemini (`gemini-2.0-flash`), and OpenRouter (`google/gemini-2.0-flash-lite:free` or auto-routing) with dynamic temperature scaling.
 *   **🛡️ Anti-Hallucination Guardrails**: Running programmatic cleanup logic (`cleanTailoredResume`) that cross-references LLM outputs against your real synced experience and education, discarding hallucinated entries.
 *   **💾 Resume Vault (Mongoose + JSON Fallback)**: Stores resume histories in MongoDB Atlas, with a seamless, fail-safe fallback to a local JSON database (`resumes_db.json`) if offline or unwhitelisted.
 *   **📥 Premium PDF Export**: Generates styled, ATS-compliant PDF resumes using `pdfkit` (bold section headers, right-aligned details, HSL-themed visual accents, and customized column-based skills layouts).
-*   **🤖 Auto-Fill Application Engine**: Automatically detects form fields, parses application pages, autofills details, and dynamically uploads the generated resume PDF into form file inputs.
+*   **📄 Tailored Cover Letter Generator**: Generates custom cover letters mapped to the target job description and your resume tailoring blueprint, automatically falling back to general parameters (like `"Hiring Company"`) if specific details are not parsed.
+*   **🤖 Auto-Fill Application Engine**: Automatically detects form fields, parses application pages, autofills details, generates & populates cover letters, normalizes profile links into valid HTML5 URLs (ensuring `https://` prefix to bypass browser validation errors), and uploads the generated resume PDF into form inputs.
 
 ---
 
@@ -131,6 +133,19 @@ Generates a tailored resume using job description and user profile payload.
       "userProfile": { ... },
       "githubUsername": "SaadHaider01",
       "linkedinProfile": "https://linkedin.com/..."
+    }
+    ```
+
+### `POST /api/generate-cover-letter`
+Generates a tailored cover letter using the resume JSON, job description, company name, and job title.
+*   **Payload**:
+    ```json
+    {
+      "jobDescription": "Full Job Post Text...",
+      "tailoringBlueprint": { ... },
+      "resumeJSON": { ... },
+      "company": "Company Name (optional, defaults to 'Hiring Company')",
+      "jobTitle": "Job Title (required)"
     }
     ```
 

@@ -56,15 +56,20 @@ async function executeAutoFill(params) {
         }
 
         // Step 3: Insert cover letter
-        if (coverLetter && fields.coverLetterText) {
-            console.log('📄 Step 3: Inserting cover letter...');
-            const insertResult = insertCoverLetter(fields, coverLetter);
+        if (coverLetter) {
+            if (fields.coverLetterText) {
+                console.log('📄 Step 3: Inserting cover letter...');
+                const insertResult = insertCoverLetter(fields, coverLetter);
 
-            if (insertResult.success) {
-                result.filledFields.push('coverLetter');
-                highlightFilledFields(fields, ['coverLetterText']);
+                if (insertResult.success) {
+                    result.filledFields.push('coverLetter');
+                    highlightFilledFields(fields, ['coverLetterText']);
+                } else {
+                    result.errors.push(`Cover letter insert failed: ${insertResult.error}`);
+                }
             } else {
-                result.errors.push(`Cover letter insert failed: ${insertResult.error}`);
+                console.warn('⚠️ Cover letter field not detected on page');
+                result.errors.push('Cover letter text field not detected on page');
             }
         }
 

@@ -35,7 +35,23 @@ async function handleAutoFill() {
 
         // Get cover letter (if available)
         let coverLetter = null;
-        const jobTitle = jobTitleInput.value.trim();
+        let jobTitle = jobTitleInput.value.trim();
+        
+        // Fallback hierarchy for job title to ensure cover letter is generated
+        if (!jobTitle && currentResumeData) {
+            if (currentResumeData.tailoringData?.parsedJD?.role) {
+                jobTitle = currentResumeData.tailoringData.parsedJD.role;
+            } else if (currentResumeData.resume?.experience?.[0]?.position) {
+                jobTitle = currentResumeData.resume.experience[0].position;
+            } else {
+                jobTitle = 'Software Engineer';
+            }
+            
+            // Sync with UI and storage
+            jobTitleInput.value = jobTitle;
+            await chrome.storage.local.set({ [STORAGE_KEYS.JOB_TITLE]: jobTitle });
+        }
+
         const apiUrl = await getApiUrl();
 
         if (jobTitle && currentJobDescription && currentResumeData) {
@@ -56,6 +72,9 @@ async function handleAutoFill() {
                     const clData = await clResponse.json();
                     coverLetter = clData.coverLetter;
                     console.log('✅ Cover letter generated for auto-fill');
+                } else {
+                    const errorText = await clResponse.text();
+                    console.warn('⚠️ Cover letter generation server error:', errorText);
                 }
             } catch (error) {
                 console.warn('⚠️ Cover letter generation failed:', error.message);

@@ -315,6 +315,12 @@ async function handleGenerateResume() {
         };
         currentJobDescription = jobDescription;
 
+        // If job title input is empty, fill it with the extracted role
+        if (!jobTitleInput.value.trim() && data.tailoringData?.parsedJD?.role) {
+            jobTitleInput.value = data.tailoringData.parsedJD.role;
+            await chrome.storage.local.set({ [STORAGE_KEYS.JOB_TITLE]: data.tailoringData.parsedJD.role });
+        }
+
         // Persist tailored resume state in storage to prevent reset on tab navigation/redirection
         await chrome.storage.local.set({
             [STORAGE_KEYS.CURRENT_RESUME_DATA]: currentResumeData,

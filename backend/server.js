@@ -456,6 +456,7 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             },
             tailoringData: {
                 parsedJD: {
+                    role: parsedJD.role || '',
                     skillsFound: parsedJD.skills ? parsedJD.skills.length : 0,
                     requirementsFound: parsedJD.keywords ? parsedJD.keywords.length : 0
                 },
@@ -492,22 +493,23 @@ app.post('/api/generate-cover-letter', async (req, res) => {
     try {
         const { jobDescription, tailoringBlueprint, resumeJSON, company, jobTitle } = req.body;
 
-        // Validation
-        if (!jobDescription || !tailoringBlueprint || !resumeJSON || !company || !jobTitle) {
+        // Validation (allow company to be empty string)
+        if (!jobDescription || !tailoringBlueprint || !resumeJSON || company === undefined || !jobTitle) {
             return res.status(400).json({
                 success: false,
                 error: 'Missing required fields: jobDescription, tailoringBlueprint, resumeJSON, company, jobTitle'
             });
         }
 
-        console.log(`📝 Generating cover letter for ${jobTitle} at ${company}...`);
+        const companyName = company || 'Hiring Company';
+        console.log(`📝 Generating cover letter for ${jobTitle} at ${companyName}...`);
 
         // Create cover letter prompt
         const prompt = createResumePrompt ? require('./promptTemplate').createCoverLetterPrompt({
             jobDescription,
             tailoringBlueprint,
             resumeJSON,
-            company,
+            company: companyName,
             jobTitle
         }) : '';
 

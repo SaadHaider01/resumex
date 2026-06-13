@@ -20,8 +20,8 @@ const { createCoverLetterPrompt } = require('../promptTemplate');
 async function generateCoverLetter(params, llmCallFn) {
     const { jobDescription, tailoringBlueprint, resumeJSON, company, jobTitle } = params;
 
-    // Validation
-    if (!jobDescription || !tailoringBlueprint || !resumeJSON || !company || !jobTitle) {
+    // Validation (allow company to be empty string)
+    if (!jobDescription || !tailoringBlueprint || !resumeJSON || company === undefined || !jobTitle) {
         throw new Error('Missing required parameters: jobDescription, tailoringBlueprint, resumeJSON, company, jobTitle');
     }
 
@@ -30,7 +30,7 @@ async function generateCoverLetter(params, llmCallFn) {
         jobDescription,
         tailoringBlueprint,
         resumeJSON,
-        company,
+        company: company || 'Hiring Company',
         jobTitle
     });
 
@@ -40,7 +40,7 @@ async function generateCoverLetter(params, llmCallFn) {
     return {
         coverLetter,
         metadata: {
-            company,
+            company: company || 'Hiring Company',
             jobTitle,
             experienceMatchLevel: tailoringBlueprint.experienceMatchLevel,
             matchedSkillsCount: tailoringBlueprint.matchedSkills?.length || 0,
@@ -53,8 +53,11 @@ async function generateCoverLetter(params, llmCallFn) {
  * Validate cover letter input
  */
 function validateCoverLetterInput(params) {
-    const required = ['jobDescription', 'tailoringBlueprint', 'resumeJSON', 'company', 'jobTitle'];
+    const required = ['jobDescription', 'tailoringBlueprint', 'resumeJSON', 'jobTitle'];
     const missing = required.filter(field => !params[field]);
+    if (params.company === undefined) {
+        missing.push('company');
+    }
 
     if (missing.length > 0) {
         throw new Error(`Missing required fields: ${missing.join(', ')}`);
