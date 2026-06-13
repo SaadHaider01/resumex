@@ -23,8 +23,8 @@ async function handleAutoFill() {
             lastName: currentResumeData?.resume?.personalInfo?.name?.split(' ').slice(1).join(' ') || '',
             email: currentResumeData?.resume?.personalInfo?.email || customEmail,
             phone: currentResumeData?.resume?.personalInfo?.phone || customPhone,
-            linkedin: linkedinProfileInput.value.trim() || currentResumeData?.resume?.personalInfo?.linkedin || '',
-            github: githubProfileInput.value.trim() || currentResumeData?.resume?.personalInfo?.github || ''
+            linkedin: ensureLinkedinUrl(linkedinProfileInput.value.trim() || currentResumeData?.resume?.personalInfo?.linkedin || ''),
+            github: ensureGithubUrl(githubProfileInput.value.trim() || currentResumeData?.resume?.personalInfo?.github || '')
         };
 
         // Inject scripts into page
