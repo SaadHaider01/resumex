@@ -48,12 +48,17 @@ function parseJsonFromText(text) {
 function cleanTailoredResume(tailoredResume, originalProfile) {
     if (!tailoredResume || !originalProfile) return tailoredResume;
 
+    const normalize = str => {
+        if (!str || typeof str !== 'string') return '';
+        return str.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+    };
+
     const matchesAny = (value, list) => {
         if (!value || !list || list.length === 0) return false;
-        const val = value.toLowerCase().trim();
+        const val = normalize(value);
         return list.some(item => {
             if (!item) return false;
-            const cleanItem = item.toLowerCase().trim();
+            const cleanItem = normalize(item);
             return val.includes(cleanItem) || cleanItem.includes(val);
         });
     };
@@ -99,6 +104,56 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
     }
 
     return tailoredResume;
+}
+
+function fillEmptyProfileSections(profile, defaultProfile) {
+    if (!profile) return JSON.parse(JSON.stringify(defaultProfile));
+    
+    const filled = JSON.parse(JSON.stringify(profile));
+    
+    // Check personalInfo
+    if (!filled.personalInfo) {
+        filled.personalInfo = JSON.parse(JSON.stringify(defaultProfile.personalInfo));
+    } else {
+        if (!filled.personalInfo.name) filled.personalInfo.name = defaultProfile.personalInfo.name;
+        if (!filled.personalInfo.email) filled.personalInfo.email = defaultProfile.personalInfo.email;
+        if (!filled.personalInfo.phone) filled.personalInfo.phone = defaultProfile.personalInfo.phone;
+        if (!filled.personalInfo.location) filled.personalInfo.location = defaultProfile.personalInfo.location;
+    }
+    
+    // Check skills
+    if (!filled.skills || typeof filled.skills !== 'object') {
+        filled.skills = JSON.parse(JSON.stringify(defaultProfile.skills));
+    } else {
+        if (!filled.skills.technical || filled.skills.technical.length === 0) {
+            filled.skills.technical = defaultProfile.skills.technical || [];
+        }
+        if (!filled.skills.tools || filled.skills.tools.length === 0) {
+            filled.skills.tools = defaultProfile.skills.tools || [];
+        }
+    }
+    
+    // Check experience
+    if (!filled.experience || filled.experience.length === 0) {
+        filled.experience = JSON.parse(JSON.stringify(defaultProfile.experience || []));
+    }
+    
+    // Check education
+    if (!filled.education || filled.education.length === 0) {
+        filled.education = JSON.parse(JSON.stringify(defaultProfile.education || []));
+    }
+    
+    // Check projects
+    if (!filled.projects || filled.projects.length === 0) {
+        filled.projects = JSON.parse(JSON.stringify(defaultProfile.projects || []));
+    }
+    
+    // Check certifications
+    if (!filled.certifications || filled.certifications.length === 0) {
+        filled.certifications = JSON.parse(JSON.stringify(defaultProfile.certifications || []));
+    }
+    
+    return filled;
 }
 
 const app = express();
@@ -173,8 +228,8 @@ app.post('/api/generate-resume', async (req, res) => {
             });
         }
 
-        // Use provided profile or fall back to mock data
-        const profileToUse = userProfile || mockUserProfile;
+        // Use provided profile or fall back to mock data, filling empty sections
+        const profileToUse = fillEmptyProfileSections(userProfile, mockUserProfile);
 
         console.log('Generating resume for job description:', jobDescription.substring(0, 100) + '...');
 
@@ -280,7 +335,7 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             });
         }
 
-        const profileToUse = userProfile || mockUserProfile;
+        const profileToUse = fillEmptyProfileSections(userProfile, mockUserProfile);
 
         console.log('🔄 Running full tailoring pipeline...');
 
@@ -405,42 +460,44 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
         console.log('  4️⃣ Creating blueprint-enhanced prompt...');
         const prompt = createResumePrompt(jobDescription, finalProfileToUse, tailoringBlueprint);
 
-        // Call LLM Provider with retry mechanism
-        let result;
-        let tailoredResume;
-        const attempts = 3;
+        // Call LLM Provider through the generateTailoredResume service
+        const { generateTailoredResume } = require('./services/resumeGenerator');
         
-        for (let attempt = 1; attempt <= attempts; attempt++) {
-            try {
-                console.log(`  5️⃣ Calling AI to generate tailored resume (Attempt ${attempt}/${attempts})...`);
-                result = await llmProvider.generateText(prompt, {
-                    temperature: 0.7 + (attempt - 1) * 0.1,
-                    maxTokens: 6000,
-                    responseFormat: 'json',
-                    systemPrompt: 'You are an expert resume writer specializing in ATS optimization. Always return valid JSON only, with no additional text or markdown formatting.'
-                });
+        const llmCallFn = async (prompt) => {
+            const result = await llmProvider.generateText(prompt, {
+                temperature: 0.7,
+                maxTokens: 6000,
+                responseFormat: 'json',
+                systemPrompt: 'You are an expert resume writer specializing in ATS optimization. Always return valid JSON only, with no additional text or markdown formatting.'
+            });
+            return result.text;
+        };
 
-                const resumeText = result.text;
-                if (!resumeText || resumeText.trim().length === 0) {
-                    throw new Error('Empty response from AI provider');
-                }
+        console.log('  5️⃣ Running generateTailoredResume orchestrator...');
+        const output = await generateTailoredResume(
+            jobDescription,
+            finalProfileToUse,
+            githubUsername,
+            llmCallFn
+        );
 
-                tailoredResume = parseJsonFromText(resumeText);
-                tailoredResume = cleanTailoredResume(tailoredResume, finalProfileToUse);
-                break; // Success!
-            } catch (parseError) {
-                console.warn(`  ⚠️ Tailored resume attempt ${attempt} failed: ${parseError.message}`);
-                if (attempt === attempts) {
-                    console.error('Failed to parse AI response as JSON after maximum retries:', result ? result.text : 'No result');
-                    return res.status(500).json({
-                        success: false,
-                        error: 'Failed to parse AI response after maximum retries',
-                        details: parseError.message
-                    });
-                }
-                // Wait 1 second before retrying
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
+        let tailoredResume = output.resume;
+        
+        // Post-process with cleanTailoredResume for strict matching on final profile
+        tailoredResume = cleanTailoredResume(tailoredResume, finalProfileToUse);
+
+        // Save tailored_resume_debug.json
+        const fs = require('fs');
+        const path = require('path');
+        try {
+            fs.writeFileSync(
+                path.join(__dirname, 'tailored_resume_debug.json'),
+                JSON.stringify(output, null, 2),
+                'utf8'
+            );
+            console.log('💾 Saved tailoring output to tailored_resume_debug.json');
+        } catch (err) {
+            console.warn('⚠️ Failed to write tailored_resume_debug.json:', err.message);
         }
 
         console.log('✅ Resume generation complete!');
@@ -449,10 +506,10 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
             success: true,
             resume: tailoredResume,
             metadata: {
-                model: result.model,
-                tokensUsed: result.tokensUsed,
-                provider: result.provider,
-                generatedAt: new Date().toISOString()
+                model: llmProvider.model,
+                provider: llmProvider.name,
+                generatedAt: new Date().toISOString(),
+                diagnostics: output.metadata.diagnostics
             },
             tailoringData: {
                 parsedJD: {

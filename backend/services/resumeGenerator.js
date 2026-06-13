@@ -95,7 +95,7 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
     const tailoringBlueprint = generateTailoringBlueprint(parsedJD, enrichedProfile, repoIntelligence, pieProfile);
 
     // Step 4: Execute safe LLM with fallback retry sequence (Phase 8)
-    const resume = await safeLLMExecution(
+    const { resume, generationSource } = await safeLLMExecution(
         jobDescription,
         parsedJD,
         enrichedProfile,
@@ -114,6 +114,21 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
     const usedEvidence = evidenceTracker.filter(item => item.usedIn.length > 0).length;
     const eur = availableEvidence > 0 ? Math.round((usedEvidence / availableEvidence) * 100) : 0;
 
+    // Output diagnostics to logs
+    const crypto = require('crypto');
+    const resumeId = 'res_' + crypto.randomBytes(8).toString('hex');
+    const jdHash = crypto.createHash('sha256').update(jobDescription || '').digest('hex');
+    const diagnostics = {
+        resumeId,
+        jdHash,
+        generationSource,
+        projectCount: (deduplicatedResume.projects || []).length,
+        experienceCount: (deduplicatedResume.experience || []).length,
+        educationCount: (deduplicatedResume.education || []).length,
+        certificationCount: (deduplicatedResume.certifications || []).length
+    };
+    console.log('📊 GENERATION DIAGNOSTICS:', JSON.stringify(diagnostics, null, 2));
+
     return {
         resume: deduplicatedResume,
         metadata: {
@@ -126,7 +141,8 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
                 availableEvidence,
                 usedEvidence,
                 eur
-            }
+            },
+            diagnostics
         }
     };
 }
@@ -895,7 +911,7 @@ async function safeLLMExecution(jobDescription, parsedJD, enrichedProfile, repoI
 
         const rawResponse = await llmCallFn(prompt);
         const parsed = cleanAndValidateJSON(rawResponse);
-        if (parsed) return parsed;
+        if (parsed) return { resume: parsed, generationSource: 'LLM_GENERATED' };
         throw new Error('Attempt 1 response failed JSON parsing or schema validation');
     } catch (err) {
         console.warn('⚠️ [safeLLMExecution] Attempt 1 failed:', err.message);
@@ -925,7 +941,7 @@ async function safeLLMExecution(jobDescription, parsedJD, enrichedProfile, repoI
 
         const rawResponse = await llmCallFn(prompt);
         const parsed = cleanAndValidateJSON(rawResponse);
-        if (parsed) return parsed;
+        if (parsed) return { resume: parsed, generationSource: 'LLM_GENERATED' };
         throw new Error('Attempt 2 response failed JSON parsing or schema validation');
     } catch (err) {
         console.warn('⚠️ [safeLLMExecution] Attempt 2 failed:', err.message);
@@ -955,7 +971,7 @@ async function safeLLMExecution(jobDescription, parsedJD, enrichedProfile, repoI
 
         const rawResponse = await llmCallFn(prompt);
         const parsed = cleanAndValidateJSON(rawResponse);
-        if (parsed) return parsed;
+        if (parsed) return { resume: parsed, generationSource: 'LLM_GENERATED' };
         throw new Error('Attempt 3 response failed JSON parsing or schema validation');
     } catch (err) {
         console.warn('⚠️ [safeLLMExecution] Attempt 3 failed:', err.message);
@@ -964,7 +980,7 @@ async function safeLLMExecution(jobDescription, parsedJD, enrichedProfile, repoI
 
     // Fallback Recovery
     console.log('⚠️ [safeLLMExecution] All attempts failed or safety blocked. Generating fallback resume...');
-    return generateFallbackResume(sanitizedUser, parsedJD);
+    return { resume: generateFallbackResume(sanitizedUser, parsedJD), generationSource: 'FALLBACK_RECOVERY' };
 }
 
 /**

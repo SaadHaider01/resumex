@@ -84,6 +84,33 @@ const mockUserProfile = {
         "Implemented push notifications for severe weather alerts",
         "Published on iOS and Android app stores with 4.5+ rating"
       ]
+    },
+    {
+      name: "ResumeX",
+      description: "A Chrome extension that automates form autofilling and LinkedIn scraping with a backend PDF generation service.",
+      technologies: ["JavaScript", "HTML", "CSS", "Express", "pdfkit"],
+      highlights: [
+        "Implemented automated resume formatting logic, improving generation speed by 30%.",
+        "Integrated GitHub API to fetch user profile data for seamless auto-fill."
+      ]
+    },
+    {
+      name: "J.A.R.V.I.S",
+      description: "An advanced, locally-hosted AI personal assistant with real-time offline wake-word detection, Whisper speech-to-text, and Edge-TTS.",
+      technologies: ["Python", "Whisper", "Edge-TTS", "AI"],
+      highlights: [
+        "Designed modular pipeline enabling 95% accurate wake-word detection without internet.",
+        "Leveraged Whisper and Edge-TTS to achieve sub-second response times."
+      ]
+    },
+    {
+      name: "LInguaVoice",
+      description: "A multilingual voice-to-voice translation application using JavaScript and Web Speech API.",
+      technologies: ["JavaScript", "Web Speech API", "TypeScript"],
+      highlights: [
+        "Supported 12 languages with real-time translation latency under 300ms.",
+        "User engagement increased by 35% after feature rollout."
+      ]
     }
   ],
   certifications: [

@@ -1,0 +1,1470 @@
+{
+  "resume": {
+    "personalInfo": {
+      "name": "Alex Johnson",
+      "email": "alex.johnson@email.com",
+      "phone": "+1-555-123-4567",
+      "location": "San Francisco, CA",
+      "linkedin": "linkedin.com/in/alexjohnson",
+      "github": "github.com/alexjohnson"
+    },
+    "professionalSummary": "Full‑Stack Software Engineer with extensive experience building Chrome extensions, automating form autofill, and developing backend APIs in Node.js and Python. Proven ability to design and deploy responsive web applications and extensions that streamline user workflows. Passionate about leveraging modern JavaScript tooling to deliver clean, maintainable code.",
+    "skills": {
+      "technical": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "pdfkit",
+        "Chrome Extension",
+        "manifest.json",
+        "DOM scraping",
+        "form autofill",
+        "scraping",
+        "pdf"
+      ],
+      "tools": [
+        "Git",
+        "GitHub"
+      ],
+      "soft": []
+    },
+    "experience": [
+      {
+        "company": "StartupXYZ",
+        "position": "Full-Stack Developer",
+        "duration": "2019 – 2022",
+        "location": "San Francisco, CA",
+        "achievements": [
+          "Built responsive e-commerce platform using React and Node.js, generating $2M in annual revenue.",
+          "Optimized database queries reducing API response time by 45%.",
+          "Integrated third‑party payment gateways (Stripe, PayPal) with 99.9% uptime."
+        ]
+      },
+      {
+        "company": "DevSolutions LLC",
+        "position": "Junior Developer",
+        "duration": "2018 – 2019",
+        "location": "San Francisco, CA",
+        "achievements": [
+          "Developed customer‑facing dashboards using React and Chart.js.",
+          "Collaborated with design team to implement pixel‑perfect UI components.",
+          "Fixed 100+ bugs and implemented feature requests using Agile methodology."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor of Science in Computer Science",
+        "institution": "University of California, Berkeley",
+        "graduation": "2018"
+      }
+    ],
+    "projects": [
+      {
+        "name": "ResumeX",
+        "description": "Chrome extension that automates form autofilling and LinkedIn scraping with a backend PDF generation service.",
+        "technologies": [
+          "Chrome Extension",
+          "JavaScript",
+          "Python"
+        ],
+        "highlights": [
+          "Implemented Chrome extension with manifest.json, background workers, and content scripts for automated form autofill.",
+          "Built backend API using Node.js and Express to generate PDF documents dynamically with pdfkit.",
+          "Integrated scraping logic to collect LinkedIn data and export clean PDFs."
+        ]
+      },
+      {
+        "name": "TaskMaster Pro",
+        "description": "Project management tool featuring real‑time collaboration and a Chrome extension for task synchronization.",
+        "technologies": [
+          "Chrome Extension",
+          "JavaScript",
+          "Python"
+        ],
+        "highlights": [
+          "Designed and deployed a Chrome extension that captures task data from web pages.",
+          "Implemented real‑time collaboration using web sockets and backend APIs.",
+          "Ensured seamless data flow between extension and server."
+        ]
+      },
+      {
+        "name": "WeatherNow",
+        "description": "Weather forecasting app with location‑based alerts delivered via a Chrome extension.",
+        "technologies": [
+          "Chrome Extension",
+          "JavaScript",
+          "Python"
+        ],
+        "highlights": [
+          "Built Chrome extension to display real‑time weather alerts based on user location.",
+          "Implemented background workers to fetch weather data from external APIs."
+        ]
+      }
+    ],
+    "certifications": [
+      "GitHub Actions Certified"
+    ]
+  },
+  "metadata": {
+    "parsedJD": {
+      "role": "developer to build interactive",
+      "skills": [
+        "Autofill",
+        "Chrome Extension",
+        "Express",
+        "Form Autofill",
+        "Git",
+        "GitHub",
+        "JavaScript",
+        "MongoDB",
+        "Node.js",
+        "Python",
+        "Scraping",
+        "TypeScript",
+        "pdfkit"
+      ],
+      "experience": null,
+      "keywords": [
+        "full-stack",
+        "backend",
+        "api",
+        "apis",
+        "chrome extension",
+        "manifest.json",
+        "autofill",
+        "scraping",
+        "pdf",
+        "pdfkit"
+      ]
+    },
+    "githubProfile": {
+      "analyzedRepositories": [
+        {
+          "repositoryName": "TaskMaster Pro",
+          "repositoryUrl": "https://github.com/SaadHaider01/TaskMaster Pro",
+          "description": "Project management tool with real-time collaboration features",
+          "technologies": [],
+          "frameworks": [],
+          "libraries": [],
+          "databases": [],
+          "cloudServices": [],
+          "projectType": "Browser Extension",
+          "projectCategory": "Browser Automation / Tools",
+          "detectedCapabilities": [
+            {
+              "capability": "Chrome Extension",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "manifest.json"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "Python",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "Python dependency config"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "JavaScript",
+              "confidence": 0.8999999999999999,
+              "evidenceSources": [
+                "Node.js / TypeScript configuration",
+                "JavaScript/TypeScript source files"
+              ],
+              "evidenceType": [
+                "directory",
+                "source_file"
+              ]
+            }
+          ],
+          "architecturePatterns": [
+            {
+              "pattern": "Chrome Extension Architecture",
+              "confidence": 1,
+              "evidence": [
+                "manifest.json"
+              ]
+            },
+            {
+              "pattern": "Microservices",
+              "confidence": 0.85,
+              "evidence": [
+                "docker-compose.yml"
+              ]
+            }
+          ],
+          "confidenceScore": 0.82,
+          "evidence": [
+            {
+              "source": "Repository Tree Analysis",
+              "value": "Analyzed repository tree structure containing 14 paths",
+              "confidence": 0.95
+            },
+            {
+              "source": "Capability: Chrome Extension",
+              "value": "Verified capability with 60% confidence using evidence: manifest.json",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: Python",
+              "value": "Verified capability with 60% confidence using evidence: Python dependency config",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: JavaScript",
+              "value": "Verified capability with 90% confidence using evidence: Node.js / TypeScript configuration, JavaScript/TypeScript source files",
+              "confidence": 0.8999999999999999
+            },
+            {
+              "source": "Architecture: Chrome Extension Architecture",
+              "value": "Detected pattern with 100% confidence using: manifest.json",
+              "confidence": 1
+            },
+            {
+              "source": "Architecture: Microservices",
+              "value": "Detected pattern with 85% confidence using: docker-compose.yml",
+              "confidence": 0.85
+            }
+          ],
+          "recruiterSummary": "Demonstrated ability to design, build, and deploy: Chrome Extension, Python, JavaScript."
+        },
+        {
+          "repositoryName": "WeatherNow",
+          "repositoryUrl": "https://github.com/SaadHaider01/WeatherNow",
+          "description": "Weather forecasting app with location-based alerts",
+          "technologies": [],
+          "frameworks": [],
+          "libraries": [],
+          "databases": [],
+          "cloudServices": [],
+          "projectType": "Browser Extension",
+          "projectCategory": "Browser Automation / Tools",
+          "detectedCapabilities": [
+            {
+              "capability": "Chrome Extension",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "manifest.json"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "Python",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "Python dependency config"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "JavaScript",
+              "confidence": 0.8999999999999999,
+              "evidenceSources": [
+                "Node.js / TypeScript configuration",
+                "JavaScript/TypeScript source files"
+              ],
+              "evidenceType": [
+                "directory",
+                "source_file"
+              ]
+            }
+          ],
+          "architecturePatterns": [
+            {
+              "pattern": "Chrome Extension Architecture",
+              "confidence": 1,
+              "evidence": [
+                "manifest.json"
+              ]
+            },
+            {
+              "pattern": "Microservices",
+              "confidence": 0.85,
+              "evidence": [
+                "docker-compose.yml"
+              ]
+            }
+          ],
+          "confidenceScore": 0.82,
+          "evidence": [
+            {
+              "source": "Repository Tree Analysis",
+              "value": "Analyzed repository tree structure containing 14 paths",
+              "confidence": 0.95
+            },
+            {
+              "source": "Capability: Chrome Extension",
+              "value": "Verified capability with 60% confidence using evidence: manifest.json",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: Python",
+              "value": "Verified capability with 60% confidence using evidence: Python dependency config",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: JavaScript",
+              "value": "Verified capability with 90% confidence using evidence: Node.js / TypeScript configuration, JavaScript/TypeScript source files",
+              "confidence": 0.8999999999999999
+            },
+            {
+              "source": "Architecture: Chrome Extension Architecture",
+              "value": "Detected pattern with 100% confidence using: manifest.json",
+              "confidence": 1
+            },
+            {
+              "source": "Architecture: Microservices",
+              "value": "Detected pattern with 85% confidence using: docker-compose.yml",
+              "confidence": 0.85
+            }
+          ],
+          "recruiterSummary": "Demonstrated ability to design, build, and deploy: Chrome Extension, Python, JavaScript."
+        },
+        {
+          "repositoryName": "ResumeX",
+          "repositoryUrl": "https://github.com/SaadHaider01/ResumeX",
+          "description": "A Chrome extension that automates form autofilling and LinkedIn scraping with a backend PDF generation service.",
+          "technologies": [],
+          "frameworks": [],
+          "libraries": [],
+          "databases": [],
+          "cloudServices": [],
+          "projectType": "Browser Extension",
+          "projectCategory": "Browser Automation / Tools",
+          "detectedCapabilities": [
+            {
+              "capability": "Chrome Extension",
+              "confidence": 0.75,
+              "evidenceSources": [
+                "manifest.json",
+                "README.md"
+              ],
+              "evidenceType": [
+                "directory",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "Python",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "Python dependency config"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "JavaScript",
+              "confidence": 0.9999999999999999,
+              "evidenceSources": [
+                "Node.js / TypeScript configuration",
+                "JavaScript/TypeScript source files",
+                "README.md"
+              ],
+              "evidenceType": [
+                "directory",
+                "source_file",
+                "documentation"
+              ]
+            }
+          ],
+          "architecturePatterns": [
+            {
+              "pattern": "Chrome Extension Architecture",
+              "confidence": 1,
+              "evidence": [
+                "manifest.json"
+              ]
+            },
+            {
+              "pattern": "Microservices",
+              "confidence": 0.85,
+              "evidence": [
+                "docker-compose.yml"
+              ]
+            }
+          ],
+          "confidenceScore": 0.86,
+          "evidence": [
+            {
+              "source": "Repository Tree Analysis",
+              "value": "Analyzed repository tree structure containing 14 paths",
+              "confidence": 0.95
+            },
+            {
+              "source": "Capability: Chrome Extension",
+              "value": "Verified capability with 75% confidence using evidence: manifest.json, README.md",
+              "confidence": 0.75
+            },
+            {
+              "source": "Capability: Python",
+              "value": "Verified capability with 60% confidence using evidence: Python dependency config",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: JavaScript",
+              "value": "Verified capability with 100% confidence using evidence: Node.js / TypeScript configuration, JavaScript/TypeScript source files, README.md",
+              "confidence": 0.9999999999999999
+            },
+            {
+              "source": "Architecture: Chrome Extension Architecture",
+              "value": "Detected pattern with 100% confidence using: manifest.json",
+              "confidence": 1
+            },
+            {
+              "source": "Architecture: Microservices",
+              "value": "Detected pattern with 85% confidence using: docker-compose.yml",
+              "confidence": 0.85
+            }
+          ],
+          "recruiterSummary": "Demonstrated ability to design, build, and deploy: Chrome Extension, Python, JavaScript."
+        },
+        {
+          "repositoryName": "J.A.R.V.I.S",
+          "repositoryUrl": "https://github.com/SaadHaider01/J.A.R.V.I.S",
+          "description": "An advanced, locally-hosted AI personal assistant with real-time offline wake-word detection, Whisper speech-to-text, and Edge-TTS.",
+          "technologies": [],
+          "frameworks": [],
+          "libraries": [
+            "HuggingFace",
+            "Whisper STT",
+            "Edge-TTS"
+          ],
+          "databases": [],
+          "cloudServices": [],
+          "projectType": "Browser Extension",
+          "projectCategory": "Browser Automation / Tools",
+          "detectedCapabilities": [
+            {
+              "capability": "Chrome Extension",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "manifest.json"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "Python",
+              "confidence": 0.7,
+              "evidenceSources": [
+                "Python dependency config",
+                "README.md"
+              ],
+              "evidenceType": [
+                "directory",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "Whisper",
+              "confidence": 1,
+              "evidenceSources": [
+                "whisper dependency",
+                "README.md"
+              ],
+              "evidenceType": [
+                "dependency",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "Speech Recognition",
+              "confidence": 1,
+              "evidenceSources": [
+                "Speech recognition library dependency",
+                "README.md"
+              ],
+              "evidenceType": [
+                "dependency",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "Text To Speech",
+              "confidence": 1,
+              "evidenceSources": [
+                "Text-to-speech library dependency",
+                "README.md"
+              ],
+              "evidenceType": [
+                "dependency",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "AI Assistant",
+              "confidence": 1,
+              "evidenceSources": [
+                "Generative AI SDK dependency",
+                "README.md"
+              ],
+              "evidenceType": [
+                "dependency",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "JavaScript",
+              "confidence": 0.9999999999999999,
+              "evidenceSources": [
+                "Node.js / TypeScript configuration",
+                "JavaScript/TypeScript source files",
+                "README.md"
+              ],
+              "evidenceType": [
+                "directory",
+                "source_file",
+                "documentation"
+              ]
+            }
+          ],
+          "architecturePatterns": [
+            {
+              "pattern": "Chrome Extension Architecture",
+              "confidence": 1,
+              "evidence": [
+                "manifest.json"
+              ]
+            },
+            {
+              "pattern": "Microservices",
+              "confidence": 0.85,
+              "evidence": [
+                "docker-compose.yml"
+              ]
+            },
+            {
+              "pattern": "AI Pipeline",
+              "confidence": 0.95,
+              "evidence": [
+                "transformers library"
+              ]
+            },
+            {
+              "pattern": "Speech Processing Pipeline",
+              "confidence": 0.98,
+              "evidence": [
+                "Speech recognition engine",
+                "Text-to-speech engine"
+              ]
+            }
+          ],
+          "confidenceScore": 0.92,
+          "evidence": [
+            {
+              "source": "Repository Tree Analysis",
+              "value": "Analyzed repository tree structure containing 14 paths",
+              "confidence": 0.95
+            },
+            {
+              "source": "Capability: Chrome Extension",
+              "value": "Verified capability with 60% confidence using evidence: manifest.json",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: Python",
+              "value": "Verified capability with 70% confidence using evidence: Python dependency config, README.md",
+              "confidence": 0.7
+            },
+            {
+              "source": "Capability: Whisper",
+              "value": "Verified capability with 100% confidence using evidence: whisper dependency, README.md",
+              "confidence": 1
+            },
+            {
+              "source": "Capability: Speech Recognition",
+              "value": "Verified capability with 100% confidence using evidence: Speech recognition library dependency, README.md",
+              "confidence": 1
+            },
+            {
+              "source": "Capability: Text To Speech",
+              "value": "Verified capability with 100% confidence using evidence: Text-to-speech library dependency, README.md",
+              "confidence": 1
+            },
+            {
+              "source": "Capability: AI Assistant",
+              "value": "Verified capability with 100% confidence using evidence: Generative AI SDK dependency, README.md",
+              "confidence": 1
+            },
+            {
+              "source": "Capability: JavaScript",
+              "value": "Verified capability with 100% confidence using evidence: Node.js / TypeScript configuration, JavaScript/TypeScript source files, README.md",
+              "confidence": 0.9999999999999999
+            },
+            {
+              "source": "Architecture: Chrome Extension Architecture",
+              "value": "Detected pattern with 100% confidence using: manifest.json",
+              "confidence": 1
+            },
+            {
+              "source": "Architecture: Microservices",
+              "value": "Detected pattern with 85% confidence using: docker-compose.yml",
+              "confidence": 0.85
+            },
+            {
+              "source": "Architecture: AI Pipeline",
+              "value": "Detected pattern with 95% confidence using: transformers library",
+              "confidence": 0.95
+            },
+            {
+              "source": "Architecture: Speech Processing Pipeline",
+              "value": "Detected pattern with 98% confidence using: Speech recognition engine, Text-to-speech engine",
+              "confidence": 0.98
+            }
+          ],
+          "recruiterSummary": "Demonstrated ability to design, build, and deploy: Chrome Extension, Python, Whisper, Speech Recognition, Text To Speech, AI Assistant, JavaScript."
+        },
+        {
+          "repositoryName": "LInguaVoice",
+          "repositoryUrl": "https://github.com/SaadHaider01/LInguaVoice",
+          "description": "A multilingual voice-to-voice translation application using JavaScript and Web Speech API.",
+          "technologies": [],
+          "frameworks": [],
+          "libraries": [],
+          "databases": [],
+          "cloudServices": [],
+          "projectType": "Browser Extension",
+          "projectCategory": "Browser Automation / Tools",
+          "detectedCapabilities": [
+            {
+              "capability": "Chrome Extension",
+              "confidence": 0.6,
+              "evidenceSources": [
+                "manifest.json"
+              ],
+              "evidenceType": [
+                "directory"
+              ]
+            },
+            {
+              "capability": "Python",
+              "confidence": 0.7,
+              "evidenceSources": [
+                "Python dependency config",
+                "README.md"
+              ],
+              "evidenceType": [
+                "directory",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "JavaScript",
+              "confidence": 0.9999999999999999,
+              "evidenceSources": [
+                "Node.js / TypeScript configuration",
+                "JavaScript/TypeScript source files",
+                "README.md"
+              ],
+              "evidenceType": [
+                "directory",
+                "source_file",
+                "documentation"
+              ]
+            },
+            {
+              "capability": "Language Learning",
+              "confidence": 0.8,
+              "evidenceSources": [
+                "README.md"
+              ],
+              "evidenceType": [
+                "documentation"
+              ]
+            }
+          ],
+          "architecturePatterns": [
+            {
+              "pattern": "Chrome Extension Architecture",
+              "confidence": 1,
+              "evidence": [
+                "manifest.json"
+              ]
+            },
+            {
+              "pattern": "Microservices",
+              "confidence": 0.85,
+              "evidence": [
+                "docker-compose.yml"
+              ]
+            }
+          ],
+          "confidenceScore": 0.84,
+          "evidence": [
+            {
+              "source": "Repository Tree Analysis",
+              "value": "Analyzed repository tree structure containing 14 paths",
+              "confidence": 0.95
+            },
+            {
+              "source": "Capability: Chrome Extension",
+              "value": "Verified capability with 60% confidence using evidence: manifest.json",
+              "confidence": 0.6
+            },
+            {
+              "source": "Capability: Python",
+              "value": "Verified capability with 70% confidence using evidence: Python dependency config, README.md",
+              "confidence": 0.7
+            },
+            {
+              "source": "Capability: JavaScript",
+              "value": "Verified capability with 100% confidence using evidence: Node.js / TypeScript configuration, JavaScript/TypeScript source files, README.md",
+              "confidence": 0.9999999999999999
+            },
+            {
+              "source": "Capability: Language Learning",
+              "value": "Verified capability with 80% confidence using evidence: README.md",
+              "confidence": 0.8
+            },
+            {
+              "source": "Architecture: Chrome Extension Architecture",
+              "value": "Detected pattern with 100% confidence using: manifest.json",
+              "confidence": 1
+            },
+            {
+              "source": "Architecture: Microservices",
+              "value": "Detected pattern with 85% confidence using: docker-compose.yml",
+              "confidence": 0.85
+            }
+          ],
+          "recruiterSummary": "Demonstrated ability to design, build, and deploy: Chrome Extension, Python, JavaScript, Language Learning."
+        }
+      ]
+    },
+    "pieProfile": {
+      "experiences": [
+        {
+          "company": "TechCorp Inc.",
+          "title": "Senior Software Engineer",
+          "durationMonths": 65,
+          "technologies": [
+            "CI/CD",
+            "Redis"
+          ],
+          "responsibilities": [
+            "Led development of microservices architecture serving 1M+ users, improving system scalability by 300%",
+            "Implemented CI/CD pipeline using GitHub Actions, reducing deployment time by 60%",
+            "Mentored 5 junior developers and conducted code reviews to maintain code quality standards",
+            "Architected real-time notification system using WebSockets and Redis, handling 10k concurrent connections"
+          ],
+          "inferredCapabilities": [
+            "REST API Development",
+            "Deployment Automation",
+            "Database Design"
+          ],
+          "seniorityLevel": "Senior",
+          "confidence": 0.9,
+          "evidence": [
+            {
+              "source": "Experience: Senior Software Engineer at TechCorp Inc.",
+              "value": "Capability: REST API Development detected via terms: microservices",
+              "confidence": 0.8500000000000001
+            },
+            {
+              "source": "Experience: Senior Software Engineer at TechCorp Inc.",
+              "value": "Capability: Deployment Automation detected via terms: deployment, deploy, ci/cd",
+              "confidence": 0.95
+            },
+            {
+              "source": "Experience: Senior Software Engineer at TechCorp Inc.",
+              "value": "Capability: Database Design detected via terms: redis",
+              "confidence": 0.8
+            }
+          ]
+        },
+        {
+          "company": "StartupXYZ",
+          "title": "Full-Stack Developer",
+          "durationMonths": 18,
+          "technologies": [
+            "JavaScript",
+            "React",
+            "Node.js"
+          ],
+          "responsibilities": [
+            "Built responsive e-commerce platform using React and Node.js, generating $2M in annual revenue",
+            "Optimized database queries reducing API response time by 45%",
+            "Integrated third-party payment gateways (Stripe, PayPal) with 99.9% uptime",
+            "Developed RESTful APIs consumed by web and mobile applications"
+          ],
+          "inferredCapabilities": [
+            "REST API Development",
+            "Frontend Development",
+            "Database Design"
+          ],
+          "seniorityLevel": "Mid",
+          "confidence": 0.9,
+          "evidence": [
+            {
+              "source": "Experience: Full-Stack Developer at StartupXYZ",
+              "value": "Capability: REST API Development detected via terms: api, apis, rest, restful, node",
+              "confidence": 0.95
+            },
+            {
+              "source": "Experience: Full-Stack Developer at StartupXYZ",
+              "value": "Capability: Frontend Development detected via terms: react, ui, responsive",
+              "confidence": 0.95
+            },
+            {
+              "source": "Experience: Full-Stack Developer at StartupXYZ",
+              "value": "Capability: Database Design detected via terms: database",
+              "confidence": 0.8
+            }
+          ]
+        },
+        {
+          "company": "DevSolutions LLC",
+          "title": "Junior Developer",
+          "durationMonths": 9,
+          "technologies": [
+            "JavaScript",
+            "React"
+          ],
+          "responsibilities": [
+            "Developed customer-facing dashboards using React and Chart.js",
+            "Collaborated with design team to implement pixel-perfect UI components",
+            "Fixed 100+ bugs and implemented feature requests using Agile methodology",
+            "Wrote unit tests achieving 85% code coverage"
+          ],
+          "inferredCapabilities": [
+            "Frontend Development"
+          ],
+          "seniorityLevel": "Junior",
+          "confidence": 0.9,
+          "evidence": [
+            {
+              "source": "Experience: Junior Developer at DevSolutions LLC",
+              "value": "Capability: Frontend Development detected via terms: react, ui",
+              "confidence": 0.9
+            }
+          ]
+        }
+      ],
+      "certifications": [
+        {
+          "certification": "AWS Certified Solutions Architect - Associate",
+          "issuer": "Amazon Web Services",
+          "technologies": [
+            "AWS"
+          ],
+          "domains": [
+            "Cloud Architecture",
+            "Infrastructure"
+          ],
+          "relevanceTags": [
+            "Cloud",
+            "AWS"
+          ],
+          "confidence": 0.95
+        },
+        {
+          "certification": "GitHub Actions Certified",
+          "issuer": "Unknown",
+          "technologies": [],
+          "domains": [
+            "Software Engineering"
+          ],
+          "relevanceTags": [
+            "Technical"
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "education": [
+        {
+          "institution": "University of California, Berkeley",
+          "degree": "Bachelor of Science in Computer Science",
+          "specialization": "Computer Science",
+          "domains": [
+            "Software Engineering"
+          ],
+          "graduationYear": "2018"
+        }
+      ],
+      "skills": [
+        "JavaScript",
+        "TypeScript",
+        "Python",
+        "HTML5",
+        "CSS3",
+        "PHP"
+      ],
+      "inferredCapabilities": [
+        {
+          "capability": "REST API Development",
+          "confidence": 0.95,
+          "maturity": "expert",
+          "evidence": {
+            "experiences": [
+              "Senior Software Engineer at TechCorp Inc.",
+              "Full-Stack Developer at StartupXYZ"
+            ],
+            "certifications": [],
+            "durationMonths": 83,
+            "technologies": [
+              "CI/CD",
+              "Redis",
+              "JavaScript",
+              "React",
+              "Node.js"
+            ]
+          }
+        },
+        {
+          "capability": "Deployment Automation",
+          "confidence": 0.95,
+          "maturity": "expert",
+          "evidence": {
+            "experiences": [
+              "Senior Software Engineer at TechCorp Inc."
+            ],
+            "certifications": [],
+            "durationMonths": 65,
+            "technologies": [
+              "CI/CD",
+              "Redis"
+            ]
+          }
+        },
+        {
+          "capability": "Database Design",
+          "confidence": 0.95,
+          "maturity": "expert",
+          "evidence": {
+            "experiences": [
+              "Senior Software Engineer at TechCorp Inc.",
+              "Full-Stack Developer at StartupXYZ"
+            ],
+            "certifications": [],
+            "durationMonths": 83,
+            "technologies": [
+              "CI/CD",
+              "Redis",
+              "JavaScript",
+              "React",
+              "Node.js"
+            ]
+          }
+        },
+        {
+          "capability": "Frontend Development",
+          "confidence": 0.95,
+          "maturity": "expert",
+          "evidence": {
+            "experiences": [
+              "Full-Stack Developer at StartupXYZ",
+              "Junior Developer at DevSolutions LLC"
+            ],
+            "certifications": [],
+            "durationMonths": 27,
+            "technologies": [
+              "JavaScript",
+              "React",
+              "Node.js"
+            ]
+          }
+        },
+        {
+          "capability": "Cloud Infrastructure",
+          "confidence": 0.7,
+          "maturity": "expert",
+          "evidence": {
+            "experiences": [],
+            "certifications": [
+              "AWS Certified Solutions Architect - Associate",
+              "AWS Certified Solutions Architect - Associate"
+            ],
+            "durationMonths": 0,
+            "technologies": [
+              "AWS"
+            ]
+          }
+        }
+      ],
+      "careerSummary": {
+        "dominantDomains": [
+          "Full Stack Development",
+          "Cloud Infrastructure"
+        ],
+        "secondaryDomains": [],
+        "confidence": 0.89
+      },
+      "evidence": [
+        {
+          "source": "LinkedIn Profile Scrape",
+          "value": "Parsed 3 experience(s), 2 certification(s), and 6 normalized skill(s)",
+          "confidence": 1
+        }
+      ]
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "autofill",
+        "chrome extension",
+        "form autofill",
+        "git",
+        "github",
+        "javascript",
+        "node.js",
+        "python",
+        "scraping",
+        "typescript",
+        "pdfkit"
+      ],
+      "missingSkills": [
+        "express",
+        "mongodb"
+      ],
+      "recommendedProjects": [
+        {
+          "name": "ResumeX",
+          "repositoryName": "ResumeX",
+          "relevanceScore": 0.46,
+          "matchedKeywords": [
+            "backend",
+            "api",
+            "chrome extension",
+            "autofill",
+            "scraping",
+            "pdf"
+          ],
+          "matchedCapabilities": [
+            "Chrome Extension"
+          ],
+          "negativeSignals": [],
+          "explanation": "Directly demonstrates browser automation, Chrome Extension manifest V3, and Express backend API integration. (Confidence: 86%)",
+          "url": "https://github.com/SaadHaider01/ResumeX",
+          "description": "A Chrome extension that automates form autofilling and LinkedIn scraping with a backend PDF generation service."
+        },
+        {
+          "name": "TaskMaster Pro",
+          "repositoryName": "TaskMaster Pro",
+          "relevanceScore": 0.42,
+          "matchedKeywords": [],
+          "matchedCapabilities": [
+            "Chrome Extension"
+          ],
+          "negativeSignals": [],
+          "explanation": "Showcases codebase development in modern stacks.",
+          "url": "https://github.com/SaadHaider01/TaskMaster Pro",
+          "description": "Project management tool with real-time collaboration features"
+        },
+        {
+          "name": "WeatherNow",
+          "repositoryName": "WeatherNow",
+          "relevanceScore": 0.42,
+          "matchedKeywords": [],
+          "matchedCapabilities": [
+            "Chrome Extension"
+          ],
+          "negativeSignals": [],
+          "explanation": "Showcases codebase development in modern stacks.",
+          "url": "https://github.com/SaadHaider01/WeatherNow",
+          "description": "Weather forecasting app with location-based alerts"
+        }
+      ],
+      "recommendedExperiences": [
+        {
+          "company": "DevSolutions LLC",
+          "position": "Junior Developer",
+          "title": "Junior Developer",
+          "relevanceScore": 0.77,
+          "matchedKeywords": [],
+          "matchedCapabilities": [],
+          "negativeSignals": [],
+          "explanation": "Demonstrates Junior level contributions as a Junior Developer at DevSolutions LLC, specialized in Frontend Development.",
+          "durationMonths": 9,
+          "achievements": [
+            "Developed customer-facing dashboards using React and Chart.js",
+            "Collaborated with design team to implement pixel-perfect UI components",
+            "Fixed 100+ bugs and implemented feature requests using Agile methodology",
+            "Wrote unit tests achieving 85% code coverage"
+          ]
+        },
+        {
+          "company": "StartupXYZ",
+          "position": "Full-Stack Developer",
+          "title": "Full-Stack Developer",
+          "relevanceScore": 0.75,
+          "matchedKeywords": [
+            "full-stack",
+            "api",
+            "apis"
+          ],
+          "matchedCapabilities": [
+            "REST API Development"
+          ],
+          "negativeSignals": [],
+          "explanation": "Demonstrates Mid level contributions as a Full-Stack Developer at StartupXYZ, specialized in REST API Development, Frontend Development.",
+          "durationMonths": 18,
+          "achievements": [
+            "Built responsive e-commerce platform using React and Node.js, generating $2M in annual revenue",
+            "Optimized database queries reducing API response time by 45%",
+            "Integrated third-party payment gateways (Stripe, PayPal) with 99.9% uptime",
+            "Developed RESTful APIs consumed by web and mobile applications"
+          ]
+        }
+      ],
+      "recommendedCertifications": [
+        {
+          "certification": "AWS Certified Solutions Architect - Associate",
+          "issuer": "Amazon Web Services",
+          "relevanceScore": 0.51,
+          "matchedKeywords": [
+            "AWS"
+          ],
+          "matchedCapabilities": [
+            "Cloud Architecture",
+            "Infrastructure"
+          ],
+          "explanation": "Verified certification in Cloud Architecture, Infrastructure issued by Amazon Web Services."
+        },
+        {
+          "certification": "GitHub Actions Certified",
+          "issuer": "Unknown",
+          "relevanceScore": 0.48,
+          "matchedKeywords": [],
+          "matchedCapabilities": [
+            "Software Engineering"
+          ],
+          "explanation": "Verified certification in Software Engineering issued by Unknown."
+        }
+      ],
+      "recommendedEducation": [
+        {
+          "institution": "University of California, Berkeley",
+          "degree": "Bachelor of Science in Computer Science",
+          "relevanceScore": 0.5,
+          "matchedKeywords": [
+            "Computer Science"
+          ],
+          "matchedCapabilities": [
+            "Software Engineering"
+          ],
+          "explanation": "Formal degree program specializing in Computer Science from University of California, Berkeley."
+        }
+      ],
+      "experienceMatchLevel": "Moderate",
+      "keywordInjectionList": [
+        "full-stack",
+        "backend",
+        "api",
+        "apis",
+        "chrome extension",
+        "manifest.json",
+        "autofill",
+        "scraping",
+        "pdf",
+        "pdfkit",
+        "express",
+        "mongodb"
+      ],
+      "roleArchetype": "chrome_extension",
+      "careerDNA": {
+        "dominantDomains": [
+          "Full Stack Development",
+          "Cloud Infrastructure"
+        ],
+        "secondaryDomains": [],
+        "confidence": 0.89
+      },
+      "budget": {
+        "maxProjects": 4,
+        "maxExperiences": 2,
+        "maxCertifications": 2,
+        "maxEducation": 2
+      },
+      "justificationReport": {
+        "included": [
+          {
+            "type": "project",
+            "name": "TaskMaster Pro",
+            "relevanceScore": 0.42,
+            "matchedCapabilities": [
+              "Chrome Extension"
+            ],
+            "matchedKeywords": [],
+            "status": "included",
+            "explanation": "Showcases codebase development in modern stacks."
+          },
+          {
+            "type": "project",
+            "name": "WeatherNow",
+            "relevanceScore": 0.42,
+            "matchedCapabilities": [
+              "Chrome Extension"
+            ],
+            "matchedKeywords": [],
+            "status": "included",
+            "explanation": "Showcases codebase development in modern stacks."
+          },
+          {
+            "type": "project",
+            "name": "ResumeX",
+            "relevanceScore": 0.46,
+            "matchedCapabilities": [
+              "Chrome Extension"
+            ],
+            "matchedKeywords": [
+              "backend",
+              "api",
+              "chrome extension",
+              "autofill",
+              "scraping",
+              "pdf"
+            ],
+            "status": "included",
+            "explanation": "Directly demonstrates browser automation, Chrome Extension manifest V3, and Express backend API integration. (Confidence: 86%)"
+          },
+          {
+            "type": "project",
+            "name": "LInguaVoice",
+            "relevanceScore": 0.4,
+            "matchedCapabilities": [
+              "Chrome Extension"
+            ],
+            "matchedKeywords": [
+              "api"
+            ],
+            "status": "included",
+            "explanation": "Demonstrates Web Speech API and React development for language learning applications. (Confidence: 84%)"
+          },
+          {
+            "type": "experience",
+            "name": "Full-Stack Developer",
+            "relevanceScore": 0.75,
+            "matchedCapabilities": [
+              "REST API Development"
+            ],
+            "matchedKeywords": [
+              "full-stack",
+              "api",
+              "apis"
+            ],
+            "status": "included",
+            "explanation": "Demonstrates Mid level contributions as a Full-Stack Developer at StartupXYZ, specialized in REST API Development, Frontend Development."
+          },
+          {
+            "type": "experience",
+            "name": "Junior Developer",
+            "relevanceScore": 0.77,
+            "matchedCapabilities": [],
+            "matchedKeywords": [],
+            "status": "included",
+            "explanation": "Demonstrates Junior level contributions as a Junior Developer at DevSolutions LLC, specialized in Frontend Development."
+          },
+          {
+            "type": "certification",
+            "name": "AWS Certified Solutions Architect - Associate",
+            "relevanceScore": 0.51,
+            "matchedCapabilities": [
+              "Cloud Architecture",
+              "Infrastructure"
+            ],
+            "matchedKeywords": [
+              "AWS"
+            ],
+            "status": "included",
+            "explanation": "Verified certification in Cloud Architecture, Infrastructure issued by Amazon Web Services."
+          },
+          {
+            "type": "certification",
+            "name": "GitHub Actions Certified",
+            "relevanceScore": 0.48,
+            "matchedCapabilities": [
+              "Software Engineering"
+            ],
+            "matchedKeywords": [],
+            "status": "included",
+            "explanation": "Verified certification in Software Engineering issued by Unknown."
+          }
+        ],
+        "excluded": [
+          {
+            "type": "project",
+            "name": "J.A.R.V.I.S",
+            "relevanceScore": 0.37,
+            "matchedCapabilities": [
+              "Chrome Extension"
+            ],
+            "matchedKeywords": [],
+            "status": "excluded",
+            "explanation": "Showcases codebase development in modern stacks."
+          },
+          {
+            "type": "experience",
+            "name": "Senior Software Engineer",
+            "relevanceScore": 0.54,
+            "matchedCapabilities": [
+              "REST API Development"
+            ],
+            "matchedKeywords": [],
+            "status": "excluded",
+            "explanation": "Demonstrates Senior level contributions as a Senior Software Engineer at TechCorp Inc., specialized in REST API Development, Deployment Automation."
+          }
+        ],
+        "reasons": [
+          "Project \"TaskMaster Pro\" was included due to high capability relevance (42%).",
+          "Project \"WeatherNow\" was included due to high capability relevance (42%).",
+          "Project \"ResumeX\" was included due to high capability relevance (46%).",
+          "Project \"J.A.R.V.I.S\" was excluded due to budget limit or low relevance (37%).",
+          "Project \"LInguaVoice\" was included due to high capability relevance (40%).",
+          "Experience \"Senior Software Engineer at TechCorp Inc.\" was excluded due to ranking limits (54%).",
+          "Experience \"Full-Stack Developer at StartupXYZ\" was included (75%).",
+          "Experience \"Junior Developer at DevSolutions LLC\" was included (77%)."
+        ],
+        "contradictions": []
+      }
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of microservices architecture serving 1M+ users, improving system scalability by 300%",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Implemented CI/CD pipeline using GitHub Actions, reducing deployment time by 60%",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Mentored 5 junior developers and conducted code reviews to maintain code quality standards",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_3",
+        "source": "TechCorp Inc. Experience",
+        "text": "Architected real-time notification system using WebSockets and Redis, handling 10k concurrent connections",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startupxyz_ach_0",
+        "source": "StartupXYZ Experience",
+        "text": "Built responsive e-commerce platform using React and Node.js, generating $2M in annual revenue",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startupxyz_ach_1",
+        "source": "StartupXYZ Experience",
+        "text": "Optimized database queries reducing API response time by 45%",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "startupxyz_ach_2",
+        "source": "StartupXYZ Experience",
+        "text": "Integrated third-party payment gateways (Stripe, PayPal) with 99.9% uptime",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startupxyz_ach_3",
+        "source": "StartupXYZ Experience",
+        "text": "Developed RESTful APIs consumed by web and mobile applications",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "devsolutions_llc_ach_0",
+        "source": "DevSolutions LLC Experience",
+        "text": "Developed customer-facing dashboards using React and Chart.js",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "devsolutions_llc_ach_1",
+        "source": "DevSolutions LLC Experience",
+        "text": "Collaborated with design team to implement pixel-perfect UI components",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "devsolutions_llc_ach_2",
+        "source": "DevSolutions LLC Experience",
+        "text": "Fixed 100+ bugs and implemented feature requests using Agile methodology",
+        "usedIn": [
+          "experience_1_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "devsolutions_llc_ach_3",
+        "source": "DevSolutions LLC Experience",
+        "text": "Wrote unit tests achieving 85% code coverage",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "taskmaster_pro_desc",
+        "source": "TaskMaster Pro Project",
+        "text": "Project management tool with real-time collaboration features",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "weathernow_desc",
+        "source": "WeatherNow Project",
+        "text": "Weather forecasting app with location-based alerts",
+        "usedIn": [
+          "project_2_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "resumex_desc",
+        "source": "ResumeX Project",
+        "text": "A Chrome extension that automates form autofilling and LinkedIn scraping with a backend PDF generation service.",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "j_a_r_v_i_s_desc",
+        "source": "J.A.R.V.I.S Project",
+        "text": "An advanced, locally-hosted AI personal assistant with real-time offline wake-word detection, Whisper speech-to-text, and Edge-TTS.",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "linguavoice_desc",
+        "source": "LInguaVoice Project",
+        "text": "A multilingual voice-to-voice translation application using JavaScript and Web Speech API.",
+        "usedIn": []
+      }
+    ],
+    "eurMetrics": {
+      "availableEvidence": 17,
+      "usedEvidence": 7,
+      "eur": 41
+    },
+    "diagnostics": {
+      "resumeId": "res_8d1264e7ed0106b7",
+      "jdHash": "bd8d16559ec12b041b7f20dc02a7cde7105731d7b21fb849db558b5f8e559e9c",
+      "generationSource": "LLM_GENERATED",
+      "projectCount": 3,
+      "experienceCount": 2,
+      "educationCount": 1,
+      "certificationCount": 1
+    }
+  }
+}
