@@ -107,21 +107,31 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
 }
 
 function fillEmptyProfileSections(profile, defaultProfile) {
-    if (!profile) return JSON.parse(JSON.stringify(defaultProfile));
-    
+    if (!profile) {
+        // If no profile at all, return only personalInfo and skills from default.
+        // NEVER inject mock experience, education, projects, or certifications.
+        return {
+            personalInfo: JSON.parse(JSON.stringify(defaultProfile.personalInfo)),
+            skills: JSON.parse(JSON.stringify(defaultProfile.skills)),
+            experience: [],
+            education: [],
+            projects: [],
+            certifications: []
+        };
+    }
+
     const filled = JSON.parse(JSON.stringify(profile));
-    
-    // Check personalInfo
+
+    // --- personalInfo: fill only missing atomic fields (safe defaults) ---
     if (!filled.personalInfo) {
         filled.personalInfo = JSON.parse(JSON.stringify(defaultProfile.personalInfo));
     } else {
         if (!filled.personalInfo.name) filled.personalInfo.name = defaultProfile.personalInfo.name;
-        if (!filled.personalInfo.email) filled.personalInfo.email = defaultProfile.personalInfo.email;
-        if (!filled.personalInfo.phone) filled.personalInfo.phone = defaultProfile.personalInfo.phone;
-        if (!filled.personalInfo.location) filled.personalInfo.location = defaultProfile.personalInfo.location;
+        // Do NOT auto-fill email/phone from mock — those come from extension settings
+        if (!filled.personalInfo.location) filled.personalInfo.location = '';
     }
-    
-    // Check skills
+
+    // --- skills: safe to supplement when absent (categorically, not personally fabricated) ---
     if (!filled.skills || typeof filled.skills !== 'object') {
         filled.skills = JSON.parse(JSON.stringify(defaultProfile.skills));
     } else {
@@ -132,27 +142,16 @@ function fillEmptyProfileSections(profile, defaultProfile) {
             filled.skills.tools = defaultProfile.skills.tools || [];
         }
     }
-    
-    // Check experience
-    if (!filled.experience || filled.experience.length === 0) {
-        filled.experience = JSON.parse(JSON.stringify(defaultProfile.experience || []));
-    }
-    
-    // Check education
-    if (!filled.education || filled.education.length === 0) {
-        filled.education = JSON.parse(JSON.stringify(defaultProfile.education || []));
-    }
-    
-    // Check projects
-    if (!filled.projects || filled.projects.length === 0) {
-        filled.projects = JSON.parse(JSON.stringify(defaultProfile.projects || []));
-    }
-    
-    // Check certifications
-    if (!filled.certifications || filled.certifications.length === 0) {
-        filled.certifications = JSON.parse(JSON.stringify(defaultProfile.certifications || []));
-    }
-    
+
+    // --- PERSONAL HISTORY: NEVER inject mock data ---
+    // experience, education, projects, certifications are biographical facts.
+    // Leaving them empty is correct — the LLM will generate a resume that honestly
+    // reflects a candidate with only skills and GitHub projects.
+    if (!Array.isArray(filled.experience))   filled.experience   = [];
+    if (!Array.isArray(filled.education))    filled.education    = [];
+    if (!Array.isArray(filled.projects))     filled.projects     = [];
+    if (!Array.isArray(filled.certifications)) filled.certifications = [];
+
     return filled;
 }
 

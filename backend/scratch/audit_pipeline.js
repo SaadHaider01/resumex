@@ -19,7 +19,7 @@ Requirements:
 - Git, GitHub, and collaborative workflows.
 `;
 
-// Mock profile matching the one in RIE/PIE/ResumeX tests
+// Saad's real profile as sent by the extension (skills + GitHub projects, no experience)
 const testProfile = {
     personalInfo: {
         name: 'Saad Haider',
@@ -34,11 +34,49 @@ const testProfile = {
         tools: ['Git', 'GitHub'],
         soft: []
     },
+    // Biographical facts — intentionally empty (real state of Saad's profile)
     experience: [],
     education: [],
-    projects: [],
+    // Real GitHub projects (RIE will analyze these)
+    projects: [
+        {
+            name: 'ResumeX',
+            languages: ['JavaScript', 'HTML', 'CSS'],
+            stars: 15,
+            url: 'https://github.com/SaadHaider01/resumex',
+            mockTree: ['manifest.json', 'extension/background.js', 'extension/linkedinScraper.js', 'backend/server.js', 'package.json', 'README.md'],
+            mockFiles: {
+                'manifest.json': JSON.stringify({ manifest_version: 3, name: 'ResumeX' }),
+                'package.json': JSON.stringify({ dependencies: { express: '^4.18.2', pdfkit: '^0.13.0' } }),
+                'README.md': 'ResumeX is a Chrome extension that automates form autofilling and LinkedIn scraping with a backend PDF generation service.'
+            }
+        },
+        {
+            name: 'J.A.R.V.I.S',
+            languages: ['Python'],
+            stars: 8,
+            url: 'https://github.com/SaadHaider01/jarvis',
+            mockTree: ['requirements.txt', 'main.py', 'voice_assistant.py', 'README.md'],
+            mockFiles: {
+                'requirements.txt': 'openai-whisper\nedge-tts\nopenai',
+                'README.md': 'An advanced, locally-hosted AI personal assistant with real-time offline wake-word detection, Whisper speech-to-text, and Edge-TTS.'
+            }
+        },
+        {
+            name: 'LInguaVoice',
+            languages: ['JavaScript'],
+            stars: 5,
+            url: 'https://github.com/SaadHaider01/linguavoice',
+            mockTree: ['package.json', 'src/App.js', 'README.md'],
+            mockFiles: {
+                'package.json': JSON.stringify({ dependencies: { react: '^18.2.0' } }),
+                'README.md': 'A multilingual voice-to-voice translation application using JavaScript and Web Speech API. Supported 12 languages with real-time translation latency under 300ms.'
+            }
+        }
+    ],
     certifications: []
 };
+
 
 async function runAudit() {
     console.log('🔍 Starting End-to-End Pipeline Audit...');

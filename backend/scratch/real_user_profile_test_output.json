@@ -1,0 +1,167 @@
+[
+  {
+    "id": "EP-1",
+    "role": "Chrome Extension Developer",
+    "success": true,
+    "nameCorrect": true,
+    "experienceCount": 0,
+    "projectCount": 3,
+    "leaksFound": [],
+    "invalidProjects": [],
+    "avgBqs": 100,
+    "eurMetrics": {
+      "availableEvidence": 0,
+      "usedEvidence": 0,
+      "eur": 0
+    },
+    "diagnostics": {
+      "resumeId": "res_27c9e351ae51d3aa",
+      "jdHash": "9d1bbe041293fcd2d6e6b71343c9add53f8ff4b4558292a3b78700b111dd22e2",
+      "generationSource": "LLM_GENERATED",
+      "projectCount": 3,
+      "experienceCount": 0,
+      "educationCount": 0,
+      "certificationCount": 0
+    },
+    "personalInfo": {
+      "name": "Saad Haider",
+      "email": "saadhaider349@gmail.com",
+      "phone": "6205907774",
+      "location": "",
+      "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+      "github": "https://github.com/SaadHaider01"
+    }
+  },
+  {
+    "id": "EP-2",
+    "role": "AI Voice Assistant Developer",
+    "success": true,
+    "nameCorrect": true,
+    "experienceCount": 0,
+    "projectCount": 3,
+    "leaksFound": [],
+    "invalidProjects": [],
+    "avgBqs": 176,
+    "eurMetrics": {
+      "availableEvidence": 0,
+      "usedEvidence": 0,
+      "eur": 0
+    },
+    "diagnostics": {
+      "resumeId": "res_6b03e923776fa234",
+      "jdHash": "adb5c018b1b43314b75a3e05585ceb51f314bb7b8f77d5d94040d72140610516",
+      "generationSource": "LLM_GENERATED",
+      "projectCount": 3,
+      "experienceCount": 0,
+      "educationCount": 0,
+      "certificationCount": 0
+    },
+    "personalInfo": {
+      "name": "Saad Haider",
+      "email": "saadhaider349@gmail.com",
+      "phone": "6205907774",
+      "location": "",
+      "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+      "github": "https://github.com/SaadHaider01"
+    }
+  },
+  {
+    "id": "EP-3",
+    "role": "Full Stack JavaScript Developer",
+    "success": true,
+    "nameCorrect": true,
+    "experienceCount": 0,
+    "projectCount": 3,
+    "leaksFound": [],
+    "invalidProjects": [],
+    "avgBqs": 273,
+    "eurMetrics": {
+      "availableEvidence": 0,
+      "usedEvidence": 0,
+      "eur": 0
+    },
+    "diagnostics": {
+      "resumeId": "res_bc83e4b892fe71ef",
+      "jdHash": "f26a8babb5e20c2460cb039b579637d10e5525b18059feff266c97af666afe77",
+      "generationSource": "LLM_GENERATED",
+      "projectCount": 3,
+      "experienceCount": 0,
+      "educationCount": 0,
+      "certificationCount": 0
+    },
+    "personalInfo": {
+      "name": "Saad Haider",
+      "email": "saadhaider349@gmail.com",
+      "phone": "6205907774",
+      "location": "",
+      "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+      "github": "https://github.com/SaadHaider01"
+    }
+  },
+  {
+    "id": "EP-4",
+    "role": "Frontend React Engineer",
+    "success": true,
+    "nameCorrect": true,
+    "experienceCount": 0,
+    "projectCount": 3,
+    "leaksFound": [],
+    "invalidProjects": [],
+    "avgBqs": 510,
+    "eurMetrics": {
+      "availableEvidence": 0,
+      "usedEvidence": 0,
+      "eur": 0
+    },
+    "diagnostics": {
+      "resumeId": "res_274f150fd7cccd51",
+      "jdHash": "cef447229c53695858e1ab796be22f392dbd16976727e34e7bb764e26282ae59",
+      "generationSource": "LLM_GENERATED",
+      "projectCount": 3,
+      "experienceCount": 0,
+      "educationCount": 0,
+      "certificationCount": 0
+    },
+    "personalInfo": {
+      "name": "Saad Haider",
+      "email": "saadhaider349@gmail.com",
+      "phone": "6205907774",
+      "location": "",
+      "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+      "github": "https://github.com/SaadHaider01"
+    }
+  },
+  {
+    "id": "EP-5",
+    "role": "Backend Node.js API Engineer",
+    "success": true,
+    "nameCorrect": true,
+    "experienceCount": 0,
+    "projectCount": 3,
+    "leaksFound": [],
+    "invalidProjects": [],
+    "avgBqs": 440,
+    "eurMetrics": {
+      "availableEvidence": 0,
+      "usedEvidence": 0,
+      "eur": 0
+    },
+    "diagnostics": {
+      "resumeId": "res_76acc8e3e39fa114",
+      "jdHash": "0383a290f0d8fa3845cb11a7afa8d14f6d746b467660f1cc7084639bc3af53b5",
+      "generationSource": "LLM_GENERATED",
+      "projectCount": 3,
+      "experienceCount": 0,
+      "educationCount": 0,
+      "certificationCount": 0
+    },
+    "personalInfo": {
+      "name": "Saad Haider",
+      "email": "saadhaider349@gmail.com",
+      "phone": "6205907774",
+      "location": "",
+      "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+      "github": "https://github.com/SaadHaider01"
+    }
+  }
+]

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:quality": "node tests/resumeOutputQuality.test.js",
+    "test:real-user": "node tests/realUserProfileTest.js"
   },
   "keywords": [],
   "author": "",

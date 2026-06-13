@@ -108,6 +108,38 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
     // Step 5: Post-generation Deduplication (Phase 6)
     const deduplicatedResume = deduplicateEvidenceUsage(resume);
 
+    // Step 5.5: Hallucination Guard — enforce profile truth against LLM output
+    // This is a second line of defence: even if the LLM ignores prompt directives,
+    // we enforce the profile's biographical facts here.
+    const originalExperience = userProfile.experience || [];
+    const originalEducation   = userProfile.education   || [];
+    const originalCerts       = userProfile.certifications || [];
+
+    // Wipe any hallucinated experience/education/certs if the source profile has none
+    if (originalExperience.length === 0) {
+        deduplicatedResume.experience = [];
+    }
+    if (originalEducation.length === 0) {
+        deduplicatedResume.education = [];
+    }
+    if (originalCerts.length === 0) {
+        deduplicatedResume.certifications = [];
+    }
+
+    // Always overwrite personalInfo with the real profile values (LLM must not change them)
+    if (userProfile.personalInfo) {
+        const realPi = userProfile.personalInfo;
+        const outPi  = deduplicatedResume.personalInfo || {};
+        deduplicatedResume.personalInfo = {
+            name:     realPi.name     || outPi.name     || '',
+            email:    realPi.email    || outPi.email    || '',
+            phone:    realPi.phone    || outPi.phone    || '',
+            location: realPi.location || outPi.location || '',
+            linkedin: realPi.linkedin || outPi.linkedin || '',
+            github:   realPi.github   || outPi.github   || ''
+        };
+    }
+
     // Step 6: Audit evidence usage (Phase 5/9)
     const evidenceTracker = trackEvidenceUsage(deduplicatedResume, enrichedProfile);
     const availableEvidence = evidenceTracker.length;
@@ -128,6 +160,7 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
         certificationCount: (deduplicatedResume.certifications || []).length
     };
     console.log('📊 GENERATION DIAGNOSTICS:', JSON.stringify(diagnostics, null, 2));
+
 
     return {
         resume: deduplicatedResume,
@@ -188,6 +221,46 @@ DNA Confidence: ${careerDNA.confidence}
 `;
     }
 
+    // Build personal info lock section
+    const pi = userProfile?.personalInfo || {};
+    const personalInfoLock = `
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔒 CANDIDATE IDENTITY (LOCKED — DO NOT CHANGE THESE FIELDS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The resume you generate is for this specific candidate. Use EXACTLY these values in personalInfo:
+  Name:     ${pi.name || 'Unknown'}
+  Email:    ${pi.email || ''}
+  Phone:    ${pi.phone || ''}
+  Location: ${pi.location || ''}
+  LinkedIn: ${pi.linkedin || ''}
+  GitHub:   ${pi.github || ''}
+
+RULE: Do NOT change, invent, or substitute any of the above fields. Copy them verbatim into the "personalInfo" section of the output JSON.
+`;
+
+    // Build empty-section directives so the LLM doesn't fabricate work history
+    // Note: sanitizedUser uses 'experiences' (plural); raw profile uses 'experience'
+    const hasExperience = (Array.isArray(userProfile?.experiences) && userProfile.experiences.length > 0) ||
+                          (Array.isArray(userProfile?.experience) && userProfile.experience.length > 0);
+    const hasEducation = Array.isArray(userProfile?.education) && userProfile.education.length > 0;
+    const hasCertifications = Array.isArray(userProfile?.certifications) && userProfile.certifications.length > 0;
+
+
+    let emptySectionDirective = '';
+    if (!hasExperience || !hasEducation || !hasCertifications) {
+        const missingSections = [];
+        if (!hasExperience) missingSections.push('experience (return [])');
+        if (!hasEducation) missingSections.push('education (return [])');
+        if (!hasCertifications) missingSections.push('certifications (return [])');
+        emptySectionDirective = `
+⛔ MISSING DATA DIRECTIVE:
+The candidate does NOT have the following in their profile: ${missingSections.join(', ')}.
+DO NOT invent, fabricate, or assume any entries for these sections.
+Return exactly [] (empty array) for each missing section listed above.
+The resume must be honest. Fabricating work history or academic credentials is STRICTLY FORBIDDEN.
+`;
+    }
+
     // Format evidence cards into text payload
     let evidenceCardsSection = '';
     if (evidenceCards && Array.isArray(evidenceCards)) {
@@ -201,7 +274,7 @@ ${JSON.stringify(evidenceCards, null, 2)}
     return `You are an expert resume writer and ATS (Applicant Tracking System) optimization specialist.
 
 Your task is to create a tailored, ATS-optimized resume based on the job description, verified metrics, and evidence cards provided below.
-
+${personalInfoLock}${emptySectionDirective}
 CRITICAL REQUIREMENTS:
 1. Tailor the resume specifically to match the job requirements.
 2. Use keywords from the job description naturally throughout the resume.
