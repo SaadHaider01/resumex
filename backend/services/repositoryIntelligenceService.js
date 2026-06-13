@@ -459,8 +459,8 @@ const CAPABILITY_RULES = [
  * Profiles a single repository by fetching config files, structure trees, and applying matching rules
  */
 async function profileRepository(username, repo) {
-    const repoName = repo.name;
-    const repoUrl = repo.url || `https://github.com/${username}/${repoName}`;
+    const repoName = repo.name || repo.repositoryName || '';
+    const repoUrl = repo.url || (repoName ? `https://github.com/${username}/${repoName}` : '');
 
     // Target files that we look to analyze
     const filesToFetch = [
@@ -485,8 +485,8 @@ async function profileRepository(username, repo) {
 
     // 1. Fetch Repository Structure Tree (recursive)
     if (repo.mockTree) {
-        treePaths = repo.mockTree;
-    } else {
+        treePaths = repo.mockTree.filter(p => typeof p === 'string' && p);
+    } else if (repoName) {
         const branches = ['main', 'master'];
         for (const branch of branches) {
             const treeUrl = `https://api.github.com/repos/${username}/${repoName}/git/trees/${branch}?recursive=1`;
@@ -501,7 +501,7 @@ async function profileRepository(username, repo) {
                 if (response.ok) {
                     const data = await response.json();
                     if (data && Array.isArray(data.tree)) {
-                        treePaths = data.tree.map(item => item.path);
+                        treePaths = data.tree.map(item => item ? item.path : null).filter(p => typeof p === 'string' && p);
                         break;
                     }
                 }
@@ -519,7 +519,7 @@ async function profileRepository(username, repo) {
     // 2. Fetch File Contents
     if (repo.mockFiles) {
         Object.assign(fileContents, repo.mockFiles);
-    } else {
+    } else if (repoName) {
         // Filter target files to only fetch files that are in the tree paths to optimize requests
         const filesToActuallyFetch = filesToFetch.filter(file => 
             treePaths.some(p => p.endsWith(file))
@@ -527,7 +527,7 @@ async function profileRepository(username, repo) {
 
         await Promise.all(filesToActuallyFetch.map(async (filename) => {
             // Local fallback reader for offline/local development of resumex
-            if (repoName.toLowerCase() === 'resumex' && fs.existsSync(path.join(__dirname, '..', '..', filename))) {
+            if (repoName && repoName.toLowerCase() === 'resumex' && fs.existsSync(path.join(__dirname, '..', '..', filename))) {
                 try {
                     const data = fs.readFileSync(path.join(__dirname, '..', '..', filename), 'utf8');
                     fileContents[filename] = data;

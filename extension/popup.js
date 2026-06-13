@@ -35,7 +35,9 @@ const STORAGE_KEYS = {
     GITHUB_PROFILE: 'githubProfile',
     LINKEDIN_PROFILE: 'linkedinProfile',
     API_URL: 'apiUrl',
-    PERSONAL_INFO: 'personalInfo'
+    PERSONAL_INFO: 'personalInfo',
+    CURRENT_RESUME_DATA: 'currentResumeData',
+    CURRENT_JOB_DESCRIPTION: 'currentJobDescription'
 };
 
 // Global state
@@ -155,6 +157,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         STORAGE_KEYS.GITHUB_PROFILE,
         STORAGE_KEYS.LINKEDIN_PROFILE,
         STORAGE_KEYS.API_URL,
+        STORAGE_KEYS.CURRENT_RESUME_DATA,
+        STORAGE_KEYS.CURRENT_JOB_DESCRIPTION,
         'userProfile'
     ]);
 
@@ -164,6 +168,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     apiUrlInput.value = saved.apiUrl || DEFAULT_API_URL;
     
     updateSyncStatus(saved.userProfile);
+
+    // Restore active tailored resume state if available
+    if (saved[STORAGE_KEYS.CURRENT_RESUME_DATA]) {
+        currentResumeData = saved[STORAGE_KEYS.CURRENT_RESUME_DATA];
+        currentJobDescription = saved[STORAGE_KEYS.CURRENT_JOB_DESCRIPTION] || null;
+        displayResume(currentResumeData.resume, currentResumeData.tailoringData);
+        showActionButtons();
+        showAutoFillSection();
+    }
 
     // Event listeners
     generateBtn.addEventListener('click', handleGenerateResume);
@@ -278,6 +291,12 @@ async function handleGenerateResume() {
             tailoringData: data.tailoringData
         };
         currentJobDescription = jobDescription;
+
+        // Persist tailored resume state in storage to prevent reset on tab navigation/redirection
+        await chrome.storage.local.set({
+            [STORAGE_KEYS.CURRENT_RESUME_DATA]: currentResumeData,
+            [STORAGE_KEYS.CURRENT_JOB_DESCRIPTION]: currentJobDescription
+        });
 
         // Step 3: Display results
         showStatus('Resume generated successfully! 🎉', 'success');

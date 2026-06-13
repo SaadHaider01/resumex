@@ -94,26 +94,39 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
     // Step 3: Generate tailoring blueprint using RIE and PIE profiles
     const tailoringBlueprint = generateTailoringBlueprint(parsedJD, enrichedProfile, repoIntelligence, pieProfile);
 
-    // Step 4: Create enhanced prompt with blueprint
-    const enhancedPrompt = createBlueprintEnhancedPrompt({
+    // Step 4: Execute safe LLM with fallback retry sequence (Phase 8)
+    const resume = await safeLLMExecution(
         jobDescription,
         parsedJD,
-        userProfile: enrichedProfile,
-        githubProfile: repoIntelligence,
+        enrichedProfile,
+        repoIntelligence,
         pieProfile,
-        tailoringBlueprint
-    });
+        tailoringBlueprint,
+        llmCallFn
+    );
 
-    // Step 5: Call LLM
-    const resume = await llmCallFn(enhancedPrompt);
+    // Step 5: Post-generation Deduplication (Phase 6)
+    const deduplicatedResume = deduplicateEvidenceUsage(resume);
+
+    // Step 6: Audit evidence usage (Phase 5/9)
+    const evidenceTracker = trackEvidenceUsage(deduplicatedResume, enrichedProfile);
+    const availableEvidence = evidenceTracker.length;
+    const usedEvidence = evidenceTracker.filter(item => item.usedIn.length > 0).length;
+    const eur = availableEvidence > 0 ? Math.round((usedEvidence / availableEvidence) * 100) : 0;
 
     return {
-        resume,
+        resume: deduplicatedResume,
         metadata: {
             parsedJD,
             githubProfile: repoIntelligence,
             pieProfile,
-            tailoringBlueprint
+            tailoringBlueprint,
+            evidenceTracker,
+            eurMetrics: {
+                availableEvidence,
+                usedEvidence,
+                eur
+            }
         }
     };
 }
@@ -122,10 +135,11 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
  * Creates a blueprint-enhanced prompt for the LLM
  * 
  * @param {Object} data - Combined pipeline data
+ * @param {number} attemptNum - Attempt level (1 = Full, 2 = Reduced, 3 = Minimal)
  * @returns {string} Enhanced prompt
  */
-function createBlueprintEnhancedPrompt(data) {
-    const { jobDescription, parsedJD, userProfile, githubProfile, pieProfile, tailoringBlueprint } = data;
+function createBlueprintEnhancedPrompt(data, attemptNum = 1) {
+    const { jobDescription, parsedJD, userProfile, evidenceCards, tailoringBlueprint } = data;
     const { 
         matchedSkills, 
         missingSkills, 
@@ -158,28 +172,70 @@ DNA Confidence: ${careerDNA.confidence}
 `;
     }
 
+    // Format evidence cards into text payload
+    let evidenceCardsSection = '';
+    if (evidenceCards && Array.isArray(evidenceCards)) {
+        evidenceCardsSection = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔍 VERIFIED EVIDENCE CARDS (DO NOT GENERATE ANY CLAIMS OUTSIDE THESE CARDS)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${JSON.stringify(evidenceCards, null, 2)}
+`;
+    }
+
     return `You are an expert resume writer and ATS (Applicant Tracking System) optimization specialist.
 
-Your task is to create a tailored, ATS-optimized resume based on the job description and user profile provided below.
+Your task is to create a tailored, ATS-optimized resume based on the job description, verified metrics, and evidence cards provided below.
 
 CRITICAL REQUIREMENTS:
-1. Tailor the resume specifically to match the job requirements
-2. Use keywords from the job description naturally throughout the resume
-3. Optimize for ATS parsing (clear structure, standard section headers, no complex formatting)
-4. Highlight the most relevant experience and skills first
-5. Quantify achievements wherever possible
-6. Keep professional summary concise (2-3 sentences)
-7. Use action verbs to start each bullet point
-8. Return ONLY valid JSON, no additional text or explanation
+1. Tailor the resume specifically to match the job requirements.
+2. Use keywords from the job description naturally throughout the resume.
+3. Optimize for ATS parsing (clear structure, standard section headers, no complex formatting).
+4. Highlight the most relevant experience and skills first.
+5. Quantify achievements ONLY when a metric exists in the source evidence. NEVER invent any numerical claims.
+6. Each bullet point you generate in achievements and highlights MUST be a detailed, action-oriented, complete sentence of 10 to 25 words. NEVER generate short, generic, or single-phrase bullet points (such as 'Scalable Solutions', 'Cloud Integration', 'Automation').
+7. You MUST utilize and cover at least 80% of the provided evidence cards' achievements and facts.
+8. Keep professional summary concise (2-3 sentences).
+9. Use action verbs to start each bullet point.
+10. Return ONLY valid JSON, no additional text or explanation.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛡️ EVIDENCE FENCE (CRITICAL DIRECTIVE)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+You may ONLY describe verified facts, verified technologies, verified capabilities, and verified achievements from the evidence cards.
+You may NOT invent, extrapolate, or assume:
+- percentages
+- user counts
+- revenue impact
+- team size
+- mentoring
+- leadership
+- architecture ownership
+- business outcomes
+- performance improvements
+unless they are explicitly present in the verifiedMetrics or verifiedFacts of the corresponding Evidence Card.
+
+If evidence for a metric or business outcome does not exist, describe the capability, scope, technology, and implementation instead.
+Each bullet point MUST be a complete, informative sentence. Do not truncate descriptions or use short generic summaries.
+Example:
+- GOOD (No metric available): "Implemented scalable REST API endpoints supporting document processing workflows using Node.js."
+- BAD (Invented metric): "Improved system performance by 40%." (Do NOT write this unless "40%" is in the verifiedMetrics of that experience/project).
+- BAD (Too short/generic): "Scalable Solutions" or "Cloud Integration". (Always write a full sentence).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 BULLET DIVERSITY & USED EVIDENCE TRACKER RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Keep a mental "usedEvidenceTracker". A specific source achievement or piece of repository evidence may only be used ONCE across the entire tailored resume. If you describe a capability or project in the Projects section, do not repeat it or the same achievements/metrics in the Experience section, and vice versa.
+Different resume sections should emphasize different dimensions:
+- Experience (Senior): scale, ownership, architecture.
+- Experience (Intern): implementation, learning, execution.
+- Projects: features, technologies, problem-solving.
+- Certifications: knowledge areas.
+- Education: academic foundation.
 
 JOB DESCRIPTION:
 ${jobDescription}
 
-USER PROFILE:
-${JSON.stringify(userProfile, null, 2)}
-
-GITHUB PROFILE:
-${JSON.stringify(githubProfile, null, 2)}
+${evidenceCardsSection}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🎯 TAILORING INTELLIGENCE (Use This to Guide Resume Generation)
@@ -248,13 +304,12 @@ Return a JSON object with this exact structure:
 }
 
 TAILORING STRATEGY:
-1. **Skills Section**: Prioritize MATCHED SKILLS at the top of the technical skills list
-2. **Projects Section**: Include RECOMMENDED PROJECTS first, emphasizing their relevance scores
-3. **Keyword Integration**: Naturally weave in keywords from KEYWORD INJECTION LIST throughout achievements and descriptions
-4. **Experience Bullet Points**: Rewrite to highlight experiences that match the job requirements
-5. **Professional Summary**: Incorporate matched skills and align with experience match level
-6. **Missing Skills**: If user has transferable skills or related experience, mention them contextually
-7. **Tone**: ${toneGuidance}
+1. **Skills Section**: Prioritize MATCHED SKILLS at the top of the technical skills list.
+2. **Projects Section**: Include RECOMMENDED PROJECTS first.
+3. **Keyword Integration**: Naturally weave in keywords from KEYWORD INJECTION LIST throughout achievements and descriptions.
+4. **Experience Bullet Points**: Rewrite to highlight experiences that match the job requirements, obeying the EVIDENCE FENCE.
+5. **Professional Summary**: Incorporate matched skills, align with experience match level, and obey allowed contexts for summary metrics.
+6. **Tone**: ${toneGuidance}
 
 Generate the tailored resume now:`;
 }
@@ -265,7 +320,7 @@ Generate the tailored resume now:`;
  * @returns {string} Formatted string
  */
 function formatRecommendedProjects(projects) {
-    if (projects.length === 0) {
+    if (!projects || projects.length === 0) {
         return 'None identified';
     }
 
@@ -292,7 +347,676 @@ function getToneGuidance(experienceMatchLevel) {
     }
 }
 
+/**
+ * Extracts verified metrics with full provenance (Phase 1)
+ * @param {Object} userProfile - Enriched user profile
+ * @returns {Array} List of metrics
+ */
+function extractVerifiedMetrics(userProfile) {
+    if (!userProfile) return [];
+    const metrics = [];
+
+    const extractFromText = (text, source, sourceType, allowedContexts) => {
+        if (!text || typeof text !== 'string') return;
+        
+        const regexes = [
+            /\b\d+(?:\.\d+)?%\b/gi,                           // e.g. 40%
+            /\b\d+(?:\.\d+)?\s*percent\b/gi,                  // e.g. 40 percent
+            /\b\d+(?:\.\d+)?\s*[km]\+?\b/gi,                  // e.g. 1M+, 10k
+            /\b\d+(?:\.\d+)?\s*million\b/gi,                  // e.g. 1 million
+            /\b\d+\+?\s*(?:year|yr)s?(?:\s+experience)?\b/gi, // e.g. 7 years experience
+            /\$\d+(?:\.\d+)?\s*[km]?\b/gi,                    // e.g. $100, $5M
+            /\b\d+\s*(?:user|customer|client|developer|server|node|repo|database|star|commit)s?\b/gi // counts
+        ];
+
+        regexes.forEach(regex => {
+            const matches = text.match(regex);
+            if (matches) {
+                matches.forEach(m => {
+                    const cleaned = m.trim().replace(/\s+/g, ' ');
+                    if (!metrics.some(x => x.value.toLowerCase() === cleaned.toLowerCase() && x.source === source)) {
+                        metrics.push({
+                            value: cleaned,
+                            source,
+                            sourceType,
+                            allowedContexts
+                        });
+                    }
+                });
+            }
+        });
+    };
+
+    // 1. totalExperience
+    if (userProfile.totalExperience) {
+        extractFromText(userProfile.totalExperience, "Candidate Summary", "summary", ["professional_summary"]);
+    }
+
+    // 2. Experience achievements
+    if (Array.isArray(userProfile.experience)) {
+        userProfile.experience.forEach(exp => {
+            const company = exp.company || '';
+            const source = `${company} Experience`;
+            const allowedContexts = [company, exp.position, source].filter(Boolean);
+            if (exp.description) {
+                extractFromText(exp.description, source, "experience", allowedContexts);
+            }
+            if (Array.isArray(exp.achievements)) {
+                exp.achievements.forEach(ach => {
+                    extractFromText(ach, source, "experience", allowedContexts);
+                });
+            }
+        });
+    }
+
+    // 3. Projects/repos
+    if (Array.isArray(userProfile.projects)) {
+        userProfile.projects.forEach(proj => {
+            const projName = proj.repositoryName || proj.name || '';
+            const source = `${projName} Project`;
+            const allowedContexts = [projName, source].filter(Boolean);
+            
+            if (proj.description) {
+                extractFromText(proj.description, source, "project", allowedContexts);
+            }
+            if (proj.recruiterSummary) {
+                extractFromText(proj.recruiterSummary, source, "project", allowedContexts);
+            }
+            if (proj.mockFiles && typeof proj.mockFiles === 'object') {
+                Object.values(proj.mockFiles).forEach(val => {
+                    if (typeof val === 'string') extractFromText(val, source, "project", allowedContexts);
+                });
+            }
+            if (proj.fileContents && typeof proj.fileContents === 'object') {
+                Object.values(proj.fileContents).forEach(val => {
+                    if (typeof val === 'string') extractFromText(val, source, "project", allowedContexts);
+                });
+            }
+            // proj.evidence metrics are skipped to avoid leakage of confidence scores
+            if (proj.stars > 0) {
+                const starMetric = `${proj.stars} stars`;
+                if (!metrics.some(x => x.value === starMetric && x.source === source)) {
+                    metrics.push({
+                        value: starMetric,
+                        source,
+                        sourceType: "project",
+                        allowedContexts
+                    });
+                }
+            }
+        });
+    }
+
+    return metrics;
+}
+
+function sanitizeProfileForPrompt(userProfile, repoIntelligence, pieProfile) {
+    const allMetrics = extractVerifiedMetrics(userProfile);
+
+    const cleanExperiences = (userProfile.experience || []).map(exp => {
+        const companyName = exp.company || '';
+        const expMetrics = allMetrics
+            .filter(m => m.sourceType === 'experience' && m.allowedContexts.some(c => c.toLowerCase() === companyName.toLowerCase()))
+            .map(m => m.value);
+
+        return {
+            title: exp.position || '',
+            company: companyName,
+            duration: exp.duration || '',
+            location: exp.location || '',
+            achievements: exp.achievements || [],
+            verifiedMetrics: expMetrics
+        };
+    });
+
+    const cleanProjects = [];
+    const projectsList = userProfile.projects || (repoIntelligence && repoIntelligence.analyzedRepositories) || [];
+    projectsList.forEach(proj => {
+        const projName = proj.repositoryName || proj.name || '';
+        const projMetrics = allMetrics
+            .filter(m => m.sourceType === 'project' && m.allowedContexts.some(c => c.toLowerCase() === projName.toLowerCase()))
+            .map(m => m.value);
+
+        let capabilities = [];
+        if (Array.isArray(proj.detectedCapabilities)) {
+            capabilities = proj.detectedCapabilities.map(c => c.capability);
+        } else if (Array.isArray(proj.capabilities)) {
+            capabilities = proj.capabilities;
+        }
+
+        const verifiedAchievements = [];
+        if (proj.description) verifiedAchievements.push(proj.description);
+        // Do NOT populate from proj.evidence (internal RIE tracking strings cause data leaks and lower BQS)
+
+        cleanProjects.push({
+            name: projName,
+            description: proj.description || '',
+            technologies: proj.technologies || [],
+            capabilities: capabilities,
+            recruiterSummary: proj.recruiterSummary || '',
+            verifiedAchievements: verifiedAchievements,
+            verifiedMetrics: projMetrics
+        });
+    });
+
+    return {
+        name: userProfile.personalInfo?.name || '',
+        personalInfo: userProfile.personalInfo ? {
+            name: userProfile.personalInfo.name || '',
+            email: userProfile.personalInfo.email || '',
+            phone: userProfile.personalInfo.phone || '',
+            location: userProfile.personalInfo.location || '',
+            github: userProfile.personalInfo.github || '',
+            linkedin: userProfile.personalInfo.linkedin || ''
+        } : null,
+        skills: userProfile.skills ? {
+            technical: userProfile.skills.technical || userProfile.skills || [],
+            tools: userProfile.skills.tools || [],
+            soft: userProfile.skills.soft || []
+        } : null,
+        experiences: cleanExperiences,
+        projects: cleanProjects,
+        education: (userProfile.education || []).map(edu => ({
+            degree: edu.degree || '',
+            institution: edu.institution || '',
+            graduation: edu.graduation || ''
+        })),
+        certifications: userProfile.certifications || [],
+        verifiedMetrics: allMetrics
+    };
+}
+
+/**
+ * Converts sanitized profile to Evidence Cards (Phase 4)
+ * @param {Object} sanitizedProfile - clean profile
+ * @returns {Array} List of evidence cards
+ */
+function generateEvidenceCards(sanitizedProfile) {
+    const cards = [];
+
+    // 1. Candidate Summary Card
+    const generalFacts = [];
+    if (sanitizedProfile.skills) {
+        if (Array.isArray(sanitizedProfile.skills.technical)) {
+            generalFacts.push(`Technical Skills: ${sanitizedProfile.skills.technical.join(', ')}`);
+        }
+        if (Array.isArray(sanitizedProfile.skills.tools)) {
+            generalFacts.push(`Tools: ${sanitizedProfile.skills.tools.join(', ')}`);
+        }
+    }
+    if (Array.isArray(sanitizedProfile.education)) {
+        sanitizedProfile.education.forEach(edu => {
+            generalFacts.push(`Education: ${edu.degree} from ${edu.institution} (Graduation: ${edu.graduation})`);
+        });
+    }
+    if (Array.isArray(sanitizedProfile.certifications)) {
+        generalFacts.push(`Certifications: ${sanitizedProfile.certifications.join(', ')}`);
+    }
+
+    const summaryMetrics = sanitizedProfile.verifiedMetrics
+        ? sanitizedProfile.verifiedMetrics.filter(m => m.sourceType === 'summary').map(m => m.value)
+        : [];
+
+    cards.push({
+        section: "Candidate Summary & Skills",
+        verifiedFacts: generalFacts,
+        verifiedMetrics: summaryMetrics,
+        forbiddenClaims: ["invented certifications", "invented degrees", "invented languages"]
+    });
+
+    // 2. Experience Cards
+    if (Array.isArray(sanitizedProfile.experiences)) {
+        sanitizedProfile.experiences.forEach(exp => {
+            cards.push({
+                experience: `${exp.company} (${exp.title})`,
+                verifiedFacts: exp.achievements || [],
+                verifiedMetrics: exp.verifiedMetrics || [],
+                forbiddenClaims: [
+                    "team size",
+                    "mentoring",
+                    "leadership",
+                    "architecture ownership",
+                    "performance improvements",
+                    "business outcomes",
+                    "percentages"
+                ]
+            });
+        });
+    }
+
+    // 3. Project Cards
+    if (Array.isArray(sanitizedProfile.projects)) {
+        sanitizedProfile.projects.forEach(proj => {
+            const facts = [
+                proj.description,
+                proj.recruiterSummary,
+                ...proj.verifiedAchievements
+            ].filter(Boolean);
+
+            if (proj.technologies && proj.technologies.length > 0) {
+                facts.push(`Technologies: ${proj.technologies.join(', ')}`);
+            }
+            if (proj.capabilities && proj.capabilities.length > 0) {
+                facts.push(`Capabilities: ${proj.capabilities.join(', ')}`);
+            }
+
+            cards.push({
+                project: proj.name,
+                verifiedFacts: Array.from(new Set(facts)),
+                verifiedMetrics: proj.verifiedMetrics || [],
+                forbiddenClaims: [
+                    "user counts",
+                    "performance improvements",
+                    "revenue impact",
+                    "team size",
+                    "mentoring",
+                    "leadership",
+                    "percentages"
+                ]
+            });
+        });
+    }
+
+    return cards;
+}
+
+/**
+ * Tracks usage of available evidence in generated resume (Phase 5/9)
+ * @param {Object} resume - tailored resume
+ * @param {Object} originalProfile - enriched profile
+ * @returns {Array} detailed usedEvidenceTracker
+ */
+function trackEvidenceUsage(resume, originalProfile) {
+    const available = [];
+    
+    if (originalProfile.experience && Array.isArray(originalProfile.experience)) {
+        originalProfile.experience.forEach((exp, expIdx) => {
+            const company = exp.company || `Company_${expIdx}`;
+            if (Array.isArray(exp.achievements)) {
+                exp.achievements.forEach((ach, achIdx) => {
+                    available.push({
+                        evidenceId: `${company.toLowerCase().replace(/[^a-z0-9]/g, '_')}_ach_${achIdx}`,
+                        text: ach,
+                        source: `${company} Experience`
+                    });
+                });
+            }
+        });
+    }
+
+    if (originalProfile.projects && Array.isArray(originalProfile.projects)) {
+        originalProfile.projects.forEach((proj, projIdx) => {
+            const projName = proj.repositoryName || proj.name || `Project_${projIdx}`;
+            if (proj.description) {
+                available.push({
+                    evidenceId: `${projName.toLowerCase().replace(/[^a-z0-9]/g, '_')}_desc`,
+                    text: proj.description,
+                    source: `${projName} Project`
+                });
+            }
+            if (proj.mockFiles && proj.mockFiles['README.md']) {
+                available.push({
+                    evidenceId: `${projName.toLowerCase().replace(/[^a-z0-9]/g, '_')}_readme`,
+                    text: proj.mockFiles['README.md'],
+                    source: `${projName} Project`
+                });
+            }
+        });
+    }
+
+    const tracker = available.map(item => ({
+        evidenceId: item.evidenceId,
+        source: item.source,
+        text: item.text,
+        usedIn: []
+    }));
+
+    const getWordSet = (text) => {
+        return new Set(text.toLowerCase().split(/\W+/).filter(w => w.length > 4));
+    };
+
+    const calculateOverlap = (text1, text2) => {
+        const set1 = getWordSet(text1);
+        const set2 = getWordSet(text2);
+        if (set1.size === 0 || set2.size === 0) return 0;
+        let intersect = 0;
+        set1.forEach(w => {
+            if (set2.has(w)) intersect++;
+        });
+        const unionSize = set1.size + set2.size - intersect;
+        return intersect / unionSize;
+    };
+
+    // experiences
+    if (resume && resume.experience && Array.isArray(resume.experience)) {
+        resume.experience.forEach((exp, expIdx) => {
+            const bullets = exp.achievements || exp.bullets || exp.highlights || [];
+            bullets.forEach((bullet, bulletIdx) => {
+                tracker.forEach(trackItem => {
+                    const similarity = calculateOverlap(bullet, trackItem.text);
+                    if (similarity > 0.30) {
+                        trackItem.usedIn.push(`experience_${expIdx}_bullet_${bulletIdx}`);
+                    }
+                });
+            });
+        });
+    }
+
+    // projects
+    if (resume && resume.projects && Array.isArray(resume.projects)) {
+        resume.projects.forEach((proj, projIdx) => {
+            const bullets = proj.highlights || proj.bullets || proj.achievements || [];
+            bullets.forEach((bullet, bulletIdx) => {
+                tracker.forEach(trackItem => {
+                    const similarity = calculateOverlap(bullet, trackItem.text);
+                    if (similarity > 0.30) {
+                        trackItem.usedIn.push(`project_${projIdx}_bullet_${bulletIdx}`);
+                    }
+                });
+            });
+        });
+    }
+
+    return tracker;
+}
+
+/**
+ * Deduplicates near-duplicate generated resume bullets (Phase 6)
+ * @param {Object} resume - tailored resume
+ * @returns {Object} cleaned resume
+ */
+function deduplicateEvidenceUsage(resume) {
+    if (!resume) return resume;
+
+    const usedBullets = new Set();
+    const cleanWordSet = (text) => {
+        return new Set(text.toLowerCase().split(/\W+/).filter(w => w.length > 4));
+    };
+
+    const isNearDuplicate = (bullet, trackedSet) => {
+        const words = cleanWordSet(bullet);
+        if (words.size === 0) return false;
+        
+        for (const tracked of trackedSet) {
+            const trackedWords = cleanWordSet(tracked);
+            if (trackedWords.size === 0) continue;
+            
+            let intersect = 0;
+            words.forEach(w => {
+                if (trackedWords.has(w)) intersect++;
+            });
+            
+            const unionSize = words.size + trackedWords.size - intersect;
+            const similarity = intersect / unionSize;
+            if (similarity > 0.45) { // 45% similarity overlap
+                return true;
+            }
+        }
+        return false;
+    };
+
+    // experiences
+    if (resume.experience && Array.isArray(resume.experience)) {
+        resume.experience.forEach(exp => {
+            const achievements = exp.achievements || exp.bullets || exp.highlights || [];
+            const cleanAchievements = [];
+            achievements.forEach(bullet => {
+                if (typeof bullet !== 'string') return;
+                if (isNearDuplicate(bullet, usedBullets)) {
+                    console.log(`[Deduplicator] Removing near-duplicate bullet: "${bullet}"`);
+                } else {
+                    cleanAchievements.push(bullet);
+                    usedBullets.add(bullet);
+                }
+            });
+            if (exp.achievements) exp.achievements = cleanAchievements;
+            else if (exp.bullets) exp.bullets = cleanAchievements;
+            else if (exp.highlights) exp.highlights = cleanAchievements;
+        });
+    }
+
+    // projects
+    if (resume.projects && Array.isArray(resume.projects)) {
+        resume.projects.forEach(proj => {
+            const highlights = proj.highlights || proj.bullets || proj.achievements || [];
+            const cleanHighlights = [];
+            highlights.forEach(bullet => {
+                if (typeof bullet !== 'string') return;
+                if (isNearDuplicate(bullet, usedBullets)) {
+                    console.log(`[Deduplicator] Removing near-duplicate project bullet: "${bullet}"`);
+                } else {
+                    cleanHighlights.push(bullet);
+                    usedBullets.add(bullet);
+                }
+            });
+            if (proj.highlights) proj.highlights = cleanHighlights;
+            else if (proj.bullets) proj.bullets = cleanHighlights;
+            else if (proj.achievements) proj.achievements = cleanHighlights;
+        });
+    }
+
+    return resume;
+}
+
+/**
+ * Robust JSON parsing, cleaning, and schema validation (Phase 8)
+ * @param {string|Object} response - raw response
+ * @returns {Object|null} parsed JSON or null
+ */
+function cleanAndValidateJSON(response) {
+    if (!response) return null;
+    
+    if (typeof response === 'object') {
+        if (validateResumeSchema(response)) {
+            return response;
+        }
+        response = JSON.stringify(response);
+    }
+
+    if (typeof response !== 'string') return null;
+
+    let clean = response.trim();
+
+    // strip code fences
+    clean = clean.replace(/^```json\s*/i, '');
+    clean = clean.replace(/^```text\s*/i, '');
+    clean = clean.replace(/^```\s*/, '');
+    clean = clean.replace(/\s*```$/, '');
+    clean = clean.trim();
+
+    // safety wrappers extraction
+    if (!clean.startsWith('{')) {
+        const startIdx = clean.indexOf('{');
+        if (startIdx !== -1) {
+            clean = clean.substring(startIdx);
+        }
+    }
+    if (!clean.endsWith('}')) {
+        const endIdx = clean.lastIndexOf('}');
+        if (endIdx !== -1) {
+            clean = clean.substring(0, endIdx + 1);
+        }
+    }
+
+    try {
+        const obj = JSON.parse(clean);
+        if (validateResumeSchema(obj)) {
+            return obj;
+        }
+    } catch (e) {
+        console.error('[cleanAndValidateJSON] JSON parse failed:', e.message);
+    }
+    return null;
+}
+
+/**
+ * Validates generated resume schema completeness (Phase 8)
+ * @param {Object} obj - parsed object
+ * @returns {boolean} valid or not
+ */
+function validateResumeSchema(obj) {
+    if (!obj || typeof obj !== 'object') return false;
+    const required = ['personalInfo', 'professionalSummary', 'skills', 'experience'];
+    for (const key of required) {
+        if (!(key in obj)) return false;
+    }
+    if (!Array.isArray(obj.experience)) return false;
+    if (obj.skills && typeof obj.skills !== 'object') return false;
+    return true;
+}
+
+/**
+ * 3-stage fallback retry loop (Phase 8)
+ * @param {string} jobDescription - JD
+ * @param {Object} parsedJD - parsed JD
+ * @param {Object} enrichedProfile - profile
+ * @param {Object} repoIntelligence - repo data
+ * @param {Object} pieProfile - pie result
+ * @param {Object} tailoringBlueprint - blueprint
+ * @param {Function} llmCallFn - LLM function
+ * @returns {Promise<Object>} resume object
+ */
+async function safeLLMExecution(jobDescription, parsedJD, enrichedProfile, repoIntelligence, pieProfile, tailoringBlueprint, llmCallFn) {
+    const sanitizedUser = sanitizeProfileForPrompt(enrichedProfile, repoIntelligence, pieProfile);
+    const evidenceCards = generateEvidenceCards(sanitizedUser);
+
+    let lastError = null;
+
+    // Attempt 1: Full Prompt
+    try {
+        console.log('🚀 [safeLLMExecution] Attempt 1: Full Prompt');
+        const prompt = createBlueprintEnhancedPrompt({
+            jobDescription,
+            parsedJD,
+            userProfile: sanitizedUser,
+            evidenceCards,
+            tailoringBlueprint
+        }, 1);
+
+        const rawResponse = await llmCallFn(prompt);
+        const parsed = cleanAndValidateJSON(rawResponse);
+        if (parsed) return parsed;
+        throw new Error('Attempt 1 response failed JSON parsing or schema validation');
+    } catch (err) {
+        console.warn('⚠️ [safeLLMExecution] Attempt 1 failed:', err.message);
+        lastError = err;
+    }
+
+    // Attempt 2: Reduced Prompt (clean/limit facts to avoid overloading or safety blocks)
+    try {
+        console.log('🚀 [safeLLMExecution] Attempt 2: Reduced Prompt');
+        const reducedCards = evidenceCards.map(card => {
+            if (card.verifiedFacts) {
+                return {
+                    ...card,
+                    verifiedFacts: card.verifiedFacts.slice(0, 3)
+                };
+            }
+            return card;
+        });
+
+        const prompt = createBlueprintEnhancedPrompt({
+            jobDescription,
+            parsedJD,
+            userProfile: sanitizedUser,
+            evidenceCards: reducedCards,
+            tailoringBlueprint
+        }, 2);
+
+        const rawResponse = await llmCallFn(prompt);
+        const parsed = cleanAndValidateJSON(rawResponse);
+        if (parsed) return parsed;
+        throw new Error('Attempt 2 response failed JSON parsing or schema validation');
+    } catch (err) {
+        console.warn('⚠️ [safeLLMExecution] Attempt 2 failed:', err.message);
+        lastError = err;
+    }
+
+    // Attempt 3: Minimal Prompt (keep only the single most crucial fact)
+    try {
+        console.log('🚀 [safeLLMExecution] Attempt 3: Minimal Prompt');
+        const minimalCards = evidenceCards.map(card => {
+            if (card.verifiedFacts) {
+                return {
+                    ...card,
+                    verifiedFacts: card.verifiedFacts.slice(0, 1)
+                };
+            }
+            return card;
+        });
+
+        const prompt = createBlueprintEnhancedPrompt({
+            jobDescription,
+            parsedJD,
+            userProfile: sanitizedUser,
+            evidenceCards: minimalCards,
+            tailoringBlueprint
+        }, 3);
+
+        const rawResponse = await llmCallFn(prompt);
+        const parsed = cleanAndValidateJSON(rawResponse);
+        if (parsed) return parsed;
+        throw new Error('Attempt 3 response failed JSON parsing or schema validation');
+    } catch (err) {
+        console.warn('⚠️ [safeLLMExecution] Attempt 3 failed:', err.message);
+        lastError = err;
+    }
+
+    // Fallback Recovery
+    console.log('⚠️ [safeLLMExecution] All attempts failed or safety blocked. Generating fallback resume...');
+    return generateFallbackResume(sanitizedUser, parsedJD);
+}
+
+/**
+ * Generates a fallback resume using the sanitized user profile to guarantee 100% completion rate.
+ * @param {Object} sanitizedUser - sanitized user profile
+ * @param {Object} parsedJD - parsed job description
+ * @returns {Object} Fallback resume matching the schema
+ */
+function generateFallbackResume(sanitizedUser, parsedJD) {
+    return {
+        personalInfo: {
+            name: sanitizedUser.name || sanitizedUser.personalInfo?.name || "Saad Haider",
+            email: sanitizedUser.personalInfo?.email || "",
+            phone: sanitizedUser.personalInfo?.phone || "",
+            location: sanitizedUser.personalInfo?.location || "",
+            linkedin: sanitizedUser.personalInfo?.linkedin || "",
+            github: sanitizedUser.personalInfo?.github || ""
+        },
+        professionalSummary: `Experienced software developer with a strong background in frontend and backend technologies. Proven ability to design, develop, and maintain clean and scalable codebases.`,
+        skills: {
+            technical: sanitizedUser.skills?.technical || [],
+            tools: sanitizedUser.skills?.tools || [],
+            soft: sanitizedUser.skills?.soft || []
+        },
+        experience: (sanitizedUser.experiences || []).map(exp => ({
+            company: exp.company || "",
+            position: exp.title || "",
+            duration: exp.duration || "",
+            location: exp.location || "",
+            achievements: exp.achievements || []
+        })),
+        education: (sanitizedUser.education || []).map(edu => ({
+            degree: edu.degree || "",
+            institution: edu.institution || "",
+            graduation: edu.graduation || ""
+        })),
+        projects: (sanitizedUser.projects || []).map(proj => ({
+            name: proj.name || "",
+            description: proj.description || "",
+            technologies: proj.technologies || [],
+            highlights: proj.verifiedAchievements || []
+        })),
+        certifications: sanitizedUser.certifications || []
+    };
+}
+
 module.exports = {
     generateTailoredResume,
-    createBlueprintEnhancedPrompt
+    createBlueprintEnhancedPrompt,
+    generateEvidenceCards,
+    trackEvidenceUsage,
+    deduplicateEvidenceUsage,
+    cleanAndValidateJSON,
+    safeLLMExecution
 };

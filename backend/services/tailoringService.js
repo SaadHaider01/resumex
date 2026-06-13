@@ -295,7 +295,9 @@ function scoreProjectsList(parsedJD, repoProfiles, roleArchetype, careerDNA) {
 
     return repoProfiles.map(project => {
         const techList = project.technologies || [];
-        const detectedCaps = (project.detectedCapabilities || []).map(c => typeof c === 'string' ? c : c.capability);
+        const detectedCaps = (project.detectedCapabilities || [])
+            .map(c => typeof c === 'string' ? c : (c ? c.capability : null))
+            .filter(c => typeof c === 'string' && c);
         const name = project.repositoryName || project.name || '';
         const desc = project.description || '';
         const projectText = `${name} ${desc}`.toLowerCase();
@@ -303,7 +305,7 @@ function scoreProjectsList(parsedJD, repoProfiles, roleArchetype, careerDNA) {
         // 1. Capability Match (40%)
         let capMatchCount = 0;
         detectedCaps.forEach(cap => {
-            if (jdKeywords.some(kw => cap.toLowerCase().includes(kw)) || jdSkills.some(sk => cap.toLowerCase().includes(sk))) {
+            if (cap && (jdKeywords.some(kw => cap.toLowerCase().includes(kw)) || jdSkills.some(sk => cap.toLowerCase().includes(sk)))) {
                 capMatchCount++;
             }
         });
@@ -397,7 +399,9 @@ function scoreExperiencesList(parsedJD, experiences, roleArchetype, careerDNA) {
         const title = exp.title || '';
         const company = exp.company || '';
         const techList = exp.technologies || [];
-        const detectedCaps = exp.inferredCapabilities || [];
+        const detectedCaps = (exp.inferredCapabilities || [])
+            .map(c => typeof c === 'string' ? c : (c ? c.capability : null))
+            .filter(c => typeof c === 'string' && c);
         const responsibilitiesText = (exp.responsibilities || []).join(' ').toLowerCase();
         const expText = `${title} ${company} ${responsibilitiesText}`.toLowerCase();
 
@@ -422,10 +426,12 @@ function scoreExperiencesList(parsedJD, experiences, roleArchetype, careerDNA) {
         // 1. Capability Match (40%)
         let capMatchCount = 0;
         detectedCaps.forEach(cap => {
-            const matchesJd = jdKeywords.some(kw => cap.toLowerCase().includes(kw)) || 
-                             jdKeywords.some(kw => kw.includes(cap.toLowerCase())) ||
-                             jdSkills.some(sk => cap.toLowerCase().includes(sk.toLowerCase())) ||
-                             isCapabilityRelevantToArchetype(cap, roleArchetype);
+            const matchesJd = cap && (
+                              jdKeywords.some(kw => cap.toLowerCase().includes(kw)) || 
+                              jdKeywords.some(kw => kw.includes(cap.toLowerCase())) ||
+                              jdSkills.some(sk => cap.toLowerCase().includes(sk.toLowerCase())) ||
+                              isCapabilityRelevantToArchetype(cap, roleArchetype)
+            );
             if (matchesJd) {
                 capMatchCount++;
             }

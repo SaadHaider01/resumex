@@ -1,0 +1,5374 @@
+[
+  {
+    "id": 1,
+    "category": "Frontend",
+    "role": "React Frontend Engineer",
+    "jd": "Build clean React interfaces. Must know React, JavaScript, CSS, HTML5, UI responsive styling.",
+    "avgBqs": 88,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with seven years of experience building responsive React interfaces and robust backend services. Proven ability to deliver clean, user‑focused web solutions using JavaScript, HTML5, and CSS3.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed responsive React frontend modules with Tailwind CSS, delivering consistent user experiences across devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST API microservices that served over one million users, ensuring reliable data access and scalability.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and maintaining environment stability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB database schemas to support application data storage requirements.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built a Chrome Extension prototype with manifest.json to automate form autofill, enhancing user workflow efficiency.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Engineered a Chrome Extension for LinkedIn scraping and form autofill using JavaScript, HTML, and CSS.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs and PDF generation functionality, enabling seamless data export within the application.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Created a frontend language‑learning application leveraging JavaScript and Speech APIs for interactive pronunciation practice.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated real‑time speech recognition features to provide immediate feedback to learners.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "Static-Portfolio",
+          "bullets": [
+            {
+              "bullet": "Built a static portfolio website using HTML and CSS, demonstrating clean code structure and responsive design.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "category": "Frontend",
+    "role": "Senior UI Developer",
+    "jd": "Lead frontend architecture. Required: React, Tailwind CSS, TypeScript, and state management.",
+    "avgBqs": 88,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "project_1_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Seasoned frontend engineer with seven years of experience building responsive, high‑performance web interfaces using React, Tailwind CSS, and TypeScript. Proven ability to design and deploy scalable frontend modules while integrating cloud services and CI/CD pipelines. Eager to lead frontend architecture and drive innovation in a dynamic team.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring reliable data flow to frontend components",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, delivering consistent user experiences across devices",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating build and release processes",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Designed and implemented interactive speech recognition features that enhance user engagement",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Deployed the application using cloud services, ensuring low latency and high availability",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Created Chrome Extension prototype with manifest.json to automate form filling tasks",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built REST APIs to support PDF generation and data extraction functionalities",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "Static-Portfolio",
+          "bullets": [
+            {
+              "bullet": "Developed a responsive portfolio site demonstrating code quality and design principles",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "category": "Backend",
+    "role": "REST API Node.js Engineer",
+    "jd": "Design scalable backends. Experience with Express, Node.js, routing, and REST endpoints.",
+    "avgBqs": 91,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with 7 years of experience designing scalable backends and REST APIs using Node.js and Express. Proven ability to deliver cloud‑native solutions and automate browser workflows.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed REST API microservices serving over 1M users, implementing scalable backend architecture with Node.js and Express.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user interface consistency across web applications.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, ensuring reliable delivery of backend services.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB schemas to support data storage for internal tools.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed a Chrome Extension prototype with manifest.json to automate form autofill tasks.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented Chrome Extension enabling automated form filling and data extraction using JavaScript.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Created REST API endpoints for PDF generation and LinkedIn profile scraping, utilizing Node.js.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Built AI assistant using Python and Whisper for speech recognition and text‑to‑speech functionality.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Developed frontend application with JavaScript and Speech APIs to facilitate language learning exercises.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "category": "Backend",
+    "role": "Database API Engineer",
+    "jd": "Scalable backend engineer focusing on MongoDB, PostgreSQL schema design, Express, and performance.",
+    "avgBqs": 91,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Backend engineer with 7 years of experience building scalable services using MongoDB, PostgreSQL, and Express. Proven ability to deliver high‑volume APIs and cloud‑native deployments while continuously expanding technical expertise.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving over 1M users, enhancing backend scalability and reliability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and implemented CI/CD pipelines to streamline release processes and maintain system uptime.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, improving user interface consistency across devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB database schemas to support data storage requirements.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built Chrome Extension prototype with manifest.json for form autofill automation.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a Chrome Extension with PDF generation and form autofill capabilities using JavaScript.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST APIs for data handling within the extension, demonstrating full‑stack integration.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Developed an AI assistant using Python, Whisper, and speech recognition to process voice commands.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Created a frontend application leveraging JavaScript and speech APIs to facilitate language learning interactions.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "category": "Backend",
+    "role": "Backend Software Architect",
+    "jd": "Architecture of API microservices using Node.js, Redis, and distributed message queues.",
+    "avgBqs": 88,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1",
+          "project_0_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Seasoned full‑stack engineer with 7 years of experience designing and deploying scalable REST API microservices using Node.js and distributed architectures. Proven ability to build responsive front‑end modules and manage cloud deployments on AWS, aligning technical solutions with business needs.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring high availability and fault tolerance",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user experience across web platforms",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, streamlining release cycles and reducing deployment errors",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created node.js backend scripts and designed MongoDB database schemas, supporting prototype data workflows",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built Chrome Extension prototype with manifest.json for form autofill automation, improving user productivity",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented Chrome Extension prototype enabling automated form autofill for users",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs to retrieve and process LinkedIn data for resume generation",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Integrated Speech APIs to provide real‑time pronunciation feedback to learners",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built interactive frontend components to track user progress and reinforce learning",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Implemented Whisper model to transcribe spoken input into text for processing",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Enabled text‑to‑speech output to provide audible responses to user queries",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "category": "Full Stack",
+    "role": "Full Stack Engineer",
+    "jd": "Develop full stack apps using React (frontend) and Node.js/Express (backend).",
+    "avgBqs": 90,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1",
+          "project_1_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full stack developer with seven years of experience building responsive React frontends and Node.js/Express backends. Proven ability to design, implement, and deploy scalable web services and browser extensions.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring reliable data access for front‑end applications.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user experience across desktop and mobile devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, streamlining release cycles and maintaining high availability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB database schemas to support prototype data workflows.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built a Chrome Extension prototype with manifest.json for form autofill automation, demonstrating rapid prototyping skills.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a speech‑enabled frontend that facilitates interactive language practice.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented real‑time voice recognition features to provide instant feedback to users.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Built a Chrome Extension prototype that automates form filling, improving user productivity.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs to support PDF generation and LinkedIn data extraction.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Implemented speech recognition using Whisper to convert spoken input into actionable commands.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated text‑to‑speech functionality to provide audible responses to user queries.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "category": "Full Stack",
+    "role": "Full Stack Tech Lead",
+    "jd": "Lead full stack engineering team. Modern JS/TS frameworks, React, Express, database design, and cloud deployments.",
+    "avgBqs": 88,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "project_0_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full stack engineer with 7 years of experience delivering scalable web solutions. Proven expertise in React, TypeScript, and cloud deployments, driving high‑traffic API services and responsive front‑end modules.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring reliable data access across services.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user engagement on web platforms.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and maintaining infrastructure stability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented Chrome Extension prototype with manifest.json for form autofill automation.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs to support dynamic data retrieval for the extension.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated PDF generation functionality to export user data from the extension.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Built speech recognition module using Whisper to transcribe user audio input.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented text‑to‑speech conversion for interactive assistant responses.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Integrated Speech APIs to enable real‑time pronunciation feedback.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Designed frontend interface for language learning exercises.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "category": "Full Stack",
+    "role": "Product Software Developer",
+    "jd": "General full-stack developer experienced in web applications, user interfaces, APIs, and agile practices.",
+    "avgBqs": 88,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack developer with 7 years of experience building APIs, responsive user interfaces, and cloud‑based deployments. Proven ability to deliver scalable web solutions in agile environments.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed REST API microservices that served over 1M users, enabling reliable data access for web applications.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules with React and Tailwind, delivering consistent user interfaces across browsers.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, ensuring continuous delivery and environment stability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB schemas to support data storage for internal tools.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed a Chrome Extension prototype using manifest.json to automate form autofill tasks.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Engineered a Chrome Extension that automates form filling and LinkedIn data extraction using JavaScript.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST API services and PDF generation features to support seamless document handling.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Developed a frontend language‑learning application leveraging JavaScript and Speech APIs for interactive pronunciation practice.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated real‑time speech recognition to provide immediate feedback within the learning interface.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Created an AI assistant using Python and Whisper for speech‑to‑text conversion and text‑to‑speech output.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented speech recognition pipelines enabling voice commands and responses within the assistant.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "category": "AI",
+    "role": "Generative AI Developer",
+    "jd": "Build AI applications with LLMs. Experience with OpenAI API, Prompt engineering, and Python.",
+    "avgBqs": 90,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 2,
+      "eur": 40
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": []
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with seven years of experience building API‑driven applications and cloud deployments. Skilled in Python and JavaScript, eager to develop AI solutions using LLMs and the OpenAI API.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed REST API microservices using Node.js that supported over one million users across multiple platforms.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented responsive frontend modules with React and Tailwind, enhancing user interaction and visual consistency.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines with Docker and Kubernetes, ensuring reliable release processes.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a Chrome Extension enabling form autofill and PDF generation using JavaScript, HTML, and CSS.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built REST API endpoints to support data extraction and processing for LinkedIn profile scraping.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Built a frontend application integrating JavaScript speech APIs to facilitate interactive language learning experiences.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Created an AI assistant prototype in Python leveraging Whisper for speech recognition and text‑to‑speech capabilities.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "category": "AI",
+    "role": "Speech AI Integration Specialist",
+    "jd": "Looking for a Python developer experienced with Whisper Speech-to-Text and TTS conversions.",
+    "avgBqs": 90,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1",
+          "project_2_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Python developer with 7 years of experience building speech‑to‑text and text‑to‑speech solutions using Whisper. Proven ability to design, deploy, and maintain scalable APIs and frontend modules in cloud environments.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring high availability and scalability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user experience across web platforms.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, streamlining release cycles and reducing deployment errors.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created node.js backend scripts and designed MongoDB database schemas to support rapid prototyping.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built Chrome Extension prototype with manifest.json for form autofill automation, improving data entry efficiency.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a speech‑to‑text pipeline using Whisper, enabling real‑time voice command processing.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented text‑to‑speech functionality, allowing the assistant to respond audibly to user queries.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Built a speech‑API powered frontend that captures user pronunciation and provides instant feedback.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Enhanced user engagement by integrating interactive language learning modules.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Developed a Chrome Extension prototype that automates form autofill, reducing manual data entry time.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST APIs for PDF generation, enabling dynamic document creation from user inputs.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "category": "AI",
+    "role": "AI Conversational Agent Developer",
+    "jd": "Develop AI assistants using speech recognition, text-to-speech, and OpenAI conversational frameworks.",
+    "avgBqs": 87,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "project_2_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with 7 years of experience building scalable APIs, responsive front‑ends, and cloud‑native deployments. Proven ability to design AI assistants using speech recognition, text‑to‑speech, and OpenAI frameworks, delivering functional prototypes that align with business needs.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring reliable request handling and data integrity.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, delivering consistent user experiences across devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and reducing manual effort.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Implemented end‑to‑end voice interaction pipeline that captures speech, processes with Whisper, and generates spoken responses.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated OpenAI conversational framework to enable contextual dialogue handling within the assistant.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Developed interactive UI that captures user speech, evaluates pronunciation, and displays corrective suggestions.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Utilized browser speech APIs to deliver low‑latency audio processing directly in the web application.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Engineered Chrome Extension prototype with manifest.json to automate form filling across web pages.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST API endpoints for PDF generation and LinkedIn scraping, enhancing data extraction capabilities.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "category": "ML",
+    "role": "Machine Learning Engineer",
+    "jd": "Implement machine learning models. Required: Python, deep learning frameworks, and data preprocessing.",
+    "avgBqs": 89,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Python developer with seven years of experience building scalable web services and data pipelines. Skilled in machine learning, cloud deployment, and full‑stack development. Eager to apply deep learning techniques to solve real‑world problems.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed REST API microservices serving 1M+ users, enabling reliable data access for enterprise clients.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, improving user engagement across web platforms.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, ensuring continuous delivery and high availability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB database schemas to support prototype features.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built a Chrome Extension prototype with manifest.json for form autofill automation, enhancing user productivity.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed an AI assistant that converts spoken language into written text using Whisper.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented text-to-speech functionality to deliver spoken responses, enhancing accessibility.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "Simple-Script",
+          "bullets": [
+            {
+              "bullet": "Developed reusable Python scripts that streamline data manipulation workflows.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated scripts into existing pipelines to improve automation efficiency.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented PDF generation and LinkedIn scraping features to support recruitment workflows.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "category": "ML",
+    "role": "Speech Recognition ML Engineer",
+    "jd": "Develop custom STT and speech models using Whisper, Python, and speech signals processing.",
+    "avgBqs": 91,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with 7 years of experience building scalable services and cloud deployments. Proven ability to develop Python‑based speech solutions using Whisper and modern speech processing techniques.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving over 1M users, ensuring reliable request handling and data integrity.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, delivering consistent user experiences across devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and maintaining environment stability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB database schemas to support core application functionality.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built a Chrome Extension prototype with manifest.json to automate form autofill tasks for web users.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Implemented speech recognition pipelines using Whisper to convert audio input into accurate text transcripts.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated text‑to‑speech synthesis enabling bidirectional voice interaction within the assistant.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Designed frontend application with JavaScript to deliver interactive language lessons and real‑time speech analysis.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "Simple‑Script",
+          "bullets": [
+            {
+              "bullet": "Developed a self‑contained Python script showcasing file processing and command‑line interaction.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 14,
+    "category": "ML",
+    "role": "Audio DSP / ML Specialist",
+    "jd": "Apply ML to audio signals and speech synthesis. Python, text-to-speech, and signal parsing.",
+    "avgBqs": 89,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 3,
+      "eur": 60
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": []
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with 7 years of experience building scalable web services and cloud deployments. Skilled in Python, JavaScript, and speech‑focused AI projects, seeking to apply machine‑learning expertise to audio signal processing and text‑to‑speech solutions.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices that served over one million users across multiple platforms.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, delivering consistent user experiences on desktop and mobile devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, ensuring reliable release cycles and infrastructure scalability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Implemented speech‑to‑text processing pipeline that captures audio input and generates accurate transcriptions.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated text‑to‑speech module enabling natural voice responses for user queries.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a Chrome Extension prototype that automates form filling across web applications.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST API endpoints to support PDF generation and data extraction workflows.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Created interactive UI components that capture user speech and provide real‑time feedback using speech APIs.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated language‑learning modules that guide users through pronunciation exercises.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 15,
+    "category": "DevOps",
+    "role": "DevOps & CI/CD Engineer",
+    "jd": "Manage CI/CD pipeline automation, script workflows, Docker, Kubernetes, and GitLab.",
+    "avgBqs": 87,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 2,
+      "eur": 40
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_4"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "project_0_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with 7 years of experience designing REST APIs, managing AWS deployments, and automating CI/CD pipelines. Proven ability to deliver containerized solutions using Docker, Kubernetes, and GitLab while continuously expanding technical expertise.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Implemented CI/CD pipelines in GitLab to automate build, test, and deployment processes for microservices.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed Docker container orchestration on Kubernetes clusters for scalable production workloads.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST API microservices that served over 1M users with reliable request handling.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Configured AWS cloud resources and integrated automated deployment scripts to streamline releases.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind to enhance user interaction.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a Chrome Extension prototype with manifest.json for automated form autofill.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST APIs to generate PDFs dynamically based on user input.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Integrated Whisper speech‑recognition model to convert spoken commands into actionable text.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented text‑to‑speech output enabling bidirectional voice communication.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Built a frontend application that utilizes speech APIs for real‑time language learning feedback.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Created interactive UI components to guide users through pronunciation exercises.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 16,
+    "category": "DevOps",
+    "role": "Site Reliability Engineer",
+    "jd": "Ensure system uptime. Automation scripting, Kubernetes, Docker, container monitoring, and cloud configuration.",
+    "avgBqs": 86,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Seasoned software engineer with 7 years of experience building cloud‑native services and automating deployment pipelines. Proficient in Docker, Kubernetes, and AWS, with a strong focus on ensuring system uptime and efficient monitoring.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed REST API microservices serving 1M+ users, ensuring high availability and fault tolerance.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, improving user engagement across web platforms.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and reducing deployment time.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created node.js backend scripts and designed MongoDB database schemas to support rapid feature iteration.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built a Chrome Extension prototype with manifest.json for form autofill automation, enhancing user productivity.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented Chrome Extension functionality for automated form filling.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs to support data retrieval and processing.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Created PDF generation feature for downloadable resumes.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Integrated Whisper speech recognition to capture user voice input.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented text-to-speech output for interactive responses.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built core assistant logic to process commands and provide assistance.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Implemented Speech API integration for real‑time pronunciation feedback.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Designed user interface for language learning exercises.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Enabled interactive voice exercises to improve learning outcomes.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 17,
+    "category": "DevOps",
+    "role": "Automation Specialist",
+    "jd": "Seeker of automation scripting. Python scripting, cron workflows, task automation, and docker deploy scripts.",
+    "avgBqs": 86,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1",
+          "project_2_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Seasoned software engineer with 7 years of experience in Python scripting, Docker deployment, and cloud automation. Proven ability to build and maintain REST APIs, automate workflows, and deliver scalable solutions across AWS and Kubernetes environments.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring high availability and scalability.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, improving user engagement across web platforms.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and reducing deployment time.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented Docker containers for microservices, streamlining environment consistency and deployment efficiency.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Configured Kubernetes clusters to orchestrate containerized services, enhancing fault tolerance and resource utilization.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created Node.js backend scripts and designed MongoDB database schemas to support rapid feature development.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built a Chrome Extension prototype with manifest.json for form autofill automation, reducing manual data entry.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented basic Python scripts to automate data extraction from web pages, improving data collection speed.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Collaborated with senior developers to integrate frontend components with backend services, ensuring seamless user experience.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Utilized Git for version control, maintaining clean commit history and facilitating team collaboration.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Designed and deployed a Python-based AI assistant capable of processing spoken commands and generating spoken responses.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated Whisper for accurate speech recognition, enabling real-time interaction with users.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented text-to-speech conversion to provide audible feedback, enhancing accessibility.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "Simple-Script",
+          "bullets": [
+            {
+              "bullet": "Developed reusable Python modules to automate routine data processing tasks, reducing manual effort.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented cron-compatible scheduling within scripts, enabling automated execution at specified intervals.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Ensured scripts are containerized with Docker for consistent deployment across environments.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Built a Chrome Extension prototype that automates form autofill, streamlining resume submission processes.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented REST APIs to retrieve and process LinkedIn profile data for dynamic PDF generation.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Designed responsive UI components using JavaScript, HTML, and CSS to deliver a seamless user experience.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 18,
+    "category": "Cloud",
+    "role": "Cloud Solutions Architect",
+    "jd": "Design scalable cloud architecture on AWS. Experience with AWS EC2, S3, IAM, and Solutions Architect certifications.",
+    "avgBqs": 86,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 2,
+      "eur": 40
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": []
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Full‑stack engineer with 7 years of experience designing scalable cloud solutions on AWS and building responsive web applications. Certified AWS Solutions Architect skilled in REST APIs, microservices, and modern JavaScript frameworks.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Developed REST API microservices that served over 1 million users, ensuring scalable performance and reliability.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 95,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Constructed responsive frontend modules using React and Tailwind, delivering consistent user experiences across devices.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, integrating EC2, S3, and IAM for secure, scalable infrastructure.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Engineered a Chrome Extension with form autofill and LinkedIn scraping capabilities using JavaScript, enhancing user productivity.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Implemented PDF generation and REST API services to support document handling workflows within the application.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Created an AI assistant using Python and Whisper for speech recognition, enabling real-time voice interactions.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Integrated text‑to‑speech functionality to convert AI responses into natural audio output.",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Developed a frontend language‑learning application leveraging JavaScript and speech APIs for interactive pronunciation practice.",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 19,
+    "category": "Cloud",
+    "role": "Cloud Infrastructure Developer",
+    "jd": "Deploy applications on AWS. Knowledge of Docker, Kubernetes, Terraform, and cloud-native architecture.",
+    "avgBqs": 89,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 4,
+      "eur": 80
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": []
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "project_0_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Seasoned software engineer with 7 years of experience deploying cloud-native applications on AWS, Docker, and Kubernetes. Proven ability to build scalable REST APIs and responsive front‑end modules while managing CI/CD pipelines and cloud infrastructure.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring high availability and fault tolerance",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user engagement across web platforms",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and reducing deployment time",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented Chrome Extension prototype with manifest.json for form autofill automation",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs to support dynamic data retrieval and PDF generation",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Integrated Whisper for accurate speech recognition and synthesized responses with text-to-speech",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Implemented Speech API integration to provide real-time pronunciation feedback",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": 20,
+    "category": "Cloud",
+    "role": "AWS Serverless Specialist",
+    "jd": "AWS lambda functions, serverless REST APIs, and AWS cloud databases.",
+    "avgBqs": 88,
+    "leakFound": 0,
+    "eurMetrics": {
+      "availableEvidence": 5,
+      "usedEvidence": 5,
+      "eur": 100
+    },
+    "evidenceTracker": [
+      {
+        "evidenceId": "techcorp_inc__ach_0",
+        "source": "TechCorp Inc. Experience",
+        "text": "Led development of REST API microservices serving 1M+ users",
+        "usedIn": [
+          "experience_0_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_1",
+        "source": "TechCorp Inc. Experience",
+        "text": "Built responsive frontend modules using React and Tailwind",
+        "usedIn": [
+          "experience_0_bullet_1",
+          "project_1_bullet_1"
+        ]
+      },
+      {
+        "evidenceId": "techcorp_inc__ach_2",
+        "source": "TechCorp Inc. Experience",
+        "text": "Managed AWS cloud deployments and CI/CD pipelines",
+        "usedIn": [
+          "experience_0_bullet_2"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_0",
+        "source": "Startup LLC Experience",
+        "text": "Created node.js backend scripts and designed MongoDB database schemas",
+        "usedIn": [
+          "experience_1_bullet_0"
+        ]
+      },
+      {
+        "evidenceId": "startup_llc_ach_1",
+        "source": "Startup LLC Experience",
+        "text": "Built Chrome Extension prototype with manifest.json for form autofill automation",
+        "usedIn": [
+          "experience_1_bullet_1",
+          "project_0_bullet_0"
+        ]
+      }
+    ],
+    "resume": {
+      "professionalSummary": "Seasoned full‑stack engineer with 7 years of experience building cloud‑native REST APIs and serverless solutions. Proven ability to design, deploy, and maintain scalable services on AWS, leveraging JavaScript, TypeScript, and Python.",
+      "experience": [
+        {
+          "company": "TechCorp Inc.",
+          "position": "Senior Software Engineer",
+          "bullets": [
+            {
+              "bullet": "Led development of REST API microservices serving 1M+ users, ensuring high availability and scalability",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 100,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 25
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend modules using React and Tailwind, enhancing user experience across devices",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Managed AWS cloud deployments and CI/CD pipelines, automating release processes and reducing deployment time",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "company": "Startup LLC",
+          "position": "Software Developer Intern",
+          "bullets": [
+            {
+              "bullet": "Created node.js backend scripts and designed MongoDB database schemas, supporting data persistence",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built Chrome Extension prototype with manifest.json for form autofill automation, improving user productivity",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "projects": [
+        {
+          "name": "ResumeX",
+          "bullets": [
+            {
+              "bullet": "Implemented Chrome Extension prototype enabling automated form autofill",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Developed REST APIs for data extraction and PDF generation",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 85,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "LInguaVoice",
+          "bullets": [
+            {
+              "bullet": "Integrated Speech APIs to provide real‑time language learning feedback",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 80,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Built responsive frontend enhancing user engagement",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        },
+        {
+          "name": "JARVIS",
+          "bullets": [
+            {
+              "bullet": "Implemented Whisper-based speech recognition for real‑time command processing",
+              "classification": "Evidence Supported",
+              "bqs": {
+                "total": 90,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 25,
+                "impact": 15
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            },
+            {
+              "bullet": "Enabled text‑to‑speech output to deliver conversational responses",
+              "classification": "Evidence Inferred",
+              "bqs": {
+                "total": 75,
+                "relevance": 25,
+                "specificity": 25,
+                "verifiability": 20,
+                "impact": 5
+              },
+              "errors": {
+                "generic": false,
+                "repetitive": false,
+                "unsupported": false,
+                "inventedMetric": false
+              },
+              "reasons": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]
