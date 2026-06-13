@@ -11,13 +11,18 @@ async function handleAutoFill() {
         // Get current tab
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
+        // Retrieve custom email and phone from settings as fallbacks
+        const savedSettings = await chrome.storage.local.get(['email', 'phone']);
+        const customEmail = savedSettings.email || '';
+        const customPhone = savedSettings.phone || '';
+
         // Prepare user info (includes LinkedIn from the input)
         const userInfo = {
             name: currentResumeData?.resume?.personalInfo?.name || '',
             firstName: currentResumeData?.resume?.personalInfo?.name?.split(' ')[0] || '',
             lastName: currentResumeData?.resume?.personalInfo?.name?.split(' ').slice(1).join(' ') || '',
-            email: currentResumeData?.resume?.personalInfo?.email || '',
-            phone: currentResumeData?.resume?.personalInfo?.phone || '',
+            email: currentResumeData?.resume?.personalInfo?.email || customEmail,
+            phone: currentResumeData?.resume?.personalInfo?.phone || customPhone,
             linkedin: linkedinProfileInput.value.trim() || currentResumeData?.resume?.personalInfo?.linkedin || '',
             github: githubProfileInput.value.trim() || currentResumeData?.resume?.personalInfo?.github || ''
         };

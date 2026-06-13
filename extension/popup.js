@@ -24,6 +24,8 @@ const syncStatus = document.getElementById('syncStatus');
 const settingsBtn = document.getElementById('settingsBtn');
 const settingsPanel = document.getElementById('settingsPanel');
 const apiUrlInput = document.getElementById('apiUrlInput');
+const emailInput = document.getElementById('emailInput');
+const phoneInput = document.getElementById('phoneInput');
 const saveSettingsBtn = document.getElementById('saveSettingsBtn');
 
 // Default API URL (no user input needed)
@@ -37,7 +39,9 @@ const STORAGE_KEYS = {
     API_URL: 'apiUrl',
     PERSONAL_INFO: 'personalInfo',
     CURRENT_RESUME_DATA: 'currentResumeData',
-    CURRENT_JOB_DESCRIPTION: 'currentJobDescription'
+    CURRENT_JOB_DESCRIPTION: 'currentJobDescription',
+    EMAIL: 'email',
+    PHONE: 'phone'
 };
 
 // Global state
@@ -159,6 +163,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         STORAGE_KEYS.API_URL,
         STORAGE_KEYS.CURRENT_RESUME_DATA,
         STORAGE_KEYS.CURRENT_JOB_DESCRIPTION,
+        STORAGE_KEYS.EMAIL,
+        STORAGE_KEYS.PHONE,
         'userProfile'
     ]);
 
@@ -166,6 +172,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (saved.githubProfile) githubProfileInput.value = saved.githubProfile;
     if (saved.linkedinProfile) linkedinProfileInput.value = saved.linkedinProfile;
     apiUrlInput.value = saved.apiUrl || DEFAULT_API_URL;
+    if (saved.email) emailInput.value = saved.email;
+    if (saved.phone) phoneInput.value = saved.phone;
     
     updateSyncStatus(saved.userProfile);
 
@@ -192,16 +200,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         settingsPanel.style.display = isHidden ? 'block' : 'none';
     });
 
-    // Save API URL
+    // Save Settings
     saveSettingsBtn.addEventListener('click', async () => {
         const url = apiUrlInput.value.trim();
-        await chrome.storage.local.set({ [STORAGE_KEYS.API_URL]: url });
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        
+        await chrome.storage.local.set({
+            [STORAGE_KEYS.API_URL]: url,
+            [STORAGE_KEYS.EMAIL]: email,
+            [STORAGE_KEYS.PHONE]: phone
+        });
         
         saveSettingsBtn.textContent = '✓ Saved!';
         saveSettingsBtn.style.background = '#218838';
         
         setTimeout(() => {
-            saveSettingsBtn.textContent = 'Save';
+            saveSettingsBtn.textContent = 'Save Settings';
             saveSettingsBtn.style.background = '#28a745';
             settingsPanel.style.display = 'none';
         }, 1500);
@@ -233,13 +248,21 @@ async function handleGenerateResume() {
         return;
     }
 
-    // Load user profile cache
-    const stored = await chrome.storage.local.get('userProfile');
+    // Load user profile cache and personal contact info settings
+    const stored = await chrome.storage.local.get(['userProfile', STORAGE_KEYS.EMAIL, STORAGE_KEYS.PHONE]);
     const userProfile = stored.userProfile;
+    const customEmail = stored.email || '';
+    const customPhone = stored.phone || '';
 
     if (!userProfile) {
         showStatus('No profile synced. Please click "🔄 Sync" first to load your credentials!', 'error');
         return;
+    }
+
+    // Merge custom email/phone from settings into userProfile personalInfo
+    if (userProfile.personalInfo) {
+        if (customEmail) userProfile.personalInfo.email = customEmail;
+        if (customPhone) userProfile.personalInfo.phone = customPhone;
     }
 
     // Disable button
