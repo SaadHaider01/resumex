@@ -94,7 +94,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         };
 
         // 1. Start LinkedIn Tab
-        chrome.tabs.create({ url: linkedinUrl, active: false }, (tab) => {
+        chrome.tabs.create({ url: linkedinUrl, active: true }, (tab) => {
             if (chrome.runtime.lastError) {
                 clearTimeout(timeoutId);
                 isDone = true;
@@ -144,7 +144,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             githubRepoUrl = `${trimmed}?tab=repositories`;
         }
 
-        chrome.tabs.create({ url: githubRepoUrl, active: false }, (tab) => {
+        chrome.tabs.create({ url: githubRepoUrl, active: true }, (tab) => {
             if (chrome.runtime.lastError) {
                 clearTimeout(timeoutId);
                 cleanup(); // will close linkedin tab too

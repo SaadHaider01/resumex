@@ -834,5 +834,59 @@
     "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup. 2. Hit **Generate Tailored Resume** to let the extension scrape this job description. 3. Once generated, click the **Apply Now** button below to open the application form. Full-Time Remote $80,000 - $110,000 / year Full Stack Developer Intern TechCorp • San Francisco, CA (Remote Friendly) About TechCorp At TechCorp, we are on a mission to build next-generation automated workflow tools that help teams work smarter. We leverage state-of-the-art AI systems and collaborative pipelines to design seamless browser-based experiences. We value creative engineers who love to build projects, experiment with new stacks, and take ownership of product features. Responsibilities Collaborate with product and design teams to build scalable, full-stack web applications. Design responsive frontend components and integrate them with robust, serverless backend APIs. Leverage version control systems like Git and GitHub to manage repository structures and pull requests. Participate in peer code reviews and contribute to developer onboarding documentation. Required Tech Stack & Skills We are looking for interns who are passionate about writing clean, typed, and structured code. Our ideal candidate has experience with: JavaScript (ES6+) TypeScript Python HTML5 & CSS3 Git & GitHub RESTful APIs Minimum Qualifications Strong knowledge of web technologies and relational/non-relational database services. Completed academic coursework or personal/open-source projects in JavaScript, TypeScript, or Python. Strong collaborative communication skills and enthusiasm for working in remote environments. Ready to build the future? Fill out our quick, automated test application form. Apply Now",
     "createdAt": "2026-06-12T00:02:17.041Z",
     "updatedAt": "2026-06-12T00:02:17.041Z"
+  },
+  {
+    "_id": "local_1781254200000_userinput",
+    "jobTitle": "Full Stack Developer Intern",
+    "company": "TechCorp",
+    "githubUsername": "SaadHaider01",
+    "resumeJSON": {
+      "personalInfo": {
+        "name": "Saad Haider",
+        "email": "saadhaider349@gmail.com",
+        "phone": "6205907774",
+        "location": "",
+        "linkedin": "https://www.linkedin.com/in/saad-haider-455123258",
+        "github": "https://github.com/SaadHaider01"
+      },
+      "professionalSummary": "Full-stack developer with hands‑on experience building scalable browser extensions and AI‑powered tools. Skilled in JavaScript, TypeScript, and Python, I deliver clean, responsive frontend components and robust backend APIs. Eager to contribute to remote, collaborative teams building next‑generation automated workflow solutions.",
+      "skills": {
+        "technical": [
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "HTML",
+          "CSS",
+          "PHP"
+        ],
+        "tools": [
+          "Git",
+          "GitHub"
+        ],
+        "soft": []
+      },
+      "experience": [],
+      "education": [],
+      "projects": [],
+      "certifications": []
+    },
+    "tailoringBlueprint": {
+      "matchedSkills": [
+        "javascript",
+        "python",
+        "typescript"
+      ],
+      "missingSkills": [
+        "ai",
+        "git",
+        "github",
+        "restful"
+      ],
+      "recommendedProjects": [],
+      "experienceMatchLevel": "Moderate"
+    },
+    "jobDescription": "🧪 Mock Job Description Page Use this page to test the tailoring pipeline: 1. Open the **ResumeX** extension popup...",
+    "createdAt": "2026-06-13T09:20:00.000Z",
+    "updatedAt": "2026-06-13T09:20:00.000Z"
   }
 ]
