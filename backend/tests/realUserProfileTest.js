@@ -205,10 +205,25 @@ async function runRealUserProfileTest() {
     console.log('Profile: Saad Haider | experience: [] | education: [] | certifications: []');
     console.log(`Projects available: ${realSaadProfile.projects.map(p => p.name).join(', ')}\n`);
 
+    const llmProviderName = process.env.LLM_PROVIDER || 'openrouter';
+    let apiKey = process.env.OPENROUTER_API_KEY;
+    let model = process.env.OPENROUTER_MODEL || 'openrouter/free';
+    
+    if (llmProviderName === 'gemini') {
+        apiKey = process.env.GEMINI_API_KEY;
+        model = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+    } else if (llmProviderName === 'groq') {
+        apiKey = process.env.GROQ_API_KEY;
+        model = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
+    } else if (llmProviderName === 'openai') {
+        apiKey = process.env.OPENAI_API_KEY;
+        model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+    }
+
     const provider = initializeProvider({
-        provider: process.env.LLM_PROVIDER || 'openrouter',
-        apiKey: process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY,
-        model: process.env.OPENROUTER_MODEL || 'openrouter/free'
+        provider: llmProviderName,
+        apiKey,
+        model
     });
 
     const llmCallWrapper = async (prompt) => {

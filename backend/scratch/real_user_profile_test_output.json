@@ -15,7 +15,7 @@
       "eur": 0
     },
     "diagnostics": {
-      "resumeId": "res_27c9e351ae51d3aa",
+      "resumeId": "res_53ea364dbf343564",
       "jdHash": "9d1bbe041293fcd2d6e6b71343c9add53f8ff4b4558292a3b78700b111dd22e2",
       "generationSource": "LLM_GENERATED",
       "projectCount": 3,
@@ -41,14 +41,14 @@
     "projectCount": 3,
     "leaksFound": [],
     "invalidProjects": [],
-    "avgBqs": 176,
+    "avgBqs": 177,
     "eurMetrics": {
       "availableEvidence": 0,
       "usedEvidence": 0,
       "eur": 0
     },
     "diagnostics": {
-      "resumeId": "res_6b03e923776fa234",
+      "resumeId": "res_e55bd1583c1a8cd2",
       "jdHash": "adb5c018b1b43314b75a3e05585ceb51f314bb7b8f77d5d94040d72140610516",
       "generationSource": "LLM_GENERATED",
       "projectCount": 3,
@@ -74,14 +74,14 @@
     "projectCount": 3,
     "leaksFound": [],
     "invalidProjects": [],
-    "avgBqs": 273,
+    "avgBqs": 277,
     "eurMetrics": {
       "availableEvidence": 0,
       "usedEvidence": 0,
       "eur": 0
     },
     "diagnostics": {
-      "resumeId": "res_bc83e4b892fe71ef",
+      "resumeId": "res_c6fd9f9619dc1ad4",
       "jdHash": "f26a8babb5e20c2460cb039b579637d10e5525b18059feff266c97af666afe77",
       "generationSource": "LLM_GENERATED",
       "projectCount": 3,
@@ -107,14 +107,14 @@
     "projectCount": 3,
     "leaksFound": [],
     "invalidProjects": [],
-    "avgBqs": 510,
+    "avgBqs": 513,
     "eurMetrics": {
       "availableEvidence": 0,
       "usedEvidence": 0,
       "eur": 0
     },
     "diagnostics": {
-      "resumeId": "res_274f150fd7cccd51",
+      "resumeId": "res_826e097794658758",
       "jdHash": "cef447229c53695858e1ab796be22f392dbd16976727e34e7bb764e26282ae59",
       "generationSource": "LLM_GENERATED",
       "projectCount": 3,
@@ -147,7 +147,7 @@
       "eur": 0
     },
     "diagnostics": {
-      "resumeId": "res_76acc8e3e39fa114",
+      "resumeId": "res_cb029a4212ed3cfa",
       "jdHash": "0383a290f0d8fa3845cb11a7afa8d14f6d746b467660f1cc7084639bc3af53b5",
       "generationSource": "LLM_GENERATED",
       "projectCount": 3,

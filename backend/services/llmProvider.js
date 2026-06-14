@@ -19,6 +19,8 @@ function initializeProvider(config) {
         return new GeminiProvider(config.apiKey || process.env.GEMINI_API_KEY, config.model);
     } else if (provider === 'openrouter') {
         return new OpenRouterProvider(config.apiKey || process.env.OPENROUTER_API_KEY, config.model);
+    } else if (provider === 'groq') {
+        return new GroqProvider(config.apiKey || process.env.GROQ_API_KEY, config.model);
     } else {
         throw new Error(`Unsupported LLM provider: ${provider}`);
     }
@@ -194,6 +196,63 @@ class OpenRouterProvider {
 }
 
 /**
+ * Groq Provider (Using OpenAI SDK)
+ */
+class GroqProvider {
+    constructor(apiKey, model) {
+        if (!apiKey) {
+            throw new Error('Groq API key is required');
+        }
+        this.client = new OpenAI({ 
+            apiKey, 
+            baseURL: 'https://api.groq.com/openai/v1' 
+        });
+        this.name = 'groq';
+        this.defaultModel = model || process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
+    }
+
+    async generateText(prompt, options = {}) {
+        const {
+            temperature = 0.7,
+            maxTokens = 2000,
+            responseFormat = null,
+            systemPrompt = 'You are a helpful assistant.'
+        } = options;
+
+        const messages = [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: prompt }
+        ];
+
+        const params = {
+            model: options.model || this.defaultModel,
+            messages,
+            temperature,
+            max_tokens: maxTokens
+        };
+
+        if (responseFormat === 'json') {
+            params.response_format = { type: 'json_object' };
+        }
+
+        const completion = await this.client.chat.completions.create(params);
+        let text = completion.choices[0]?.message?.content || '';
+
+        // Cleanup markdown if the model hallucinates it
+        if (text && typeof text === 'string' && text.startsWith('```json')) {
+            text = text.replace(/^```json\n/, '').replace(/\n```$/, '');
+        }
+
+        return {
+            text: text,
+            model: completion.model,
+            tokensUsed: completion.usage?.total_tokens || 0,
+            provider: this.name
+        };
+    }
+}
+
+/**
  * Get available providers
  */
 function getAvailableProviders() {
@@ -221,6 +280,14 @@ function getAvailableProviders() {
             requiresApiKey: true,
             free: true,
             notes: 'Free routing to Gemini and Llama with no IP limits'
+        },
+        {
+            id: 'groq',
+            name: 'Groq',
+            models: ['llama-3.3-70b-versatile', 'mixtral-8x7b-32768'],
+            requiresApiKey: true,
+            free: true,
+            notes: 'Extremely fast API endpoints'
         }
     ];
 }
@@ -230,5 +297,6 @@ module.exports = {
     OpenAIProvider,
     GeminiProvider,
     OpenRouterProvider,
+    GroqProvider,
     getAvailableProviders
 };

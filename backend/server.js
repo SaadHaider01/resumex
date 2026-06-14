@@ -64,12 +64,9 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
     };
 
     // 1. Clean Experience
-    // Only filter experience if the profile actually has verified companies to match against.
-    // If the profile has no experience (e.g. LinkedIn scraper failed), we leave the
-    // LLM-generated experience in place rather than wiping it entirely.
+    // If originalProfile has no experiences, the tailored resume MUST have no experiences to prevent hallucinations.
     if (!originalProfile.experience || originalProfile.experience.length === 0) {
-        // Don't wipe — the LLM may have generated plausible experience from PIE/context
-        // Intentionally no-op: leave tailoredResume.experience as-is
+        tailoredResume.experience = [];
     } else {
         const originalCompanies = originalProfile.experience.map(exp => exp.company).filter(Boolean);
         tailoredResume.experience = (tailoredResume.experience || []).filter(exp =>
@@ -78,9 +75,9 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
     }
 
     // 2. Clean Education
-    // Same logic: only filter if the profile has verified institutions.
+    // If originalProfile has no education, the tailored resume MUST have no education.
     if (!originalProfile.education || originalProfile.education.length === 0) {
-        // Don't wipe — leave LLM-generated education in place
+        tailoredResume.education = [];
     } else {
         const originalInstitutions = originalProfile.education.map(edu => edu.institution).filter(Boolean);
         tailoredResume.education = (tailoredResume.education || []).filter(edu =>
@@ -89,15 +86,40 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
     }
 
     // 3. Clean Projects
-    // Projects come from GitHub/RIE with potentially different name casing.
-    // Only filter if the profile has named projects to match against.
+    // If originalProfile has no projects, the tailored resume MUST have no projects.
     if (!originalProfile.projects || originalProfile.projects.length === 0) {
-        // Don't wipe — projects may have come from RIE-enriched data
+        tailoredResume.projects = [];
     } else {
         const originalProjects = originalProfile.projects.map(proj => proj.name || proj.repositoryName).filter(Boolean);
         tailoredResume.projects = (tailoredResume.projects || []).filter(proj =>
             matchesAny(proj.name, originalProjects)
         );
+
+        // Clean technologies for each remaining project to prevent technology hallucination (e.g. adding Python/Pandas to TypeScript/React)
+        tailoredResume.projects.forEach(proj => {
+            const originalProj = originalProfile.projects.find(op => 
+                normalize(op.name || op.repositoryName) === normalize(proj.name)
+            );
+            if (originalProj) {
+                const allowedTech = new Set([
+                    ...(originalProj.technologies || []),
+                    ...(originalProj.frameworks || []),
+                    ...(originalProj.libraries || []),
+                    ...(originalProj.databases || []),
+                    ...(originalProj.cloudServices || []),
+                    ...(originalProj.languages || [])
+                ].map(t => normalize(t)).filter(Boolean));
+
+                if (proj.technologies && Array.isArray(proj.technologies)) {
+                    proj.technologies = proj.technologies.filter(tech => {
+                        const normTech = normalize(tech);
+                        return Array.from(allowedTech).some(at => 
+                            normTech.includes(at) || at.includes(normTech)
+                        );
+                    });
+                }
+            }
+        });
     }
 
     // 4. Clean Certifications
@@ -186,6 +208,9 @@ try {
     } else if (provider === 'openrouter') {
         apiKey = process.env.OPENROUTER_API_KEY;
         model = process.env.OPENROUTER_MODEL || 'google/gemini-2.0-flash-lite-preview-02-05:free';
+    } else if (provider === 'groq') {
+        apiKey = process.env.GROQ_API_KEY;
+        model = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
     } else {
         apiKey = process.env.OPENAI_API_KEY;
         model = process.env.OPENAI_MODEL || 'gpt-4o-mini';

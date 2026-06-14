@@ -275,7 +275,11 @@ CRITICAL REQUIREMENTS:
 7. You MUST utilize and cover at least 80% of the provided evidence cards' achievements and facts.
 8. Keep professional summary concise (2-3 sentences).
 9. Use action verbs to start each bullet point.
-10. Return ONLY valid JSON, no additional text or explanation.
+10. STRICTOR RULES AGAINST HALLUCINATION:
+    - Use ONLY the actual experience listed in the evidence cards/USER PROFILE. If it contains no experience, use that. Do NOT invent or add fake jobs, companies, or dates. If empty, return "experience": [].
+    - Use ONLY the actual education listed in the evidence cards/USER PROFILE. Do NOT invent or add fake degrees or universities. If empty, return "education": [].
+    - Use ONLY the actual projects listed in the evidence cards/USER PROFILE. Do NOT invent other projects. If empty, return "projects": [].
+11. Return ONLY valid JSON, no additional text or explanation.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 🛡️ EVIDENCE FENCE (CRITICAL DIRECTIVE)
@@ -291,6 +295,10 @@ You may NOT invent, extrapolate, or assume:
 - architecture ownership
 - business outcomes
 - performance improvements
+- programming languages, frameworks, libraries, databases, cloud services, and tools (you may ONLY list technologies that are explicitly present in the corresponding project or experience card. For example, do NOT list 'Python', 'Pandas', or 'Matplotlib' under a project unless those technologies are explicitly present in that project's evidence card).
+- companies, jobs, roles, or durations of employment (you may ONLY list jobs/companies that are explicitly present in the experience cards. Do NOT invent or add fake jobs/companies like 'TechCorp' or 'Startup A' just because they are mentioned in the job description).
+- projects (you may ONLY list projects that are explicitly present in the project cards. Do NOT invent other projects).
+- degrees, majors, or institutions (you may ONLY list education entries that are explicitly present in the education/summary card. Do NOT invent degrees or universities).
 unless they are explicitly present in the verifiedMetrics or verifiedFacts of the corresponding Evidence Card.
 
 If evidence for a metric or business outcome does not exist, describe the capability, scope, technology, and implementation instead.
