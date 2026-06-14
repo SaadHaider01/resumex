@@ -93,7 +93,46 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             }
         };
 
-        // 1. Start LinkedIn Tab
+        // 1. Helper to start GitHub Scraping
+        const startGithubScrape = () => {
+            if (isDone) return;
+            
+            let githubRepoUrl = githubUrl;
+            if (!githubRepoUrl.includes('?tab=repositories') && !githubRepoUrl.includes('/repositories')) {
+                const trimmed = githubRepoUrl.replace(/\/$/, '');
+                githubRepoUrl = `${trimmed}?tab=repositories`;
+            }
+
+            chrome.tabs.create({ url: githubRepoUrl, active: true }, (tab) => {
+                if (chrome.runtime.lastError) {
+                    clearTimeout(timeoutId);
+                    cleanup();
+                    sendResponse({ success: false, error: `Failed to open GitHub URL: ${chrome.runtime.lastError.message}` });
+                    return;
+                }
+                githubTabId = tab.id;
+                
+                const tabUpdateListener = (tabId, changeInfo) => {
+                    if (tabId === githubTabId && changeInfo.status === 'complete') {
+                        chrome.scripting.executeScript({
+                            target: { tabId: githubTabId },
+                            files: ['githubScraper.js']
+                        }, () => {
+                            if (chrome.runtime.lastError) {
+                                console.error("GitHub scraper injection failed:", chrome.runtime.lastError.message);
+                                clearTimeout(timeoutId);
+                                cleanup();
+                                sendResponse({ success: false, error: `GitHub injection failed: ${chrome.runtime.lastError.message}` });
+                            }
+                        });
+                        chrome.tabs.onUpdated.removeListener(tabUpdateListener);
+                    }
+                };
+                chrome.tabs.onUpdated.addListener(tabUpdateListener);
+            });
+        };
+
+        // 2. Start LinkedIn Tab first
         chrome.tabs.create({ url: linkedinUrl, active: true }, (tab) => {
             if (chrome.runtime.lastError) {
                 clearTimeout(timeoutId);
@@ -137,47 +176,20 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             chrome.tabs.onUpdated.addListener(tabUpdateListener);
         });
 
-        // 2. Start GitHub Tab
-        let githubRepoUrl = githubUrl;
-        if (!githubRepoUrl.includes('?tab=repositories') && !githubRepoUrl.includes('/repositories')) {
-            const trimmed = githubRepoUrl.replace(/\/$/, '');
-            githubRepoUrl = `${trimmed}?tab=repositories`;
-        }
-
-        chrome.tabs.create({ url: githubRepoUrl, active: true }, (tab) => {
-            if (chrome.runtime.lastError) {
-                clearTimeout(timeoutId);
-                cleanup(); // will close linkedin tab too
-                sendResponse({ success: false, error: `Failed to open GitHub URL: ${chrome.runtime.lastError.message}` });
-                return;
-            }
-            githubTabId = tab.id;
-            
-            const tabUpdateListener = (tabId, changeInfo) => {
-                if (tabId === githubTabId && changeInfo.status === 'complete') {
-                    chrome.scripting.executeScript({
-                        target: { tabId: githubTabId },
-                        files: ['githubScraper.js']
-                    }, () => {
-                        if (chrome.runtime.lastError) {
-                            console.error("GitHub scraper injection failed:", chrome.runtime.lastError.message);
-                            clearTimeout(timeoutId);
-                            cleanup();
-                            sendResponse({ success: false, error: `GitHub injection failed: ${chrome.runtime.lastError.message}` });
-                        }
-                    });
-                    chrome.tabs.onUpdated.removeListener(tabUpdateListener);
-                }
-            };
-            chrome.tabs.onUpdated.addListener(tabUpdateListener);
-        });
-
         // 3. Listen for Scraping Messages
         const messageListener = (msg, sender) => {
             if (msg.type === 'LINKEDIN_SCRAPED' && sender.tab && sender.tab.id === linkedinTabId) {
                 if (msg.success) {
                     linkedinData = msg.data || { personalInfo: {} };
-                    checkCompleteness();
+                    // Close LinkedIn tab as soon as we're done with it
+                    if (linkedinTabId) {
+                        chrome.tabs.remove(linkedinTabId, () => {
+                            if (chrome.runtime.lastError) console.log(chrome.runtime.lastError.message);
+                        });
+                        linkedinTabId = null;
+                    }
+                    // Start GitHub sequentially
+                    startGithubScrape();
                 } else {
                     clearTimeout(timeoutId);
                     cleanup();
@@ -186,6 +198,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             } else if (msg.type === 'GITHUB_SCRAPED' && sender.tab && sender.tab.id === githubTabId) {
                 if (msg.success) {
                     githubData = msg.data || { projects: [] };
+                    // Close GitHub tab as soon as we're done with it
+                    if (githubTabId) {
+                        chrome.tabs.remove(githubTabId, () => {
+                            if (chrome.runtime.lastError) console.log(chrome.runtime.lastError.message);
+                        });
+                        githubTabId = null;
+                    }
                     checkCompleteness();
                 } else {
                     clearTimeout(timeoutId);

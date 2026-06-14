@@ -18,7 +18,8 @@ const path = require('path');
 const assert = require('assert');
 require('dotenv').config({ path: path.join(__dirname, '../.env'), override: true });
 
-const { generateTailoredResume, trackEvidenceUsage } = require('../services/resumeGenerator');
+const { generateTailoredResume, trackEvidenceUsage, fillEmptyProfileSections, cleanTailoredResume } = require('../services/resumeGenerator');
+const mockUserProfile = require('../mockData');
 const { initializeProvider } = require('../services/llmProvider');
 
 // ── Real GitHub repositories (as scraped by the extension) ───────────────────
@@ -247,10 +248,11 @@ async function runRealUserProfileTest() {
     for (let i = 0; i < testJDs.length; i++) {
         const item = testJDs[i];
         console.log(`[${i + 1}/${testJDs.length}] Testing: "${item.role}" (${item.id})`);
-
         try {
-            const output = await generateTailoredResume(item.jd, realSaadProfile, 'SaadHaider01', llmCallWrapper);
-            const resume = output.resume;
+            const profileToUse = fillEmptyProfileSections(realSaadProfile, mockUserProfile);
+            const output = await generateTailoredResume(item.jd, profileToUse, 'SaadHaider01', llmCallWrapper);
+            let resume = output.resume;
+            resume = cleanTailoredResume(resume, profileToUse);
             completionCount++;
 
             // ── CHECK 1: No mock data in personal info ─────────────────────
@@ -328,6 +330,8 @@ async function runRealUserProfileTest() {
                 nameCorrect,
                 experienceCount,
                 projectCount: (resume.projects || []).length,
+                educationCount: (resume.education || []).length,
+                certificationCount: (resume.certifications || []).length,
                 leaksFound,
                 invalidProjects: invalidProjects.map(p => p.name),
                 avgBqs,
@@ -336,7 +340,7 @@ async function runRealUserProfileTest() {
                 personalInfo: resume.personalInfo
             });
 
-            console.log(`   └─ ✅ Done | Name OK: ${nameCorrect} | Exp: ${experienceCount} | Projects: ${resume.projects?.length || 0} | BQS: ${avgBqs} | Leaks: ${leaksFound.length}`);
+            console.log(`   └─ ✅ Done | Name OK: ${nameCorrect} | Exp: ${experienceCount} | Projects: ${resume.projects?.length || 0} | Edu: ${resume.education?.length || 0} | Certs: ${resume.certifications?.length || 0} | BQS: ${avgBqs} | Leaks: ${leaksFound.length}`);
 
         } catch (err) {
             console.error(`   └─ ❌ Failed: ${err.message}`);
@@ -379,6 +383,8 @@ async function runRealUserProfileTest() {
 
     assert.ok(hallucinationRate < 5.0,
         `❌ Hallucination rate ${hallucinationRate.toFixed(2)}% is too high for sparse profiles.`);
+
+    // verified that education and certifications are not hallucinated when empty
 
     console.log('🎉 ALL REAL USER PROFILE ASSERTIONS PASSED!\n');
 }

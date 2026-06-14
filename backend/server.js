@@ -11,6 +11,7 @@ const { generateTailoringBlueprint } = require('./services/tailoringService');
 const { analyzeRepositories } = require('./services/repositoryIntelligenceService');
 const { connectDB } = require('./config/database');
 const resumeVaultRoutes = require('./routes/resumeVaultRoutes');
+const { generateTailoredResume, fillEmptyProfileSections, cleanTailoredResume } = require('./services/resumeGenerator');
 
 function parseJsonFromText(text) {
     if (!text || typeof text !== 'string') {
@@ -45,153 +46,7 @@ function parseJsonFromText(text) {
     }
 }
 
-function cleanTailoredResume(tailoredResume, originalProfile) {
-    if (!tailoredResume || !originalProfile) return tailoredResume;
-
-    const normalize = str => {
-        if (!str || typeof str !== 'string') return '';
-        return str.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
-    };
-
-    const matchesAny = (value, list) => {
-        if (!value || !list || list.length === 0) return false;
-        const val = normalize(value);
-        return list.some(item => {
-            if (!item) return false;
-            const cleanItem = normalize(item);
-            return val.includes(cleanItem) || cleanItem.includes(val);
-        });
-    };
-
-    // 1. Clean Experience
-    // If originalProfile has no experiences, the tailored resume MUST have no experiences to prevent hallucinations.
-    if (!originalProfile.experience || originalProfile.experience.length === 0) {
-        tailoredResume.experience = [];
-    } else {
-        const originalCompanies = originalProfile.experience.map(exp => exp.company).filter(Boolean);
-        tailoredResume.experience = (tailoredResume.experience || []).filter(exp =>
-            matchesAny(exp.company, originalCompanies)
-        );
-    }
-
-    // 2. Clean Education
-    // If originalProfile has no education, the tailored resume MUST have no education.
-    if (!originalProfile.education || originalProfile.education.length === 0) {
-        tailoredResume.education = [];
-    } else {
-        const originalInstitutions = originalProfile.education.map(edu => edu.institution).filter(Boolean);
-        tailoredResume.education = (tailoredResume.education || []).filter(edu =>
-            matchesAny(edu.institution, originalInstitutions)
-        );
-    }
-
-    // 3. Clean Projects
-    // If originalProfile has no projects, the tailored resume MUST have no projects.
-    if (!originalProfile.projects || originalProfile.projects.length === 0) {
-        tailoredResume.projects = [];
-    } else {
-        const originalProjects = originalProfile.projects.map(proj => proj.name || proj.repositoryName).filter(Boolean);
-        tailoredResume.projects = (tailoredResume.projects || []).filter(proj =>
-            matchesAny(proj.name, originalProjects)
-        );
-
-        // Clean technologies for each remaining project to prevent technology hallucination (e.g. adding Python/Pandas to TypeScript/React)
-        tailoredResume.projects.forEach(proj => {
-            const originalProj = originalProfile.projects.find(op => 
-                normalize(op.name || op.repositoryName) === normalize(proj.name)
-            );
-            if (originalProj) {
-                const allowedTech = new Set([
-                    ...(originalProj.technologies || []),
-                    ...(originalProj.frameworks || []),
-                    ...(originalProj.libraries || []),
-                    ...(originalProj.databases || []),
-                    ...(originalProj.cloudServices || []),
-                    ...(originalProj.languages || [])
-                ].map(t => normalize(t)).filter(Boolean));
-
-                if (proj.technologies && Array.isArray(proj.technologies)) {
-                    proj.technologies = proj.technologies.filter(tech => {
-                        const normTech = normalize(tech);
-                        return Array.from(allowedTech).some(at => 
-                            normTech.includes(at) || at.includes(normTech)
-                        );
-                    });
-                }
-            }
-        });
-    }
-
-    // 4. Clean Certifications
-    if (!originalProfile.certifications || originalProfile.certifications.length === 0) {
-        tailoredResume.certifications = [];
-    } else {
-        const originalCerts = originalProfile.certifications.filter(Boolean);
-        tailoredResume.certifications = (tailoredResume.certifications || []).filter(cert =>
-            matchesAny(cert, originalCerts)
-        );
-    }
-
-    return tailoredResume;
-}
-
-function fillEmptyProfileSections(profile, defaultProfile) {
-    if (!profile) {
-        // If no profile at all, return only personalInfo and skills from default.
-        // NEVER inject mock experience, education, projects, or certifications.
-        return {
-            personalInfo: JSON.parse(JSON.stringify(defaultProfile.personalInfo)),
-            skills: JSON.parse(JSON.stringify(defaultProfile.skills)),
-            experience: [],
-            education: [],
-            projects: [],
-            certifications: []
-        };
-    }
-
-    const filled = JSON.parse(JSON.stringify(profile));
-
-    // --- personalInfo: fill only missing atomic fields (safe defaults) ---
-    if (!filled.personalInfo) {
-        filled.personalInfo = JSON.parse(JSON.stringify(defaultProfile.personalInfo));
-    } else {
-        if (!filled.personalInfo.name) filled.personalInfo.name = defaultProfile.personalInfo.name;
-        // Do NOT auto-fill email/phone from mock — those come from extension settings
-        if (!filled.personalInfo.location) filled.personalInfo.location = '';
-    }
-
-    // --- skills: normalize flat array (from LinkedIn scraper) or object form ---
-    if (Array.isArray(filled.skills)) {
-        // LinkedIn scraper returns a flat array — promote to categorized object
-        const flatSkills = filled.skills.filter(Boolean);
-        filled.skills = {
-            technical: flatSkills.length > 0 ? flatSkills : (defaultProfile.skills.technical || []),
-            tools: defaultProfile.skills.tools || [],
-            soft: defaultProfile.skills.soft || []
-        };
-    } else if (!filled.skills || typeof filled.skills !== 'object') {
-        filled.skills = JSON.parse(JSON.stringify(defaultProfile.skills));
-    } else {
-        // Object form — fill only the missing sub-arrays
-        if (!filled.skills.technical || filled.skills.technical.length === 0) {
-            filled.skills.technical = defaultProfile.skills.technical || [];
-        }
-        if (!filled.skills.tools || filled.skills.tools.length === 0) {
-            filled.skills.tools = defaultProfile.skills.tools || [];
-        }
-    }
-
-    // --- PERSONAL HISTORY: NEVER inject mock data ---
-    // experience, education, projects, certifications are biographical facts.
-    // Leaving them empty is correct — the LLM will generate a resume that honestly
-    // reflects a candidate with only skills and GitHub projects.
-    if (!Array.isArray(filled.experience))   filled.experience   = [];
-    if (!Array.isArray(filled.education))    filled.education    = [];
-    if (!Array.isArray(filled.projects))     filled.projects     = [];
-    if (!Array.isArray(filled.certifications)) filled.certifications = [];
-
-    return filled;
-}
+// helper functions cleanTailoredResume and fillEmptyProfileSections have been migrated to services/resumeGenerator.js
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -501,7 +356,6 @@ app.post('/api/generate-tailored-resume', async (req, res) => {
         const prompt = createResumePrompt(jobDescription, finalProfileToUse, tailoringBlueprint);
 
         // Call LLM Provider through the generateTailoredResume service
-        const { generateTailoredResume } = require('./services/resumeGenerator');
         
         const llmCallFn = async (prompt) => {
             const result = await llmProvider.generateText(prompt, {

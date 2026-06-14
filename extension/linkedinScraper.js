@@ -5,17 +5,36 @@
     const autoScroll = async () => {
         await new Promise((resolve) => {
             let totalHeight = 0;
-            const distance = 500;
+            const distance = 400;
+            let lastScrollHeight = document.body.scrollHeight;
+            let sameHeightCount = 0;
+            
+            console.log("Starting auto-scroll, initial scrollHeight:", lastScrollHeight);
+            
             const timer = setInterval(() => {
-                const scrollHeight = document.body.scrollHeight;
                 window.scrollBy(0, distance);
                 totalHeight += distance;
-                if (totalHeight >= scrollHeight || totalHeight > 8000) {
-                    clearInterval(timer);
-                    window.scrollTo(0, 0);
-                    resolve();
+                
+                const scrollHeight = document.body.scrollHeight;
+                
+                if (totalHeight >= scrollHeight || totalHeight > 15000) {
+                    if (scrollHeight === lastScrollHeight) {
+                        sameHeightCount++;
+                        if (sameHeightCount >= 5) { // wait 5 ticks (1s) to stabilize
+                            clearInterval(timer);
+                            window.scrollTo(0, 0);
+                            console.log("Auto-scroll finished at height:", scrollHeight);
+                            resolve();
+                        }
+                    } else {
+                        sameHeightCount = 0;
+                        lastScrollHeight = scrollHeight;
+                    }
+                } else {
+                    sameHeightCount = 0;
+                    lastScrollHeight = scrollHeight;
                 }
-            }, 100);
+            }, 200); // 200ms is slower and safer to trigger lazy loading
         });
     };
 
@@ -30,10 +49,34 @@
 
     // Helper: find a <section> whose h2 matches a regex
     const findSection = (pattern) => {
+        // First try matching h2 content
         const sections = document.querySelectorAll('section.artdeco-card, section');
         for (const s of sections) {
             const h2 = s.querySelector('h2');
             if (h2 && pattern.test(h2.textContent.trim())) return s;
+            
+            // Also check section id or class
+            if (pattern.test(s.id) || pattern.test(s.className)) return s;
+            
+            // Or look for an anchor element inside the section with a matching id
+            const anchor = s.querySelector('div[id], a[id]');
+            if (anchor && pattern.test(anchor.id)) return s;
+        }
+        
+        // Direct query by common LinkedIn id patterns if h2/class matching falls through
+        const keyword = pattern.source.toLowerCase();
+        let targetId = '';
+        if (keyword.includes('edu')) targetId = 'education';
+        else if (keyword.includes('exp')) targetId = 'experience';
+        else if (keyword.includes('licens') || keyword.includes('cert')) targetId = 'certifications';
+        else if (keyword.includes('skill')) targetId = 'skills';
+        else if (keyword.includes('about')) targetId = 'about';
+
+        if (targetId) {
+            const el = document.getElementById(targetId) || document.querySelector(`[id*="${targetId}"]`);
+            if (el) {
+                return el.closest('section.artdeco-card') || el.closest('section') || el;
+            }
         }
         return null;
     };
@@ -47,7 +90,7 @@
     try {
         console.log("Scrolling page...");
         await autoScroll();
-        await new Promise(r => setTimeout(r, 800));
+        await new Promise(r => setTimeout(r, 1500));
 
         const profileData = {
             personalInfo: {
@@ -102,9 +145,12 @@
         const expSection = findSection(/experience/i);
         if (expSection) {
             console.log("Found Experience section");
-            const listItems = expSection.querySelectorAll(
+            let listItems = expSection.querySelectorAll(
                 'li.pvs-list__paged-list-item, li.artdeco-list__item, li[class*="pvs-list"]'
             );
+            if (listItems.length === 0) {
+                listItems = expSection.querySelectorAll('ul > li');
+            }
 
             listItems.forEach(item => {
                 // Skip nested items that belong to a parent role group
@@ -173,7 +219,7 @@
         if (eduSection) {
             console.log("Found Education section");
             const items = eduSection.querySelectorAll(
-                'li.pvs-list__paged-list-item, li.artdeco-list__item'
+                'li.pvs-list__paged-list-item, li.artdeco-list__item, li[class*="pvs-list"], ul > li'
             );
             items.forEach(item => {
                 const spans = allAriaTexts(item);
@@ -223,7 +269,7 @@
         const certsSection = findSection(/licens|certific/i);
         if (certsSection) {
             const items = certsSection.querySelectorAll(
-                'li.pvs-list__paged-list-item, li.artdeco-list__item'
+                'li.pvs-list__paged-list-item, li.artdeco-list__item, li[class*="pvs-list"], ul > li'
             );
             items.forEach(item => {
                 const nameEl = item.querySelector('span[aria-hidden="true"]');

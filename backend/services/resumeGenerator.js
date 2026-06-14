@@ -1137,3 +1137,259 @@ module.exports = {
     cleanAndValidateJSON,
     safeLLMExecution
 };
+
+function cleanTailoredResume(tailoredResume, originalProfile) {
+    if (!tailoredResume || !originalProfile) return tailoredResume;
+
+    const normalize = str => {
+        if (!str || typeof str !== 'string') return '';
+        return str.toLowerCase().replace(/[^a-z0-9]/g, '').trim();
+    };
+
+    const matchesAny = (value, list) => {
+        if (!value || !list || list.length === 0) return false;
+        const val = normalize(value);
+        return list.some(item => {
+            if (!item) return false;
+            const cleanItem = normalize(item);
+            return val.includes(cleanItem) || cleanItem.includes(val);
+        });
+    };
+
+    // 1. Clean Experience
+    if (!originalProfile.experience || originalProfile.experience.length === 0) {
+        tailoredResume.experience = [];
+    } else {
+        const originalCompanies = originalProfile.experience.map(exp => exp.company).filter(Boolean);
+        tailoredResume.experience = (tailoredResume.experience || []).filter(exp =>
+            matchesAny(exp.company, originalCompanies)
+        );
+    }
+
+    // 2. Clean Education
+    if (!originalProfile.education || originalProfile.education.length === 0) {
+        tailoredResume.education = [];
+    } else {
+        const originalInstitutions = originalProfile.education.map(edu => edu.institution).filter(Boolean);
+        tailoredResume.education = (tailoredResume.education || []).filter(edu =>
+            matchesAny(edu.institution, originalInstitutions)
+        );
+    }
+
+    // 3. Clean Projects
+    if (!originalProfile.projects || originalProfile.projects.length === 0) {
+        tailoredResume.projects = [];
+    } else {
+        const originalProjects = originalProfile.projects.map(proj => proj.name || proj.repositoryName).filter(Boolean);
+        tailoredResume.projects = (tailoredResume.projects || []).filter(proj =>
+            matchesAny(proj.name, originalProjects)
+        );
+
+        // Clean technologies for each remaining project to prevent technology hallucination
+        tailoredResume.projects.forEach(proj => {
+            const originalProj = originalProfile.projects.find(op => 
+                normalize(op.name || op.repositoryName) === normalize(proj.name)
+            );
+            if (originalProj) {
+                const allowedTech = new Set([
+                    ...(originalProj.technologies || []),
+                    ...(originalProj.frameworks || []),
+                    ...(originalProj.libraries || []),
+                    ...(originalProj.databases || []),
+                    ...(originalProj.cloudServices || []),
+                    ...(originalProj.languages || [])
+                ].map(t => normalize(t)).filter(Boolean));
+
+                if (proj.technologies && Array.isArray(proj.technologies)) {
+                    proj.technologies = proj.technologies.filter(tech => {
+                        const normTech = normalize(tech);
+                        return Array.from(allowedTech).some(at => 
+                            normTech.includes(at) || at.includes(normTech)
+                        );
+                    });
+                }
+
+                // Sanitize project description and highlights strings to remove disallowed/hallucinated technologies
+                const sanitizeString = (str) => {
+                    if (!str || typeof str !== 'string') return str;
+                    let clean = str;
+
+                    // If python is not allowed, strip python-specific terms
+                    if (!allowedTech.has('python')) {
+                        const pythonReplacements = [
+                            { pattern: /\bpython\s+backend\b/gi, replacement: 'backend' },
+                            { pattern: /\bpython\s+scripts?\b/gi, replacement: 'scripts' },
+                            { pattern: /\bpython\s+modules?\b/gi, replacement: 'modules' },
+                            { pattern: /\bpython\s+code\b/gi, replacement: 'code' },
+                            { pattern: /\bpython\s+libraries\b/gi, replacement: 'libraries' },
+                            { pattern: /\bpython\s+frameworks?\b/gi, replacement: 'frameworks' },
+                            { pattern: /\bpython\s+applications?\b/gi, replacement: 'applications' },
+                            { pattern: /\bpython-based\b/gi, replacement: '' },
+                            { pattern: /\bin\s+python\b/gi, replacement: '' },
+                            { pattern: /\busing\s+python\b/gi, replacement: '' },
+                            { pattern: /\bwith\s+python\b/gi, replacement: '' },
+                            { pattern: /\bpython\b/gi, replacement: '' }
+                        ];
+                        pythonReplacements.forEach(r => {
+                            clean = clean.replace(r.pattern, r.replacement);
+                        });
+                    }
+
+                    // If fastapi is not allowed
+                    if (!allowedTech.has('fastapi')) {
+                        clean = clean.replace(/\bfastapi\s+backend\b/gi, 'backend')
+                                     .replace(/\bfastapi\s+APIs?\b/gi, 'APIs')
+                                     .replace(/\bfastapi\s+frameworks?\b/gi, 'frameworks')
+                                     .replace(/\bfastapi\s+applications?\b/gi, 'applications')
+                                     .replace(/\bin\s+fastapi\b/gi, '')
+                                     .replace(/\busing\s+fastapi\b/gi, '')
+                                     .replace(/\bwith\s+fastapi\b/gi, '')
+                                     .replace(/\bfastapi\b/gi, '');
+                    }
+
+                    // If django is not allowed
+                    if (!allowedTech.has('django')) {
+                        clean = clean.replace(/\bdjango\s+backend\b/gi, 'backend')
+                                     .replace(/\bdjango\s+frameworks?\b/gi, 'frameworks')
+                                     .replace(/\bdjango\s+applications?\b/gi, 'applications')
+                                     .replace(/\bin\s+django\b/gi, '')
+                                     .replace(/\busing\s+django\b/gi, '')
+                                     .replace(/\bwith\s+django\b/gi, '')
+                                     .replace(/\bdjango\b/gi, '');
+                    }
+
+                    // If flask is not allowed
+                    if (!allowedTech.has('flask')) {
+                        clean = clean.replace(/\bflask\s+backend\b/gi, 'backend')
+                                     .replace(/\bflask\s+frameworks?\b/gi, 'frameworks')
+                                     .replace(/\bflask\s+applications?\b/gi, 'applications')
+                                     .replace(/\bin\s+flask\b/gi, '')
+                                     .replace(/\busing\s+flask\b/gi, '')
+                                     .replace(/\bwith\s+flask\b/gi, '')
+                                     .replace(/\bflask\b/gi, '');
+                    }
+
+                    // If pandas is not allowed
+                    if (!allowedTech.has('pandas')) {
+                        clean = clean.replace(/\bpandas\b/gi, '');
+                    }
+
+                    // If numpy is not allowed
+                    if (!allowedTech.has('numpy')) {
+                        clean = clean.replace(/\bnumpy\b/gi, '');
+                    }
+
+                    return clean
+                        .replace(/\s+/g, ' ')
+                        .replace(/\s+([.,;!])/g, '$1')
+                        .trim();
+                };
+
+                if (proj.description) {
+                    proj.description = sanitizeString(proj.description);
+                }
+
+                if (proj.highlights && Array.isArray(proj.highlights)) {
+                    proj.highlights = proj.highlights.map(h => sanitizeString(h)).filter(Boolean);
+                }
+            }
+        });
+    }
+
+    // 4. Clean Certifications
+    if (!originalProfile.certifications || originalProfile.certifications.length === 0) {
+        tailoredResume.certifications = [];
+    } else {
+        const originalCerts = originalProfile.certifications.filter(Boolean);
+        tailoredResume.certifications = (tailoredResume.certifications || []).filter(cert =>
+            matchesAny(cert, originalCerts)
+        );
+    }
+
+    return tailoredResume;
+}
+
+function fillEmptyProfileSections(profile, defaultProfile) {
+    if (!profile) {
+        return {
+            personalInfo: {
+                name: defaultProfile?.personalInfo?.name || '',
+                email: '',
+                phone: '',
+                location: '',
+                linkedin: '',
+                github: ''
+            },
+            skills: {
+                technical: [],
+                tools: [],
+                soft: []
+            },
+            experience: [],
+            education: [],
+            projects: [],
+            certifications: []
+        };
+    }
+
+    const filled = JSON.parse(JSON.stringify(profile));
+
+    // --- personalInfo: only fill missing name if absolutely blank ---
+    if (!filled.personalInfo) {
+        filled.personalInfo = {
+            name: defaultProfile?.personalInfo?.name || '',
+            email: '',
+            phone: '',
+            location: '',
+            linkedin: '',
+            github: ''
+        };
+    } else {
+        if (!filled.personalInfo.name) filled.personalInfo.name = defaultProfile?.personalInfo?.name || '';
+        if (!filled.personalInfo.email) filled.personalInfo.email = '';
+        if (!filled.personalInfo.phone) filled.personalInfo.phone = '';
+        if (!filled.personalInfo.location) filled.personalInfo.location = '';
+        if (!filled.personalInfo.linkedin) filled.personalInfo.linkedin = '';
+        if (!filled.personalInfo.github) filled.personalInfo.github = '';
+    }
+
+    // --- skills: normalize structure without falling back to mock data details ---
+    if (Array.isArray(filled.skills)) {
+        const flatSkills = filled.skills.filter(Boolean);
+        filled.skills = {
+            technical: flatSkills,
+            tools: [],
+            soft: []
+        };
+    } else if (!filled.skills || typeof filled.skills !== 'object') {
+        filled.skills = {
+            technical: [],
+            tools: [],
+            soft: []
+        };
+    } else {
+        if (!Array.isArray(filled.skills.technical)) filled.skills.technical = [];
+        if (!Array.isArray(filled.skills.tools)) filled.skills.tools = [];
+        if (!Array.isArray(filled.skills.soft)) filled.skills.soft = [];
+    }
+
+    // --- personal history: preserve as empty if not provided ---
+    if (!Array.isArray(filled.experience)) filled.experience = [];
+    if (!Array.isArray(filled.education)) filled.education = [];
+    if (!Array.isArray(filled.projects)) filled.projects = [];
+    if (!Array.isArray(filled.certifications)) filled.certifications = [];
+
+    return filled;
+}
+
+module.exports = {
+    generateTailoredResume,
+    createBlueprintEnhancedPrompt,
+    generateEvidenceCards,
+    trackEvidenceUsage,
+    deduplicateEvidenceUsage,
+    cleanAndValidateJSON,
+    safeLLMExecution,
+    cleanTailoredResume,
+    fillEmptyProfileSections
+};
