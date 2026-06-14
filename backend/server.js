@@ -138,10 +138,19 @@ function fillEmptyProfileSections(profile, defaultProfile) {
         if (!filled.personalInfo.location) filled.personalInfo.location = '';
     }
 
-    // --- skills: safe to supplement when absent (categorically, not personally fabricated) ---
-    if (!filled.skills || typeof filled.skills !== 'object') {
+    // --- skills: normalize flat array (from LinkedIn scraper) or object form ---
+    if (Array.isArray(filled.skills)) {
+        // LinkedIn scraper returns a flat array — promote to categorized object
+        const flatSkills = filled.skills.filter(Boolean);
+        filled.skills = {
+            technical: flatSkills.length > 0 ? flatSkills : (defaultProfile.skills.technical || []),
+            tools: defaultProfile.skills.tools || [],
+            soft: defaultProfile.skills.soft || []
+        };
+    } else if (!filled.skills || typeof filled.skills !== 'object') {
         filled.skills = JSON.parse(JSON.stringify(defaultProfile.skills));
     } else {
+        // Object form — fill only the missing sub-arrays
         if (!filled.skills.technical || filled.skills.technical.length === 0) {
             filled.skills.technical = defaultProfile.skills.technical || [];
         }

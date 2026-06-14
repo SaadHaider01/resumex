@@ -1,42 +1,53 @@
 (async function() {
     console.log("🚀 LinkedIn Scraper injected and running...");
     
-    // Auto-scroll function to load lazy elements (Experience, Education, Skills, etc.)
+    // Auto-scroll to load lazy sections
     const autoScroll = async () => {
         await new Promise((resolve) => {
             let totalHeight = 0;
-            const distance = 400;
+            const distance = 500;
             const timer = setInterval(() => {
                 const scrollHeight = document.body.scrollHeight;
                 window.scrollBy(0, distance);
                 totalHeight += distance;
-
-                if (totalHeight >= scrollHeight || totalHeight > 6000) {
+                if (totalHeight >= scrollHeight || totalHeight > 8000) {
                     clearInterval(timer);
                     window.scrollTo(0, 0);
                     resolve();
                 }
-            }, 80);
+            }, 100);
         });
     };
 
-    try {
-        console.log("Scrolling page to load lazy sections...");
-        await autoScroll();
-        // Wait another 500ms for rendering to settle
-        await new Promise(r => setTimeout(r, 500));
+    // Helper: get first non-empty text from a list of selectors
+    const firstText = (parent, selectors) => {
+        for (const sel of selectors) {
+            const el = parent.querySelector(sel);
+            if (el && el.textContent.trim()) return el.textContent.trim();
+        }
+        return '';
+    };
 
-        // Helper to find a section by header text
-        const findSectionByTitle = (titlePattern) => {
-            const sections = document.querySelectorAll('section');
-            for (const section of sections) {
-                const header = section.querySelector('h2');
-                if (header && titlePattern.test(header.textContent.trim())) {
-                    return section;
-                }
-            }
-            return null;
-        };
+    // Helper: find a <section> whose h2 matches a regex
+    const findSection = (pattern) => {
+        const sections = document.querySelectorAll('section.artdeco-card, section');
+        for (const s of sections) {
+            const h2 = s.querySelector('h2');
+            if (h2 && pattern.test(h2.textContent.trim())) return s;
+        }
+        return null;
+    };
+
+    // Helper: get all visible span[aria-hidden="true"] text in an element
+    const allAriaTexts = (parent) =>
+        [...parent.querySelectorAll('span[aria-hidden="true"]')]
+            .map(e => e.textContent.trim())
+            .filter(Boolean);
+
+    try {
+        console.log("Scrolling page...");
+        await autoScroll();
+        await new Promise(r => setTimeout(r, 800));
 
         const profileData = {
             personalInfo: {
@@ -44,7 +55,7 @@
                 email: '',
                 phone: '',
                 location: '',
-                linkedin: window.location.href,
+                linkedin: window.location.href.split('?')[0],
                 github: ''
             },
             summary: '',
@@ -54,159 +65,187 @@
             skills: []
         };
 
-        // 1. Get Name
-        const nameEl = document.querySelector('h1.text-heading-xlarge') || 
-                       document.querySelector('.pv-text-details__left-panel h1') ||
-                       document.querySelector('h1');
-        if (nameEl) {
-            profileData.personalInfo.name = nameEl.textContent.trim();
-        } else {
-            const titleMatch = document.title.split('|')[0] || '';
-            profileData.personalInfo.name = titleMatch.trim();
+        // ── 1. NAME ─────────────────────────────────────────────────────────
+        const nameEl =
+            document.querySelector('h1.text-heading-xlarge') ||
+            document.querySelector('.pv-text-details__left-panel h1') ||
+            document.querySelector('.profile-info-subheader h1') ||
+            document.querySelector('[data-generated-suggestion-target] h1') ||
+            document.querySelector('h1');
+        if (nameEl) profileData.personalInfo.name = nameEl.textContent.trim();
+        // Fallback: page title
+        if (!profileData.personalInfo.name) {
+            profileData.personalInfo.name = document.title.split('|')[0].trim();
         }
 
-        // 2. Get Location
-        const locEl = document.querySelector('.text-body-small.inline.t-black-t-normal') ||
-                      document.querySelector('.pv-text-details__left-panel--mt4 span.text-body-small');
-        if (locEl) {
-            profileData.personalInfo.location = locEl.textContent.trim();
-        }
+        // ── 2. LOCATION ──────────────────────────────────────────────────────
+        const locEl =
+            document.querySelector('.pv-text-details__left-panel .text-body-small.inline') ||
+            document.querySelector('.mt2 .text-body-small') ||
+            document.querySelector('span.text-body-small.inline.t-black--light');
+        if (locEl) profileData.personalInfo.location = locEl.textContent.trim();
 
-        // 3. Get About / Summary
-        const aboutSection = findSectionByTitle(/about/i);
+        // ── 3. ABOUT / SUMMARY ───────────────────────────────────────────────
+        const aboutSection = findSection(/^about$/i);
         if (aboutSection) {
-            const textContainer = aboutSection.querySelector('.display-flex span[aria-hidden="true"]') ||
-                                  aboutSection.querySelector('.pv-shared-text-with-see-more') ||
-                                  aboutSection;
-            if (textContainer) {
-                profileData.summary = textContainer.textContent.trim().replace(/\s+see\s+more$/i, '');
+            const visibleSpan =
+                aboutSection.querySelector('.display-flex.ph5.pv3 span[aria-hidden="true"]') ||
+                aboutSection.querySelector('span[aria-hidden="true"]');
+            if (visibleSpan) {
+                profileData.summary = visibleSpan.textContent.trim()
+                    .replace(/\s*see more\s*$/i, '')
+                    .replace(/\s*…see more\s*$/i, '');
             }
         }
 
-        // 4. Get Experience
-        const expSection = findSectionByTitle(/experience/i);
+        // ── 4. EXPERIENCE ────────────────────────────────────────────────────
+        const expSection = findSection(/experience/i);
         if (expSection) {
-            const items = expSection.querySelectorAll('li.pvs-list__paged-list-item, li.artdeco-list__item');
-            items.forEach(item => {
-                const subList = item.querySelector('ul');
+            console.log("Found Experience section");
+            const listItems = expSection.querySelectorAll(
+                'li.pvs-list__paged-list-item, li.artdeco-list__item, li[class*="pvs-list"]'
+            );
+
+            listItems.forEach(item => {
+                // Skip nested items that belong to a parent role group
+                if (item.closest('ul ul') && !item.closest('[data-view-name="profile-component-entity"]')) return;
+
+                const spans = allAriaTexts(item);
+                if (spans.length < 2) return;
+
+                // Check if this item contains a nested role list (multi-role at same company)
+                const subList = item.querySelector('ul.pvs-list');
                 if (subList) {
-                    const companyNameEl = item.querySelector('div.display-flex.align-items-center span[aria-hidden="true"]');
-                    const company = companyNameEl ? companyNameEl.textContent.trim().split(' · ')[0] : '';
-                    
+                    // Multi-role at same company
+                    const companyName = spans[0].split(' · ')[0];
                     const roles = subList.querySelectorAll('li');
                     roles.forEach(role => {
-                        const titleEl = role.querySelector('span[aria-hidden="true"]');
-                        const durationEl = role.querySelector('.t-14.t-black--light span[aria-hidden="true"]');
-                        const descEl = role.querySelector('.pvs-list__outer-container span[aria-hidden="true"]');
-                        
-                        if (titleEl) {
+                        const roleSpans = allAriaTexts(role);
+                        if (roleSpans.length >= 1) {
+                            const title = roleSpans[0];
+                            const duration = roleSpans.find(s => /\d{4}|present|yr|mo/i.test(s)) || 'Unknown';
+                            const descSpans = roleSpans.slice(3);
                             profileData.experience.push({
-                                company: company || 'Unknown Company',
-                                position: titleEl.textContent.trim(),
-                                duration: durationEl ? durationEl.textContent.trim().split(' · ')[0] : 'Unknown',
+                                company: companyName,
+                                position: title,
+                                duration,
                                 location: 'Remote',
-                                achievements: descEl ? descEl.textContent.trim().split('\n').map(a => a.trim()).filter(Boolean) : []
+                                achievements: descSpans.filter(s =>
+                                    s.length > 20 && !/\d{4}/.test(s) && s !== title && s !== companyName
+                                )
                             });
                         }
                     });
                 } else {
-                    const details = item.querySelectorAll('span[aria-hidden="true"]');
-                    if (details.length >= 2) {
-                        const title = details[0].textContent.trim();
-                        const companyInfo = details[1].textContent.trim().split(' · ');
-                        const company = companyInfo[0] || 'Unknown Company';
-                        
-                        let duration = 'Unknown';
-                        let desc = '';
-                        
-                        const textLight = item.querySelectorAll('.t-14.t-black--light span[aria-hidden="true"]');
-                        if (textLight.length > 0) {
-                            duration = textLight[0].textContent.trim().split(' · ')[0];
-                        }
-                        
-                        const descEl = item.querySelector('.inline-show-more-text span[aria-hidden="true"]') ||
-                                       item.querySelector('.pvs-list__outer-container span[aria-hidden="true"]');
-                        if (descEl) {
-                            desc = descEl.textContent.trim();
-                        }
+                    // Single role
+                    const title = spans[0];
+                    const companyRaw = spans[1] || '';
+                    const company = companyRaw.split(' · ')[0];
 
+                    // Duration: look for a span with year/month pattern
+                    const duration = spans.find(s => /\d{4}|present|yr|mo/i.test(s)) || 'Unknown';
+
+                    // Achievements: remaining spans that look like descriptions
+                    const descStart = 2;
+                    const achievements = spans.slice(descStart).filter(s =>
+                        s.length > 20 &&
+                        !/^\d{4}/.test(s) &&
+                        !/^(present|full.time|part.time|contract|freelance)/i.test(s) &&
+                        s !== title && s !== company
+                    );
+
+                    if (title && company) {
                         profileData.experience.push({
                             company,
                             position: title,
                             duration,
                             location: 'Remote',
-                            achievements: desc ? desc.split('\n').map(a => a.trim()).filter(Boolean) : []
+                            achievements
                         });
                     }
                 }
             });
         }
+        console.log(`Scraped ${profileData.experience.length} experience entries`);
 
-        // 5. Get Education
-        const eduSection = findSectionByTitle(/education/i);
+        // ── 5. EDUCATION ─────────────────────────────────────────────────────
+        const eduSection = findSection(/education/i);
         if (eduSection) {
-            const items = eduSection.querySelectorAll('li.pvs-list__paged-list-item, li.artdeco-list__item');
+            console.log("Found Education section");
+            const items = eduSection.querySelectorAll(
+                'li.pvs-list__paged-list-item, li.artdeco-list__item'
+            );
             items.forEach(item => {
-                const details = item.querySelectorAll('span[aria-hidden="true"]');
-                if (details.length >= 2) {
-                    const institution = details[0].textContent.trim();
-                    const degree = details[1].textContent.trim();
-                    
-                    let graduation = 'N/A';
-                    const textLight = item.querySelectorAll('.t-14.t-black--light span[aria-hidden="true"]');
-                    if (textLight.length > 0) {
-                        const dateText = textLight[0].textContent.trim();
-                        const years = dateText.match(/\d{4}/g);
-                        if (years && years.length > 0) {
-                            graduation = years[years.length - 1];
-                        }
-                    }
+                const spans = allAriaTexts(item);
+                if (spans.length < 2) return;
 
-                    profileData.education.push({
-                        degree,
-                        institution,
-                        graduation,
-                        gpa: null
-                    });
-                }
+                const institution = spans[0];
+                const degree = spans[1];
+
+                // Find graduation year
+                const yearSpan = spans.find(s => /\d{4}/.test(s));
+                const years = yearSpan ? yearSpan.match(/\d{4}/g) : null;
+                const graduation = years ? years[years.length - 1] : 'N/A';
+
+                profileData.education.push({ degree, institution, graduation, gpa: null });
             });
         }
+        console.log(`Scraped ${profileData.education.length} education entries`);
 
-        // 6. Get Skills
-        const skillsSection = findSectionByTitle(/skills/i);
+        // ── 6. SKILLS ────────────────────────────────────────────────────────
+        const skillsSection = findSection(/skills/i);
         if (skillsSection) {
-            const items = skillsSection.querySelectorAll('span[aria-hidden="true"]');
-            items.forEach(item => {
-                const skill = item.textContent.trim();
-                if (skill && skill.length < 50 && !skill.includes('•') && !skill.includes('endorsed') && !skill.toLowerCase().includes('skill assessment')) {
-                    profileData.skills.push(skill);
+            console.log("Found Skills section");
+            const spans = skillsSection.querySelectorAll('span[aria-hidden="true"]');
+            const seen = new Set();
+            spans.forEach(sp => {
+                const text = sp.textContent.trim();
+                if (
+                    text &&
+                    text.length < 60 &&
+                    text.length > 1 &&
+                    !text.includes('•') &&
+                    !text.toLowerCase().includes('endorsed') &&
+                    !text.toLowerCase().includes('skill assessment') &&
+                    !text.toLowerCase().includes('show all') &&
+                    !text.toLowerCase().includes('see more') &&
+                    !/^\d+$/.test(text) &&
+                    !seen.has(text)
+                ) {
+                    seen.add(text);
+                    profileData.skills.push(text);
                 }
             });
-            profileData.skills = [...new Set(profileData.skills)];
         }
+        console.log(`Scraped ${profileData.skills.length} skills`);
 
-        // 7. Get Certifications
-        const certsSection = findSectionByTitle(/licens|certific/i);
+        // ── 7. CERTIFICATIONS ────────────────────────────────────────────────
+        const certsSection = findSection(/licens|certific/i);
         if (certsSection) {
-            const items = certsSection.querySelectorAll('li.pvs-list__paged-list-item, li.artdeco-list__item');
+            const items = certsSection.querySelectorAll(
+                'li.pvs-list__paged-list-item, li.artdeco-list__item'
+            );
             items.forEach(item => {
-                const details = item.querySelector('span[aria-hidden="true"]');
-                if (details) {
-                    profileData.certifications.push(details.textContent.trim());
+                const nameEl = item.querySelector('span[aria-hidden="true"]');
+                if (nameEl) {
+                    const cert = nameEl.textContent.trim();
+                    if (cert && !profileData.certifications.includes(cert)) {
+                        profileData.certifications.push(cert);
+                    }
                 }
             });
         }
 
-        console.log("Parsed profile data:", profileData);
-        
-        // Send message back
+        console.log("✅ Parsed profile:", profileData);
+
         chrome.runtime.sendMessage({
             type: "LINKEDIN_SCRAPED",
             success: true,
             data: profileData
         });
+
     } catch (e) {
-        console.error("Scraper error:", e);
+        console.error("LinkedIn Scraper error:", e);
         chrome.runtime.sendMessage({
             type: "LINKEDIN_SCRAPED",
             success: false,
