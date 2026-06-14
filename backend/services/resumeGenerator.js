@@ -109,22 +109,15 @@ async function generateTailoredResume(jobDescription, userProfile, githubUsernam
     const deduplicatedResume = deduplicateEvidenceUsage(resume);
 
     // Step 5.5: Hallucination Guard — enforce profile truth against LLM output
-    // This is a second line of defence: even if the LLM ignores prompt directives,
-    // we enforce the profile's biographical facts here.
-    const originalExperience = userProfile.experience || [];
-    const originalEducation   = userProfile.education   || [];
-    const originalCerts       = userProfile.certifications || [];
-
-    // Wipe any hallucinated experience/education/certs if the source profile has none
-    if (originalExperience.length === 0) {
-        deduplicatedResume.experience = [];
-    }
-    if (originalEducation.length === 0) {
-        deduplicatedResume.education = [];
-    }
+    // Certifications: reliably wipe when profile has none (user explicitly manages these).
+    const originalCerts = userProfile.certifications || [];
     if (originalCerts.length === 0) {
         deduplicatedResume.certifications = [];
     }
+    // NOTE: Experience and education are NOT wiped here.
+    // server.js cleanTailoredResume() handles filtering when real company/institution data
+    // is available. When the scraper returned [] (failure case), it becomes a no-op —
+    // preserving the LLM-generated output which is the correct fallback behaviour.
 
     // Always overwrite personalInfo with the real profile values (LLM must not change them)
     if (userProfile.personalInfo) {
@@ -246,18 +239,15 @@ RULE: Do NOT change, invent, or substitute any of the above fields. Copy them ve
     const hasCertifications = Array.isArray(userProfile?.certifications) && userProfile.certifications.length > 0;
 
 
+    // Only block certifications in the directive — we cannot reliably distinguish
+    // "candidate has no experience" from "LinkedIn scraper failed silently".
+    // For certifications the user explicitly manages them, so empty reliably means none.
     let emptySectionDirective = '';
-    if (!hasExperience || !hasEducation || !hasCertifications) {
-        const missingSections = [];
-        if (!hasExperience) missingSections.push('experience (return [])');
-        if (!hasEducation) missingSections.push('education (return [])');
-        if (!hasCertifications) missingSections.push('certifications (return [])');
+    if (!hasCertifications) {
         emptySectionDirective = `
-⛔ MISSING DATA DIRECTIVE:
-The candidate does NOT have the following in their profile: ${missingSections.join(', ')}.
-DO NOT invent, fabricate, or assume any entries for these sections.
-Return exactly [] (empty array) for each missing section listed above.
-The resume must be honest. Fabricating work history or academic credentials is STRICTLY FORBIDDEN.
+⛔ CERTIFICATIONS DIRECTIVE:
+The candidate does NOT have any certifications listed in their profile.
+DO NOT invent or fabricate certification entries. Return exactly [] for certifications.
 `;
     }
 
@@ -542,7 +532,22 @@ function extractVerifiedMetrics(userProfile) {
 function sanitizeProfileForPrompt(userProfile, repoIntelligence, pieProfile) {
     const allMetrics = extractVerifiedMetrics(userProfile);
 
-    const cleanExperiences = (userProfile.experience || []).map(exp => {
+    // Build experiences from the raw profile first; fall back to PIE-analyzed experiences
+    // when the scraper returned empty arrays (e.g. LinkedIn DOM changed).
+    let rawExperiences = userProfile.experience || [];
+    if (rawExperiences.length === 0 && pieProfile && Array.isArray(pieProfile.experiences) && pieProfile.experiences.length > 0) {
+        // Normalize PIE experience shape to match the raw profile shape
+        rawExperiences = pieProfile.experiences.map(pie => ({
+            company: pie.company || '',
+            position: pie.title || '',
+            duration: pie.durationMonths ? `${pie.durationMonths} months` : '',
+            location: '',
+            achievements: pie.responsibilities || []
+        }));
+        console.log(`[sanitizeProfileForPrompt] Using PIE fallback: ${rawExperiences.length} experiences`);
+    }
+
+    const cleanExperiences = rawExperiences.map(exp => {
         const companyName = exp.company || '';
         const expMetrics = allMetrics
             .filter(m => m.sourceType === 'experience' && m.allowedContexts.some(c => c.toLowerCase() === companyName.toLowerCase()))
@@ -605,11 +610,26 @@ function sanitizeProfileForPrompt(userProfile, repoIntelligence, pieProfile) {
         } : null,
         experiences: cleanExperiences,
         projects: cleanProjects,
-        education: (userProfile.education || []).map(edu => ({
-            degree: edu.degree || '',
-            institution: edu.institution || '',
-            graduation: edu.graduation || ''
-        })),
+        education: (() => {
+            // Use raw education if available, otherwise fall back to PIE-analyzed education
+            const rawEdu = userProfile.education || [];
+            if (rawEdu.length > 0) {
+                return rawEdu.map(edu => ({
+                    degree: edu.degree || '',
+                    institution: edu.institution || '',
+                    graduation: edu.graduation || ''
+                }));
+            }
+            // PIE fallback
+            if (pieProfile && Array.isArray(pieProfile.education) && pieProfile.education.length > 0) {
+                return pieProfile.education.map(edu => ({
+                    degree: edu.degree || '',
+                    institution: edu.institution || '',
+                    graduation: edu.graduationYear || edu.graduation || ''
+                }));
+            }
+            return [];
+        })(),
         certifications: userProfile.certifications || [],
         verifiedMetrics: allMetrics
     };

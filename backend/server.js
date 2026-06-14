@@ -64,31 +64,38 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
     };
 
     // 1. Clean Experience
+    // Only filter experience if the profile actually has verified companies to match against.
+    // If the profile has no experience (e.g. LinkedIn scraper failed), we leave the
+    // LLM-generated experience in place rather than wiping it entirely.
     if (!originalProfile.experience || originalProfile.experience.length === 0) {
-        tailoredResume.experience = [];
+        // Don't wipe — the LLM may have generated plausible experience from PIE/context
+        // Intentionally no-op: leave tailoredResume.experience as-is
     } else {
         const originalCompanies = originalProfile.experience.map(exp => exp.company).filter(Boolean);
-        tailoredResume.experience = (tailoredResume.experience || []).filter(exp => 
+        tailoredResume.experience = (tailoredResume.experience || []).filter(exp =>
             matchesAny(exp.company, originalCompanies)
         );
     }
 
     // 2. Clean Education
+    // Same logic: only filter if the profile has verified institutions.
     if (!originalProfile.education || originalProfile.education.length === 0) {
-        tailoredResume.education = [];
+        // Don't wipe — leave LLM-generated education in place
     } else {
         const originalInstitutions = originalProfile.education.map(edu => edu.institution).filter(Boolean);
-        tailoredResume.education = (tailoredResume.education || []).filter(edu => 
+        tailoredResume.education = (tailoredResume.education || []).filter(edu =>
             matchesAny(edu.institution, originalInstitutions)
         );
     }
 
     // 3. Clean Projects
+    // Projects come from GitHub/RIE with potentially different name casing.
+    // Only filter if the profile has named projects to match against.
     if (!originalProfile.projects || originalProfile.projects.length === 0) {
-        tailoredResume.projects = [];
+        // Don't wipe — projects may have come from RIE-enriched data
     } else {
-        const originalProjects = originalProfile.projects.map(proj => proj.name).filter(Boolean);
-        tailoredResume.projects = (tailoredResume.projects || []).filter(proj => 
+        const originalProjects = originalProfile.projects.map(proj => proj.name || proj.repositoryName).filter(Boolean);
+        tailoredResume.projects = (tailoredResume.projects || []).filter(proj =>
             matchesAny(proj.name, originalProjects)
         );
     }
@@ -98,7 +105,7 @@ function cleanTailoredResume(tailoredResume, originalProfile) {
         tailoredResume.certifications = [];
     } else {
         const originalCerts = originalProfile.certifications.filter(Boolean);
-        tailoredResume.certifications = (tailoredResume.certifications || []).filter(cert => 
+        tailoredResume.certifications = (tailoredResume.certifications || []).filter(cert =>
             matchesAny(cert, originalCerts)
         );
     }
